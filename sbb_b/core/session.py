@@ -2,9 +2,10 @@ import sys
 
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
-
+from .bothseesion import bothseesion
 from ..Config import Config
 from .client import JmthonClient
+from sbb_b import LOGS
 
 __version__ = "2.10.6"
 
@@ -17,7 +18,7 @@ else:
 
 try:
     sbb_b = JmthonClient(
-        session=session,
+        bothseesion(Config.STRING_SESSION, LOGS),
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
         loop=loop,
