@@ -28,7 +28,7 @@ DC_IPV4 = {
 }
 
 
-def bothseesion(session, logger=LOGS):
+def bothseesion(session, logger=LOGS, _exit=True):
     if session:
         # كود التيليثون
         if session.startswith(CURRENT_VERSION):
