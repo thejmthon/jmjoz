@@ -62,5 +62,10 @@ def bothseesion(session, logger=LOGS):
                     )
                 ).decode("ascii")
             )
-    logger.exception("لم يتم ايجاد كود سيشن لذلك توقفت العملية"))
-    sys.exit()
+        else:
+            logger.exception("كود سيشن تيليثون غير صحيح يرجى وضعه بشكل صحيح")
+            if _exit:
+                sys.exit()
+    logger.exception("لم يتم ايجاد كود سيشن لذلك توقفت العملية")
+    if _exit:
+        sys.exit()
