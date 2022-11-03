@@ -3,11 +3,10 @@ import sys
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 
-from .logger import logging
-
 from ..Config import Config
 from .bothseesion import bothseesion
 from .client import JmthonClient
+from .logger import logging
 
 LOGS = logging.getLogger("سورس جمثون")
 __version__ = "2.10.6"
