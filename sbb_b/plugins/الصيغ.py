@@ -387,7 +387,9 @@ async def _(event):
     else:
         end = datetime.now()
         ms = (end - start).seconds
-        await event.edit(f"- تم تنزيل الملف : {downloaded_file_name}\nالوقت المستغرق: {ms} من الثواني")
+        await event.edit(
+            f"- تم تنزيل الملف : {downloaded_file_name}\nالوقت المستغرق: {ms} من الثواني"
+        )
         new_required_file_name = ""
         new_required_file_caption = ""
         command_to_run = []
@@ -459,4 +461,3 @@ async def _(event):
             )
             os.remove(new_required_file_name)
             await event.delete()
-

@@ -1,24 +1,16 @@
-import html
 import os
-import base64
 
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from telethon.tl.types import MessageEntityMentionName
-
-from requests import get
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import MessageEntityMentionName
 
 from sbb_b import sbb_b
-from sbb_b.core.logger import logging
-
 from sbb_b.Config import Config
-from sbb_b.core.managers import edit_or_reply, edit_delete
-from sbb_b.helpers import reply_id
-from sbb_b.sql_helper.globals import gvarstatus
-from sbb_b.plugins import spamwatch
+from sbb_b.core.logger import logging
+from sbb_b.core.managers import edit_or_reply
 
 LOGS = logging.getLogger(__name__)
+
 
 async def get_user_from_event(event):
     if event.reply_to_msg_id:
@@ -55,10 +47,9 @@ async def fetch_info(replied_user, event):
         GetUserPhotosRequest(user_id=replied_user.id, offset=42, max_id=0, limit=80)
     )
     replied_user_profile_photos_count = "⌔∮ هذا المستخدم لم يضع اي صورة"
-    dc_id = "Can't get dc id"
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
-        dc_id = replied_user.photo.dc_id
+        replied_user.photo.dc_id
     except AttributeError:
         pass
     user_id = replied_user.id
@@ -67,9 +58,9 @@ async def fetch_info(replied_user, event):
     common_chat = FullUser.common_chats_count
     username = replied_user.username
     user_bio = FullUser.about
-    is_bot = replied_user.bot
-    restricted = replied_user.restricted
-    verified = replied_user.verified
+    replied_user.bot
+    replied_user.restricted
+    replied_user.verified
     photo = await event.client.download_profile_photo(
         user_id,
         Config.TMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg",
@@ -95,7 +86,7 @@ async def fetch_info(replied_user, event):
         and user_id != 2034443585
         and user_id != 1280124974
         else rozrtba
-    )    
+    )
     caption = " \n"
     caption += f"╽<b>- الاسـم ⇜ </b> {full_name}\n"
     caption += f"╽<b>- المـعـرف ⇜ </b> {username}\n"
@@ -108,6 +99,7 @@ async def fetch_info(replied_user, event):
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>\n'
     return photo, caption
 
+
 @sbb_b.ar_cmd(pattern="ايدي(?: |$)(.*)")
 async def who(event):
     roz = await edit_or_reply(event, "**⌔∮ جار التعرف على المستخدم انتظر قليلا**")
@@ -117,7 +109,9 @@ async def who(event):
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        return await edit_or_reply(roz,  "**⌔∮ لم يتم العثور على معلومات لهذا المستخدم **")
+        return await edit_or_reply(
+            roz, "**⌔∮ لم يتم العثور على معلومات لهذا المستخدم **"
+        )
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
         message_id_to_reply = None

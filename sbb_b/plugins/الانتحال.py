@@ -4,12 +4,20 @@ from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 from sbb_b.Config import Config
+from sbb_b.plugins import (
+    ALIVE_NAME,
+    BOTLOG,
+    BOTLOG_CHATID,
+    edit_delete,
+    get_user_from_event,
+    sbb_b,
+)
 from sbb_b.sql_helper.globals import gvarstatus
-from sbb_b.plugins import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, sbb_b, edit_delete, get_user_from_event
 
 DEFAULTUSER = gvarstatus("FIRST_NAME") or ALIVE_NAME
 DEFAULTUSERBIO = Config.DEFAULT_BIO or "﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾"
 ANT7AL = gvarstatus("ANT7AL") or "(اعادة الحساب|اعادة)"
+
 
 @sbb_b.ar_cmd(pattern="انتحال(?:\s|$)([\s\S]*)")
 async def _(event):

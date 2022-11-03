@@ -31,6 +31,7 @@ class AFK:
 
 AFK_ = AFK()
 
+
 @jmthon.ar_cmd(outgoing=True, edited=False)
 async def set_not_afk(event):
     if AFK_.afk_on is False:

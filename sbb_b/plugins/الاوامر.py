@@ -174,7 +174,8 @@ async def hi(event):
         link_preview=False,
     )
     await event.delete()
-    
+
+
 @sbb_b.ar_cmd(pattern="م21")
 async def hi(event):
     await event.reply(

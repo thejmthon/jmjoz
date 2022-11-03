@@ -1,17 +1,8 @@
-from . import *
-import asyncio
-import calendar
-import json
-import os
-from datetime import datetime
-from urllib.parse import quote
-
-import barcode
-import qrcode
-import requests
-from barcode.writer import ImageWriter
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 from sbb_b import sbb_b
+
+from . import *
 
 
 @sbb_b.ar_cmd(pattern="حفظ كتابة$")
@@ -41,7 +32,7 @@ async def saf(e):
         await razan.forward_to(e.sender_id)
     await edit_delete(e, "- تم بنجاح حفظ الرسالة في الرسائل المحفوظة", time=8)
 
-    
+
 @sbb_b.ar_cmd(pattern="همسة ?(.*)")
 async def roz(event):
     razan = event.pattern_match.group(1)
@@ -51,7 +42,6 @@ async def roz(event):
     R7 = await sbb_b.inline_query(BE, razan)
     await R7[0].click(event.chat_id)
     await event.delete()
-   
 
 
 @sbb_b.ar_cmd(pattern="ايجاد الفايروسات$")
@@ -90,5 +80,3 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id, response3.media, reply_to=(await reply_id(event))
             )
-            
-            
