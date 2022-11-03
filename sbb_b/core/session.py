@@ -3,12 +3,13 @@ import sys
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 
-from sbb_b import LOGS
+from .logger import logging
 
 from ..Config import Config
 from .bothseesion import bothseesion
 from .client import JmthonClient
 
+LOGS = logging.getLogger("سورس جمثون")
 __version__ = "2.10.6"
 
 loop = None
