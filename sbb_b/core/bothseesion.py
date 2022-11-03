@@ -7,9 +7,8 @@ try:
 except ModuleNotFoundError:
     os.system("pip3 install ipaddress")
     import ipaddress
-    
+
 import struct
-    
 import sys
 
 from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
