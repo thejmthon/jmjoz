@@ -21,7 +21,7 @@ jobs:
           sudo apt-get install libpq-dev libxml2-dev libxslt-dev python-dev
           python -m pip install --upgrade pip
           pip install wheel flake8 flake8-print flake8-quotes
-          pip install -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt
       - name: Check for showstoppers
         run: |
           # stop the build if there are Python syntax errors
