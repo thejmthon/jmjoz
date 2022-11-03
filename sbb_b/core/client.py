@@ -117,7 +117,7 @@ class JmthonClient(TelegramClient):
                         and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
                   ):
-                    return
+                        return
                 if private_only and not check.is_private:
                     return await edit_delete(check, "- يستخدم الامر فقط في الخاص ", 10)
                 try:
