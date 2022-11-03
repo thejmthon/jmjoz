@@ -6,13 +6,12 @@ from telethon.errors import (
     ImageProcessFailedError,
     PhotoCropSizeSmallError,
 )
-from telethon.errors.rpcerrorlist import ChatNotModifiedError, UserIdInvalidError
+from telethon.errors.rpcerrorlist import UserIdInvalidError
 from telethon.tl.functions.channels import (
     EditAdminRequest,
     EditBannedRequest,
     EditPhotoRequest,
 )
-from telethon.tl.functions.messages import SetHistoryTTLRequest
 from telethon.tl.types import (
     ChatAdminRights,
     ChatBannedRights,
@@ -66,7 +65,11 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
-@sbb_b.ar_cmd(pattern="الصورة( -وضع| -حذف)$", groups_only=True, require_admin=True)
+@sbb_b.ar_cmd(
+    pattern="الصورة( -وضع| -حذف)$",
+    groups_only=True,
+    require_admin=True,
+)
 async def set_group_photo(event):
     flag = (event.pattern_match.group(1)).strip()
     if flag == "-وضع":
@@ -532,29 +535,3 @@ async def _iundlt(event):
                     f"{msg.old.message}\n**المرسل:** {_format.mentionuser(ruser.first_name ,ruser.id)}",
                     file=msg.old.media,
                 )
-
-
-@sbb_b.ar_cmd(
-    pattern="مسح تلقائي( (.*)|$)",
-    require_admin=True,
-    groups_only=True,
-)
-async def deletauto(event):
-    match = event.pattern_match.group(1).strip()
-    if not match or match not in ["24h", "7d", "1m", "off"]:
-        return await edit_delete(event, "يجب عليك تحديد الوقت بشكل صحيح", time=5)
-    if match == "24h":
-        tt = 3600 * 24
-    elif match == "7d":
-        tt = 3600 * 24 * 7
-    elif match == "1m":
-        tt = 3600 * 24 * 31
-    else:
-        tt = 0
-    try:
-        await event.client(SetHistoryTTLRequest(event.chat_id, period=tt))
-    except ChatNotModifiedError:
-        return await edit_delete(
-            event, "تم وضع خاصية المسح التلقائي الى {match}", time=5
-        )
-    await edit_delete(event, "تم وضع خاصية المسح التلقائي الى: {match} !")
