@@ -8,11 +8,7 @@ except ModuleNotFoundError:
     os.system("pip3 install ipaddress")
     import ipaddress
     
-try:
-    import struct
-except ModuleNotFoundError:
-    os.system("pip3 install struct")
-    import struct
+import struct
     
 import sys
 
