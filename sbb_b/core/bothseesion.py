@@ -15,7 +15,7 @@ from telethon.sessions.string import _STRUCT_PREFORMAT, CURRENT_VERSION, StringS
 from ..core.logger import logging
 
 # https://github.com/pyrogram/pyrogram/blob/master/docs/source/faq/what-are-the-ip-addresses-of-telegram-data-centers.rst
-PYROFORM = {351: ">B?256sI?", 356: ">B?256sQ?", 362: ">BI?256sQ?"}
+_PYRO_FORM = {351: ">B?256sI?", 356: ">B?256sQ?", 362: ">BI?256sQ?"}
 
 LOGS = logging.getLogger("سورس جمثون")
 
@@ -37,15 +37,15 @@ def bothseesion(session, logger=LOGS, _exit=True):
                 sys.exit()
             return StringSession(session)
         # كود البايروجرام
-        elif len(session) in PYROFORM.keys():
+        elif len(session) in _PYRO_FORM.keys():
             if len(session) in [351, 356]:
                 dc_id, _, auth_key, _, _ = struct.unpack(
-                    PYROFORM[len(session)],
+                    _PYRO_FORM[len(session)],
                     base64.urlsafe_b64decode(session + "=" * (-len(session) % 4)),
                 )
             else:
                 dc_id, _, _, auth_key, _, _ = struct.unpack(
-                    PYROFORM[len(session)],
+                    _PYRO_FORM[len(session)],
                     base64.urlsafe_b64decode(session + "=" * (-len(session) % 4)),
                 )
             return StringSession(
