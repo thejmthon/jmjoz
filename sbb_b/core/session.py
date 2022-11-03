@@ -27,7 +27,7 @@ try:
         connection_retries=None,
     )
 except Exception as e:
-    print(f"STRING_SESSION - {e}")
+    print(f"STRING_SESSION WRONG PLZ MAKE A NEW SESSION - {e}\n كود سيشن تيليثون الذي وضعته غير صالح")
     sys.exit()
 
 
@@ -41,3 +41,7 @@ sbb_b.tgbot = tgbot = JmthonClient(
     auto_reconnect=True,
     connection_retries=None,
 ).start(bot_token=Config.TG_BOT_TOKEN)
+
+except Exception:
+    print(f"توكن البوت الخاص بك غير صحيح او وضعته بشكل خاطئ يرجى صنع بوت جديد واضافه قيمته")
+    sys.exit()
