@@ -14,12 +14,13 @@ import sys
 
 from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
 from telethon.sessions.string import _STRUCT_PREFORMAT, CURRENT_VERSION, StringSession
-
+from ..core.logger import logging
 from ..Config import Config
 
 # https://github.com/pyrogram/pyrogram/blob/master/docs/source/faq/what-are-the-ip-addresses-of-telegram-data-centers.rst
 PYROFORM = {351: ">B?256sI?", 356: ">B?256sQ?", 362: ">BI?256sQ?"}
 
+LOGS = logging.getLogger("سورس جمثون")
 
 DC_IPV4 = {
     1: "149.154.175.53",
