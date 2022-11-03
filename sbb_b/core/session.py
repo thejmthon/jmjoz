@@ -41,7 +41,3 @@ sbb_b.tgbot = tgbot = JmthonClient(
     auto_reconnect=True,
     connection_retries=None,
 ).start(bot_token=Config.TG_BOT_TOKEN)
-
-except Exception as e:
-    print(f"توكن البوت الخاص بك غير صحيح او وضعته بشكل خاطئ يرجى صنع بوت جديد واضافه قيمته")
-    sys.exit()
