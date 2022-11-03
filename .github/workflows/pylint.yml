@@ -30,6 +30,6 @@ jobs:
           commit_message: 'اعداد تلقائي'
           commit_options: '--no-verify'
           repository: .
-          commit_user_name: thejmthon
-          commit_user_email: thejmthon@users.noreply.github.com
-          commit_author: thejmthon <thejmthon@users.noreply.github.com>
+          commit_user_name: jmthonr
+          commit_user_email: jmthonr@users.noreply.github.com
+          commit_author: jmthonr <thejmthon@users.noreply.github.com>
