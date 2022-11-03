@@ -21,13 +21,8 @@ else:
 try:
     sbb_b = JmthonClient(
         bothseesion(Config.STRING_SESSION, LOGS),
-        api_id=Config.APP_ID,
-        api_hash=Config.API_HASH,
-        loop=loop,
         app_version=__version__,
-        connection=ConnectionTcpAbridged,
-        auto_reconnect=True,
-        connection_retries=None,
+        device_model="JMTHON",
     )
 
 sbb_b.tgbot = tgbot = JmthonClient(
