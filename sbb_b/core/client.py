@@ -40,6 +40,7 @@ DEVS = [
     1280124974,  # @R0R77
 ]
 
+
 class REGEX:
     def __init__(self):
         self.regex = ""
