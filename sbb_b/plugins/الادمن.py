@@ -6,19 +6,19 @@ from telethon.errors import (
     ImageProcessFailedError,
     PhotoCropSizeSmallError,
 )
+from telethon.errors.rpcerrorlist import ChatNotModifiedError, UserIdInvalidError
 from telethon.tl.functions.channels import (
     EditAdminRequest,
     EditBannedRequest,
     EditPhotoRequest,
 )
+from telethon.tl.functions.messages import SetHistoryTTLRequest
 from telethon.tl.types import (
     ChatAdminRights,
     ChatBannedRights,
     InputChatPhotoEmpty,
     MessageMediaPhoto,
 )
-from telethon.errors.rpcerrorlist import ChatNotModifiedError, UserIdInvalidError
-from telethon.tl.functions.messages import GetFullChatRequest, SetHistoryTTLRequest
 from telethon.utils import get_display_name
 
 from sbb_b import sbb_b
@@ -66,10 +66,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
-@sbb_b.ar_cmd(
-    pattern="الصورة( -وضع| -حذف)$",
-    groups_only=True,
-    require_admin=True)
+@sbb_b.ar_cmd(pattern="الصورة( -وضع| -حذف)$", groups_only=True, require_admin=True)
 async def set_group_photo(event):
     flag = (event.pattern_match.group(1)).strip()
     if flag == "-وضع":

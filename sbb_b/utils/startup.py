@@ -7,10 +7,15 @@ from datetime import timedelta
 from pathlib import Path
 
 from telethon import Button, functions, types, utils
+from telethon.errors import (
+    BotMethodInvalidError,
+    ChannelPrivateError,
+    ChannelsTooMuchError,
+)
 from telethon.tl.functions.channels import JoinChannelRequest
-from telethon.errors import BotMethodInvalidError, ChannelPrivateError, ChannelsTooMuchError
 
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+
 from ..Config import Config
 from ..core.logger import logging
 from ..core.session import sbb_b
@@ -91,6 +96,7 @@ async def saves():
         await sbb_b(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass
+
 
 async def mybot():
     SBB_B_USER = sbb_b.me.first_name

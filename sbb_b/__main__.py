@@ -9,7 +9,6 @@ from .core.logger import logging
 from .core.session import sbb_b
 from .utils import (
     add_bot_to_logger_group,
-    install_externalrepo,
     load_plugins,
     mybot,
     saves,

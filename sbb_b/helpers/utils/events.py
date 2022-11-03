@@ -1,8 +1,7 @@
 import base64
 import contextlib
-import aiohttp
-from aiohttp import ContentTypeError
 
+import aiohttp
 from telethon.errors import (
     ChannelInvalidError,
     ChannelPrivateError,
@@ -60,7 +59,6 @@ async def get_chatinfo(event, match, jmthonevent):
     return chat_info
 
 
-
 async def async_searcher(
     url: str,
     post: bool = None,
@@ -85,7 +83,7 @@ async def async_searcher(
         if real:
             return data
         return await data.text()
-    
+
 
 async def get_user_from_event(
     event,

@@ -27,7 +27,9 @@ class Config(object):
     # المنطقه الزمنيه احصل عليها من هنا  http://www.timezoneconverter.com/cgi-bin/findzone.tzc
     TZ = os.environ.get("TZ", "Asia/Kolkata")
     # رابط الريبو
-    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/jmthonar/sbb_b0")
+    UPSTREAM_REPO = os.environ.get(
+        "UPSTREAM_REPO", "https://github.com/jmthonar/sbb_b0"
+    )
     # ملفات خارجيه اضافيه
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if bool(EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "false")):
