@@ -29,6 +29,11 @@ try:
         auto_reconnect=True,
         connection_retries=None,
     )
+except Exception as e:
+    print(
+        f"STRING_SESSION WRONG PLZ MAKE A NEW SESSION - {e}\n كود سيشن تيليثون الذي وضعته غير صالح"
+    )
+    sys.exit()
 
 sbb_b.tgbot = tgbot = JmthonClient(
     session="jmthonTgbot",
