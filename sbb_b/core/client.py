@@ -113,7 +113,7 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "#nojmthon" in chat.title.lower()
+                        "#jmthon" in chat.title.lower()
                         and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
                     ):
