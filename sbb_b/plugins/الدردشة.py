@@ -142,6 +142,8 @@ async def _(event):
     require_admin=True,
 )
 async def _(event):
+    if event.text[1:].startswith("تفليش بالبوت"):
+        return
     result = await event.client.get_permissions(event.chat_id, event.client.uid)
     if not result:
         return await edit_or_reply(
