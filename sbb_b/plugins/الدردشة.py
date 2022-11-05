@@ -188,7 +188,7 @@ async def banavot(event):
     # msg = await event.get_reply_message()  ما احتاجه لان الكتابة ثابتة
     is_admin = False  # ما احتاج اشارف نحتاج اي رتبة بأي بوت
     try:
-        partici_ = await sbb_b(GetParticipantRequest(event.chat_id, event.sender_id))
+        await sbb_b(GetParticipantRequest(event.chat_id, event.sender_id))
     except UserNotParticipantError:
         pass
     spam_chats.append(chat_id)

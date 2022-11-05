@@ -10,8 +10,6 @@ from sbb_b import sbb_b
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _jmthonutils
 
-
-
 config = "./config.py"
 var_checker = [
     "APP_ID",
@@ -26,6 +24,7 @@ cmds = [
     "rm -rf downloads",
     "mkdir downloads",
 ]
+
 
 async def switch_branch():
     with open(config, "r") as f:
@@ -74,7 +73,8 @@ async def variable(event):  # sourcery no-metrics
                     jmthon, "**معلومات الفار**:" f"\n\n`{variable}` = `{val}`"
                 )
         await edit_or_reply(
-            jmthon, "**معلومات الفار***:" f"\n\nخطأ:\nالمتغير `{variable}` لم استطع ايجاده"
+            jmthon,
+            "**معلومات الفار***:" f"\n\nخطأ:\nالمتغير `{variable}` لم استطع ايجاده",
         )
     elif cmd == "وضع":
         variable = "".join(event.text.split(maxsplit=2)[2:])
@@ -84,7 +84,9 @@ async def variable(event):  # sourcery no-metrics
         value = "".join(variable.split(maxsplit=1)[1:])
         variable = "".join(variable.split(maxsplit=1)[0])
         if not value:
-            return await edit_or_reply(jmthon, "`.وضع فار <الفار/المتغير> <قيمة الفار>`")
+            return await edit_or_reply(
+                jmthon, "`.وضع فار <الفار/المتغير> <قيمة الفار>`"
+            )
         if variable not in var_checker:
             if variable == "EXTERNAL_REPO":
                 if bool(value and (value.lower() != "false")) and not url(value):
@@ -104,12 +106,14 @@ async def variable(event):  # sourcery no-metrics
                 string += f"{i}"
         if match:
             await edit_or_reply(
-                jmthon, f"المتغير: `{variable}`\n**تم بنجاح تغيير قيمة الفار الى:**\n`{value}`"
+                jmthon,
+                f"المتغير: `{variable}`\n**تم بنجاح تغيير قيمة الفار الى:**\n`{value}`",
             )
         else:
             string += f"    {variable} = {value}\n"
             await edit_or_reply(
-                jmthon, f"المتغير: `{variable}`\n**تم بنجاح تغيير قيمة الفار الى:**\n`{value}`"
+                jmthon,
+                f"المتغير: `{variable}`\n**تم بنجاح تغيير قيمة الفار الى:**\n`{value}`",
             )
         with open(config, "w") as f1:
             f1.write(string)
@@ -141,7 +145,9 @@ async def variable(event):  # sourcery no-metrics
 @sbb_b.ar_cmd(pattern="(ري|كلين)لود$")
 async def _(event):
     cmd = event.pattern_match.group(1)
-    jmthon = await edit_or_reply(event, "**- الان أنتظر من 2-3 دقائق ليتم تشغيل السورس**")
+    jmthon = await edit_or_reply(
+        event, "**- الان أنتظر من 2-3 دقائق ليتم تشغيل السورس**"
+    )
     if cmd == "clean":
         for file in exts:
             removing = glob.glob(f"./*.{file}")
