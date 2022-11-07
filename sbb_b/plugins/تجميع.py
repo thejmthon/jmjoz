@@ -1,5 +1,6 @@
 # t.me/Dar4k
 # this file for https://github.com/thejmthon/sbb_b0
+
 import asyncio
 import requests
 from telethon.tl.functions.messages import GetHistoryRequest
@@ -26,7 +27,7 @@ async def _(event):
             list = await sbb_b(GetHistoryRequest(peer=channel_entity, limit=1,offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
             msgs = list.messages[0]
             if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم يتجميع النقاط بطريقه مختلفه') != -1:
-                await sbb_b.send_message(event.chat_id, f"**- لا توجد أي قنوات متاحة في البوت الان**")
+                await sbb_b.send_message(event.chat_id, "**- لا توجد أي قنوات متاحة في البوت الان**")
                 break
             url = msgs.reply_markup.rows[0].buttons[0].url
             try:
@@ -38,9 +39,9 @@ async def _(event):
                 msg2 = await sbb_b.get_messages('@t06bot', limit=1)
                 await msg2[0].click(text='تحقق')
                 chs += 1
-                await sbb_b.send_message(event.chat_id, f"**- تم بنجاح الاشتراك في {chs} من القنوات")
+                await sbb_b.send_message(event.chat_id, "**- تم بنجاح الاشتراك في {chs} من القنوات")
             except:
-                await sbb_b.send_message(event.chat_id, f"**- لقد حدث خطأ ما يبدو أنه تم حظرك**")
+                await sbb_b.send_message(event.chat_id, "**- لقد حدث خطأ ما يبدو أنه تم حظرك**")
                 break
         await sbb_b.send_message(event.chat_id, "**- تم بنجاح الانتهاء من تجميع النقاط**")
         
