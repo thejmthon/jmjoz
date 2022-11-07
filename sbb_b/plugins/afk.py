@@ -51,11 +51,11 @@ async def set_not_afk(event):
         s = time
         endtime = ""
         if d > 0:
-            endtime += f"{d} يوم {h} ساعة {m} دقيقة {s} ثانية"
+            endtime += f"{d}d {h}h {m}m {s}s"
         elif h > 0:
-            endtime += f"{h} ساعة {m} دقيقة {s} ثانية"
+            endtime += f"{h}h {m}m {s}s"
         else:
-            endtime += f"{m} دقيقة {s} ثانية" if m > 0 else f"{s} ثانية"
+            endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message = event.message.message
     if (("afk" not in current_message) or ("#afk" not in current_message)) and (
         "on" in AFK_.USERAFK_ON
