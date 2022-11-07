@@ -108,23 +108,18 @@ async def on_afk(event):
         msg = None
         if AFK_.afk_type == "media":
             if AFK_.reason:
-                message_to_reply = (
-                get_string("afk_3").format(endtime, AFK_.reason))
+                message_to_reply = get_string("afk_3").format(endtime, AFK_.reason)
             else:
-                message_to_reply = (
-                get_string("afk_4").format(endtime))
+                message_to_reply = get_string("afk_4").format(endtime)
             if event.chat_id:
                 msg = await event.reply(message_to_reply, file=AFK_.media_afk.media)
         elif AFK_.afk_type == "text":
             if AFK_.msg_link and AFK_.reason:
-                message_to_reply = (
-                get_string("afk_3").format(endtime, AFK_.reason))
+                message_to_reply = get_string("afk_3").format(endtime, AFK_.reason)
             elif AFK_.reason:
-                message_to_reply = (
-                get_string("afk_3").format(endtime, AFK_.reason))
+                message_to_reply = get_string("afk_3").format(endtime, AFK_.reason)
             else:
-                message_to_reply = (
-                get_string("afk_4").format(endtime))
+                message_to_reply = get_string("afk_4").format(endtime)
             if event.chat_id:
                 msg = await event.reply(message_to_reply)
         if event.chat_id in AFK_.last_afk_message:
@@ -141,8 +136,7 @@ async def on_afk(event):
         except Exception as e:
             LOGS.info(str(e))
         messaget = media_type(event)
-        resalt = (
-                get_string("afk_5").format(hmm.title))
+        resalt = get_string("afk_5").format(hmm.title)
         if full is not None:
             resalt += f"\n<b>المرسل : </b> {_format.htmlmentionuser(full.first_name , full.id)}"
         if messaget is not None:
