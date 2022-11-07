@@ -1,18 +1,14 @@
 # t.me/Dar4k
 # this file for https://github.com/thejmthon/sbb_b0
-
 import asyncio
 import requests
 from telethon.tl.functions.messages import GetHistoryRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from sbb_b import sbb_b
 from telethon import events
+from sbb_b import sbb_b
 
-bot_username = '@t06bot'
-
-
-@sbb_b.ar_cmd(pattern="تجميع المليار$")
+@sbb_b.ar_cmd(pattern="تجميع$")
 async def _(event):
         await event.edit("**- يجب عليك الاشتراك بقنوات البوت لتفادي الاخطاء اولا**")
         channel_entity = await sbb_b.get_entity("@t06bot")
@@ -27,8 +23,7 @@ async def _(event):
         chs = 1
         for i in range(100):
             await asyncio.sleep(10)
-            list = await sbb_b(GetHistoryRequest(peer=channel_entity, limit=1,
-                                                   offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
+            list = await sbb_b(GetHistoryRequest(peer=channel_entity, limit=1,offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
             msgs = list.messages[0]
             if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم يتجميع النقاط بطريقه مختلفه') != -1:
                 await sbb_b.send_message(event.chat_id, f"**- لا توجد أي قنوات متاحة في البوت الان**")
@@ -48,3 +43,4 @@ async def _(event):
                 await sbb_b.send_message(event.chat_id, f"**- لقد حدث خطأ ما يبدو أنه تم حظرك**")
                 break
         await sbb_b.send_message(event.chat_id, "**- تم بنجاح الانتهاء من تجميع النقاط**")
+        
