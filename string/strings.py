@@ -1,18 +1,15 @@
 import os
 from os import listdir, path
 from typing import Any, Dict, List, Union
-from logging import getLogger
 from sbb_b.core.logger import logging
-
-LOGS = getLogger(__name__)
 
 try:
     from google_trans_new import google_translator
-
+except ModuleNotFoundError:
+    os.system("pip3 install google_trans_new")
+    from google_trans_new import google_translator
     Trs = google_translator()
-except ImportError:
-    LOGS.error("'google_trans_new' لم يتم أيجادها!")
-    Trs = None
+
 
 try:
     from yaml import safe_load
