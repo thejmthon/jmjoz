@@ -15,7 +15,7 @@ bot_username = '@t06bot'
 @sbb_b.ar_cmd(pattern="تجميع المليار$")
 async def _(event):
         await event.edit("**- يجب عليك الاشتراك بقنوات البوت لتفادي الاخطاء اولا**")
-        channel_entity = await sedthon.get_entity("@t06bot")
+        channel_entity = await sbb_b.get_entity("@t06bot")
         await sbb_b.send_message('@t06bot', '/start')
         await asyncio.sleep(10)
         msg0 = await sbb_b.get_messages('@t06bot', limit=1)
