@@ -1,7 +1,7 @@
 import os
 from os import listdir, path
 from typing import Any, Dict, List, Union
-import logging
+from logging import getLogger
 from sbb_b.core.logger import logging
 
 LOGS = getLogger(__name__)
