@@ -62,7 +62,7 @@ async def chat_blacklist(event):
             )
             return await event.client.reload(msg)
         text += (
-            "**انت بم تقم باضافة اي شخص الى قائمة المتحكمين بالأصل ارسل `.امر التحكم`**"
+            "**انت لم تقم باضافة اي شخص الى قائمة المتحكمين بالأصل ارسل `.اوامر التحكم`**"
         )
         return await edit_or_reply(
             event,
@@ -81,7 +81,7 @@ async def chat_blacklist(event):
             )
             return await event.client.reload(msg)
         text += (
-            "**انت بم تقم باضافة اي شخص الى قائمة المتحكمين بالأصل ارسل `.امر التحكم`**"
+            "**انت لم تقم باضافة اي شخص الى قائمة المتحكمين بالأصل ارسل `.اوامر التحكم`**"
         )
         return await edit_or_reply(
             event,
