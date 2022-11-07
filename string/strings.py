@@ -1,13 +1,14 @@
 import os
-import sys
 from os import listdir, path
 from typing import Any, Dict, List, Union
 
 from sbb_b.core.logger import logging
+
 LOGS = logging.getLogger("اعداد جمثون")
 
 try:
     from google_trans_new import google_translator
+
     Trs = google_translator()
 except ImportError:
     LOGS.error("'google_trans_new' لم يتم تحميلها !")
@@ -42,6 +43,7 @@ except ModuleNotFoundError:
                     if value:
                         where.append(value)
         return out
+
 
 language = [os.environ.get("language") or "ar"]
 languages = {}
