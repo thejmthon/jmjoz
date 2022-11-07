@@ -70,11 +70,7 @@ async def set_not_afk(event):
         AFK_.afk_on = False
         if BOTLOG:
             await event.client.send_message(
-                BOTLOG_CHATID,
-                "⌔∮ انتهاء امر السليب \n"
-                + "**⌔∮ تم تعطيله والرجوع للوضع الطبيعي كان مفعل لـ"
-                + endtime
-                + "**",
+                BOTLOG_CHATID, get_string("afk_2").format(endtime)
             )
 
 
@@ -98,11 +94,11 @@ async def on_afk(event):
         s = time
         endtime = ""
         if d > 0:
-            endtime += f"{d} ايام {h} ساعات {m} دقائق {s} ثانية"
+            endtime += f"{d}d {h}h {m}m {s}s"
         elif h > 0:
-            endtime += f"{h} ساعة {m} دقائق {s} ثانية"
+            endtime += f"{h}h {m}m {s}s"
         else:
-            endtime += f"{m} دقائق {s} ثانية" if m > 0 else f"{s} من الثواني"
+            endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message_text = event.message.message.lower()
     if "مؤقت" in current_message_text or "#afk" in current_message_text:
         return False
@@ -112,18 +108,23 @@ async def on_afk(event):
         msg = None
         if AFK_.afk_type == "media":
             if AFK_.reason:
-                message_to_reply = f"⪼ انا الان في حالة عدم الاتصال منذ\n{endtime}\nالسبب : {AFK_.reason}"
+                message_to_reply = (
+                get_string("afk_3").format(endtime, AFK_.reason))
             else:
-                message_to_reply = f"⪼ انا الان في حالة عدم الاتصال منذ\n{endtime}"
+                message_to_reply = (
+                get_string("afk_4").format(endtime))
             if event.chat_id:
                 msg = await event.reply(message_to_reply, file=AFK_.media_afk.media)
         elif AFK_.afk_type == "text":
             if AFK_.msg_link and AFK_.reason:
-                message_to_reply = f"⪼ انا الان في حالة عدم الاتصال منذ .\n\n{endtime}\nالسبب : {AFK_.reason}"
+                message_to_reply = (
+                get_string("afk_3").format(endtime, AFK_.reason))
             elif AFK_.reason:
-                message_to_reply = f"⪼انا الان في حالة عدم الاتصال منذ .\n\n{endtime}\nالسبب : {AFK_.reason}"
+                message_to_reply = (
+                get_string("afk_3").format(endtime, AFK_.reason))
             else:
-                message_to_reply = f"⪼ انا الان في حالة عدم الاتصال منذ.\n\n{endtime}"
+                message_to_reply = (
+                get_string("afk_4").format(endtime))
             if event.chat_id:
                 msg = await event.reply(message_to_reply)
         if event.chat_id in AFK_.last_afk_message:
@@ -140,7 +141,8 @@ async def on_afk(event):
         except Exception as e:
             LOGS.info(str(e))
         messaget = media_type(event)
-        resalt = f" \n<b>المجموعة : </b><code>{hmm.title}</code>"
+        resalt = (
+                get_string("afk_5").format(hmm.title))
         if full is not None:
             resalt += f"\n<b>المرسل : </b> {_format.htmlmentionuser(full.first_name , full.id)}"
         if messaget is not None:
