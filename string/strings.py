@@ -4,14 +4,14 @@ from typing import Any, Dict, List, Union
 
 from sbb_b.core.logger import logging
 
-LOGS = logging.getLogger("اعداد جمثون")
+#LOGS = getLogger(__name__)
 
 try:
     from google_trans_new import google_translator
 
     Trs = google_translator()
 except ImportError:
-    LOGS.error("'google_trans_new' لم يتم أيجادها!")
+    print("'google_trans_new' لم يتم أيجادها!")
     Trs = None
 
 try:
