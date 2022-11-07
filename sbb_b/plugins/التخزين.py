@@ -64,7 +64,7 @@ async def monito_p_m_s(event):  # sourcery no-metrics
 async def log_tagged_messages(event):
     hmm = await event.get_chat()
     from .afk import AFK_
-    
+
     if gvarstatus("GRPLOG") and gvarstatus("GRPLOG") == "false":
         return
     if (
