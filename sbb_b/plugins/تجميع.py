@@ -51,10 +51,7 @@ async def _(event):
         chat = event.chat_id
         await sbb_b.send_message(chat, 'فلوسي')
         await asyncio.sleep(0.5)
-        masg = await sbb_b.get_messages(chat, limit=1)
-        masg = masg[0].message
-        masg = ("".join(masg.split(maxsplit=2)[2:])).split(" ", 2)
-        msg = masg[0]
+        msg = event.pattern_match.group(1)
         if int(msg) > 500000000:
             await sbb_b.send_message(chat, f"استثمار {msg}")
             await asyncio.sleep(10)
