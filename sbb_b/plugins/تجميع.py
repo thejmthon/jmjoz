@@ -20,14 +20,13 @@ async def _(event):
         await asyncio.sleep(10)
         msg1 = await sbb_b.get_messages('@t06bot', limit=1)
         await msg1[0].click(0)
-
         chs = 1
         for i in range(100):
             await asyncio.sleep(10)
             list = await sbb_b(GetHistoryRequest(peer=channel_entity, limit=1,offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
             msgs = list.messages[0]
             if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم يتجميع النقاط بطريقه مختلفه') != -1:
-                await sbb_b.send_message(event.chat_id, "**- لا توجد أي قنوات متاحة في البوت الان**")
+                await edit_or_reply(event, "**- لا توجد أي قنوات متاحة في البوت الان**")
                 break
             url = msgs.reply_markup.rows[0].buttons[0].url
             try:
@@ -39,9 +38,9 @@ async def _(event):
                 msg2 = await sbb_b.get_messages('@t06bot', limit=1)
                 await msg2[0].click(text='تحقق')
                 chs += 1
-                await sbb_b.send_message(event.chat_id, "**- تم بنجاح الاشتراك في {chs} من القنوات")
+                await edit_or_reply(event, "**- تم بنجاح الاشتراك في {chs} من القنوات**")
             except:
-                await sbb_b.send_message(event.chat_id, "**- لقد حدث خطأ ما يبدو أنه تم حظرك**")
+                await edit_or_reply(event, "**- لقد حدث خطأ ما يبدو أنه تم حظرك**")
                 break
-        await sbb_b.send_message(event.chat_id, "**- تم بنجاح الانتهاء من تجميع النقاط**")
+        await edit_or_reply(event, "**- تم بنجاح الانتهاء من تجميع النقاط**")
         
