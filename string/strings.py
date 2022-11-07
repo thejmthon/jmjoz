@@ -11,7 +11,7 @@ try:
 
     Trs = google_translator()
 except ImportError:
-    print("'google_trans_new' لم يتم أيجادها!")
+    LOGS.error("'google_trans_new' لم يتم أيجادها!")
     Trs = None
 
 try:
