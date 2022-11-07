@@ -1,17 +1,15 @@
 import os
+import sys
 from os import listdir, path
 from typing import Any, Dict, List, Union
-
 from sbb_b.core.logger import logging
-
 LOGS = logging.getLogger("اعداد جمثون")
 
 try:
     from google_trans_new import google_translator
-
     Trs = google_translator()
 except ImportError:
-    LOGS.error("'google_trans_new' لم يتم تحميلها !")
+    LOGS.error("'google_trans_new' لم يتم أيجادها!")
     Trs = None
 
 try:
@@ -44,7 +42,6 @@ except ModuleNotFoundError:
                         where.append(value)
         return out
 
-
 language = [os.environ.get("language") or "ar"]
 languages = {}
 
@@ -58,7 +55,7 @@ for file in listdir(strings_folder):
                 open(path.join(strings_folder, file), encoding="UTF-8"),
             )
         except Exception as er:
-            LOGS.info(f"فشل في ملف الترجمة {file[:-4]}")
+            LOGS.info(f"خطأ في ملف ترجمة {file[:-4]}")
             LOGS.exception(er)
 
 
@@ -68,24 +65,24 @@ def get_string(key: str) -> Any:
         return languages[lang][key]
     except KeyError:
         try:
-            id_ = languages["ar"][key]
+            ar_ = languages["ar"][key]
             if not Trs:
-                return id_
-            tr = Trs.translate(id_, lang_tgt=lang).replace("\ N", "\n")
-            if id_.count("{}") != tr.count("{}"):
-                tr = id_
+                return ar_
+            tr = Trs.translate(ar_, lang_tgt=lang).replace("\ N", "\n")
+            if ar_.count("{}") != tr.count("{}"):
+                tr = ar_
             if languages.get(lang):
                 languages[lang][key] = tr
             else:
                 languages.update({lang: {key: tr}})
             return tr
         except KeyError:
-            return f"تحذير: لم يتم تحميل اي سلسلة مع الترجمة للمفتاح `{key}`"
+            return f"تحذير: لم يتم تحميل اي سلسلة ترجمة مع المفتاح `{key}`"
         except TypeError:
             pass
         except Exception as er:
             LOGS.exception(er)
-        return languages["ar"].get(key) or f"فشل في تحميل السلسة  '{key}'"
+        return languages["ar"].get(key) or f"فشل تحميل سلسلة الترجمة مع المفتاح '{key}'"
 
 
 def get_languages() -> Dict[str, Union[str, List[str]]]:
