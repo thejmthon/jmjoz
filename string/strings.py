@@ -2,6 +2,9 @@ import os
 from os import listdir, path
 from typing import Any, Dict, List, Union
 from sbb_b.core.logger import logging
+from logging import getLogger
+
+LOGS = getLogger("jmthon")
 
 try:
     from google_trans_new import google_translator
