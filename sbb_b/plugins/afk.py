@@ -11,6 +11,7 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
 from ..helpers.utils import _format
 from . import BOTLOG, BOTLOG_CHATID
+from strings import get_string
 
 LOGS = logging.getLogger(__name__)
 
@@ -60,8 +61,7 @@ async def set_not_afk(event):
         "on" in AFK_.USERAFK_ON
     ):
         shite = await event.client.send_message(
-            event.chat_id,
-            "**الان اعمل بشكل طبيعي\nلقد كان امر السيلب مفعل منذ " + endtime + "**",
+            event.chat_id, get_string("afk_1").format(endtime)
         )
         AFK_.USERAFK_ON = {}
         AFK_.afk_time = None
