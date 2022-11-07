@@ -1,6 +1,7 @@
 import asyncio
 from datetime import datetime
 
+from strings import get_string
 from telethon.tl import functions, types
 
 from sbb_b import sbb_b as jmthon
@@ -11,7 +12,6 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
 from ..helpers.utils import _format
 from . import BOTLOG, BOTLOG_CHATID
-from strings import get_string
 
 LOGS = logging.getLogger(__name__)
 
