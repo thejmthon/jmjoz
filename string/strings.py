@@ -2,7 +2,7 @@ import os
 import sys
 from os import listdir, path
 from typing import Any, Dict, List, Union
-from ..core.logger import logging
+from sbb_b.core.logger import logging
 LOGS = logging.getLogger("اعداد جمثون")
 
 try:
