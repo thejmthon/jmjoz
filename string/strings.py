@@ -1,10 +1,10 @@
 import os
 from os import listdir, path
 from typing import Any, Dict, List, Union
-
+import logging
 from sbb_b.core.logger import logging
 
-#LOGS = getLogger(__name__)
+LOGS = getLogger(__name__)
 
 try:
     from google_trans_new import google_translator
