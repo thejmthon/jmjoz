@@ -5,3 +5,6 @@ authors:
   - thejmthon
   
 # strings
+# afk
+afk_1: "**الان اعمل بشكل طبيعي\n لقد كان امر السيلب مفعل منذ\n {}**"
+
