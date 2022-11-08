@@ -49,13 +49,13 @@ async def _(event):
     else:
         evaluation = "Success"
     final_output = (
-        f"**•  Eval : **\n```{cmd}``` \n\n**•  النتيجة : **\n```{evaluation}``` \n"
+        f"**•  الكود : **\n```{cmd}``` \n\n**•  النتيجة : **\n```{evaluation}``` \n"
     )
     await edit_or_reply(
         jmthon,
         text=final_output,
         aslink=True,
-        linktext=f"**•  Eval : **\n```{cmd}``` \n\n**•  النتيجة : **\n",
+        linktext=f"**•  الكود : **\n```{cmd}``` \n\n**•  النتيجة : **\n",
     )
     if BOTLOG:
         await event.client.send_message(
