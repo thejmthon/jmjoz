@@ -42,7 +42,9 @@ async def _(event):
             )
             != -1
         ):
-            await sbb_b.send_message(event.chat_id, f"**- لا توجد قنوات متاحة في البوت**")
+            await sbb_b.send_message(
+                event.chat_id, f"**- لا توجد قنوات متاحة في البوت**"
+            )
             break
         url = msgs.reply_markup.rows[0].buttons[0].url
         try:
@@ -56,24 +58,30 @@ async def _(event):
             chs += 1
             await event.edit("- تم بنجاح الاشتراك في {chs} قناة")
         except:
-            await event.edit("**- من الممكن تعرضت للحظر من الانضمام في لقنوات حاول لاحقا**")
+            await event.edit(
+                "**- من الممكن تعرضت للحظر من الانضمام في لقنوات حاول لاحقا**"
+            )
             break
     await event.edit("**- تم الانتهاء من التجميع استخدم حاول مرة ثانية في وقت اخر**")
+
 
 # t.me/r0r77
 @sbb_b.ar_cmd(pattern="بخشيش وعد (.*)")
 async def baqshis(event):
     for i in range(int("".join(event.text.split(maxsplit=2)[2:]).split(" ", 2)[0])):
         chat = event.chat_id
-        await sbb_b.send_message(chat,"بخشيش")
+        await sbb_b.send_message(chat, "بخشيش")
         await asyncio.sleep(605)
-        
+
+
 @sbb_b.ar_cmd(pattern="راتب وعد (.*)")
 async def ratb(event):
     for i in range(int("".join(event.text.split(maxsplit=2)[2:]).split(" ", 2)[0])):
         chat = event.chat_id
-        await sbb_b.send_message(chat,"راتب")
+        await sbb_b.send_message(chat, "راتب")
         await asyncio.sleep(605)
+
+
 # none
 @sbb_b.ar_cmd(pattern="كلمات وعد (.*)")
 async def waorwaad(event):
@@ -90,10 +98,13 @@ async def waorwaad(event):
         else:
             msg = masg[0] + " " + masg[1]
             await sbb_b.send_message(chat, msg)
-                
+
+
 @sbb_b.ar_cmd(pattern="استثمار وعد (.*)")
 async def _(event):
-    await event.edit("**- تم تفعيل الاستثمار ببوت وعد بنجاح لأيقافه ارسل \n`.استثمار وعد 1`")
+    await event.edit(
+        "**- تم تفعيل الاستثمار ببوت وعد بنجاح لأيقافه ارسل \n`.استثمار وعد 1`"
+    )
     for i in range(int("".join(event.text.split(maxsplit=2)[2:]).split(" ", 2)[0])):
         chat = event.chat_id
         await sbb_b.send_message(chat, "فلوسي")
