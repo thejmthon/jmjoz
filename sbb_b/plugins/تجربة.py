@@ -1,6 +1,4 @@
-import asyncio
 import io
-import os
 import sys
 import traceback
 
@@ -15,6 +13,7 @@ async def hi(event):
         "**[ . ᯏ𝖩𝗆𝗍𝗁𝗈ꪀ - ᥴ𝗆𝖽 ᭡ .](t.me/jmthon)\n✦┅━╍━╍╍━━╍━━╍━┅✦**\n\n الامر: `.تجربة` + كود برمجي\n- يقوم بتشغيل الكود و أظهار النتيجة",
         link_preview=Fals,
     )
+
 
 @sbb_b.ar_cmd(pattern="تجربة(?:\s|$)([\s\S]*)")
 async def _(event):
