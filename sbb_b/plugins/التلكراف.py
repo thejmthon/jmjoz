@@ -61,7 +61,7 @@ async def _(event):
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await sbb_bevent.edit(
-                f"** ⌔∮ الرابط : **[إضغط هنا](https://telegra.ph{media_urls[0]})\
+                f"** ⌔∮ الرابط : **[إضغط هنا](https://graph.org{media_urls[0]})\
                     \n** ⌔∮ الوقت المأخوذ : {ms} ثانية.**",
                 link_preview=True,
             )
@@ -95,7 +95,7 @@ async def _(event):
             response = telegraph.create_page(title_of_page, html_content=page_content)
         end = datetime.now()
         ms = (end - start).seconds
-        sbb_b = f"https://telegra.ph/{response['path']}"
+        sbb_b = f"https://graph.org/{response['path']}"
         await sbb_bevent.edit(
             f"**الرابط**:  [اضغط هنا]({sbb_b})\
                  \n**الوقت المستغرق** : {ms} **ثواني**",

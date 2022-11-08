@@ -27,7 +27,7 @@ digitalpic_path = os.path.join(os.getcwd(), "sbb_B", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "sbb_B", "photo_pfp.png")
 
 digitalpfp = (
-    gvarstatus("DIGITAL_PIC") or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
+    gvarstatus("DIGITAL_PIC") or "https://graph.org/file/63a826d5e5f0003e006a0.jpg"
 )
 RR7PP = Config.TIME_JM or ""
 

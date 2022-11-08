@@ -130,7 +130,7 @@ async def startupmessage():
         if BOTLOG:
             Config.JMTHONLOGO = await sbb_b.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://telegra.ph//file/c20c4f492da1811e1bef0.jpg",
+                "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
                 caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
                 buttons=[(Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)],
             )

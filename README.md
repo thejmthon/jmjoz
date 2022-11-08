@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://telegra.ph/file/1d24af20a3f16919a2dda.jpg" alt="The-HellBot">
+  <img src="https://graph.org/file/1d24af20a3f16919a2dda.jpg" alt="The-HellBot">
 </p>
 <h1 align="center">
   <b> jmthon userbot | سورس جمثون</b>
