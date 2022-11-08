@@ -61,9 +61,9 @@ def init_locks(chat_id, reset=False):
 
 
 def update_lock(chat_id, lock_type, locked):
-    curr_perm = SESSION.query(Permissions).get(str(chat_id))
+    curr_perm = SESSION.query(Locks).get(str(chat_id))
     if not curr_perm:
-        curr_perm = init_permissions(chat_id)
+        curr_perm = init_locks(chat_id)
     if lock_type == "audio":
         curr_perm.audio = locked
     elif lock_type == "voice":
@@ -103,7 +103,7 @@ def update_lock(chat_id, lock_type, locked):
 
 
 def is_locked(chat_id, lock_type):
-    curr_perm = SESSION.query(Permissions).get(str(chat_id))
+    curr_perm = SESSION.query(Locks).get(str(chat_id))
     SESSION.close()
     if not curr_perm:
         return False
