@@ -15,7 +15,7 @@ from ..sql_helper import global_collectionjson as sql
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 
 
-@sbb_b.ar_cmd(pattern="$اوامر التحكم")
+@sbb_b.ar_cmd(pattern="اوامر التحكم")
 async def hi(event):
     await edit_or_reply(
         event,
