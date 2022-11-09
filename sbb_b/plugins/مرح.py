@@ -8,7 +8,7 @@ from sbb_b.helpers import get_user_from_event
 from . import *
 
 
-@sbb_b.ar_cmd(pattern="رفع بكلبي(?: |$)(.*)")
+@sbb_b.ar_cmd(pattern="رفع لقلبي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -17,7 +17,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بڪلبك 🖤 "
+        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بقلبك "
     )
 
 
@@ -31,7 +31,7 @@ async def permalink(mention):
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
         mention,
-        f"- المستخدم [{tag}](tg://user?id={user.id}) \nتـم رفعه زوجج روحوا خلفوا 🤤😂",
+        f"- المستخدم [{tag}](tg://user?id={user.id}) \n "تـم رفعه زوجك",
     )
 
 
@@ -41,9 +41,9 @@ async def permalink(mention):
     if not user:
         return
     if user.id == 673936943:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+        return await edit_or_reply(mention, f"**- يا ادمي هذا المطور **")
     if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+        return await edit_or_reply(mention, f"**- يا ادمي هاذا المطور**")
     if user.id == 2034443585:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
@@ -52,21 +52,21 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع مرتي(?: |$)(.*)")
+@sbb_b.ar_cmd(pattern="رفع زوجتي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
     if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+        return await edit_or_reply(mention, f"**- يا ادمي هذا المطور**")
     if user.id == 2034443585:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+        return await edit_or_reply(mention, f"**- يا ادمي هذا المطور**")
     if user.id == 673936943:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+        return await edit_or_reply(mention, f"**- يا ادمي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
         mention,
-        f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤",
+        f"- المستخدم [{tag}](tg://user?id={user.id}) \n , "تـم رفعـه زوجتك",
     )
 
 
@@ -84,7 +84,7 @@ async def permalink(mention):
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
         mention,
-        f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه جلب خليه خله ينبح 😂🐶",
+        f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه كلب",
     )
 
 
@@ -118,7 +118,7 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rza = random.choice(roz)
     await edit_or_reply(
-        mention, f"نـسـبتكم انـت و [{muh}](tg://user?id={user.id}) هـي {rza} 😔🖤"
+        mention, f"نـسـبتكم انـت و [{muh}](tg://user?id={user.id}) ذي {rza}"
     )
 
 
@@ -136,8 +136,7 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(rr7)
     await edit_or_reply(
-        mention, f"- نسبة الانوثة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤"
-    )
+        mention, f"الامر متعطل"}
 
 
 @sbb_b.ar_cmd(pattern="نسبة الغباء(?: |$)(.*)")
@@ -148,7 +147,7 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(rr7)
     await edit_or_reply(
-        mention, f"نسبة الغباء لـ [{muh}](tg://user?id={user.id}) هـي {rzona} 😂💔"
+        mention, f"نسبة الغباء لـ [{muh}](tg://user?id={user.id}) ذي {rzona}"
     )
 
 
@@ -161,7 +160,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه تاج 👑🔥"
+        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه تاج"
     )
 
 
@@ -219,7 +218,7 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(kz)
     await edit_or_reply(
-        mention, f"- نسبة الرجولة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤"
+        mention, f"- نسبة الرجولة لـ [{muh}](tg://user?id={user.id}) ذي {sos}"
     )
 
 
@@ -232,7 +231,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه حيوان 🐏"
+        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه حيوان"
     )
 
 
@@ -245,8 +244,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بزون 🐈"
-    )
+        mention, f"-الامر متعطل ")
 
 
 @sbb_b.ar_cmd(pattern="رفع زاحف(?: |$)(.*)")
@@ -258,7 +256,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه زاحف 🐍💞"
+        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه زاحف"
     )
 
 
@@ -269,7 +267,7 @@ async def rzfun(mention):
         return
     if user.id == 2034443585:
         return await edit_or_reply(mention, f"**⌔∮ عذرا هذا مطور السورس**")
-    await edit_or_reply(mention, f"**نزوج وماتباوع على غيري 🥺💞 ܰ**")
+    await edit_or_reply(mention, f"**
 
 
 @sbb_b.on(admin_cmd(pattern="طلاك(?:\s|$)([\s\S]*)"))
@@ -278,5 +276,4 @@ async def mention(mention):
     if not user:
         return
     if user.id == 2034443585:
-        return await edit_or_reply(mention, f"**⌔∮ عذرا هذا مطور السورس**")
-    await edit_or_reply(mention, f"**طالق طالق بالعشرة 😹😭💕 ܰ**")
+        return await edit_or_reply(mention, f"الامر متعطل")
