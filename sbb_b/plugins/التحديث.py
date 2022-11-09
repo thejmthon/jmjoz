@@ -14,7 +14,6 @@ from sbb_b import HEROKU_APP, UPSTREAM_REPO_URL, sbb_b
 from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.utils import _jmthonutils
 from ..sql_helper.global_collection import (
     add_to_collectionlist,
     del_keyword_collectionlist,
@@ -105,9 +104,7 @@ async def update_bot(event, repo, ups_rem, ac_br):
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
-    jmthon = await event.edit(
-        "**• تم بنجاح التحديث جار اعادة التشغيل الان**"
-    )
+    jmthon = await event.edit("**• تم بنجاح التحديث جار اعادة التشغيل الان**")
     await event.client.reload(jmthon)
 
 
@@ -118,8 +115,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
     heroku_applications = heroku.apps()
     if HEROKU_APP_NAME is None:
         await event.edit(
-            "**• يرجى وضع فار HEROKU_APP_NAME**"
-            " لتتمكن من تحديث السورس "
+            "**• يرجى وضع فار HEROKU_APP_NAME**" " لتتمكن من تحديث السورس "
         )
         repo.__del__()
         return
@@ -129,9 +125,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
     )
 
     if heroku_app is None:
-        await event.edit(
-            f"{txt}\n" "**• خطأ في التعرف على تطبيق هيروكو**"
-        )
+        await event.edit(f"{txt}\n" "**• خطأ في التعرف على تطبيق هيروكو**")
         return repo.__del__()
     jmthon = await event.edit(
         "**• جار اعادة تشغيل الدينو الان يرجى الانتظار من 2-5 دقائق**"
@@ -183,7 +177,9 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 @sbb_b.ar_cmd(pattern="تحديث(| الان)?$")
 async def upstream(event):
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "**• جار البحث عن التحديثات يرجى الانتظار قليلا**")
+    event = await edit_or_reply(
+        event, "**• جار البحث عن التحديثات يرجى الانتظار قليلا**"
+    )
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if ENV and (HEROKU_API_KEY is None or HEROKU_APP_NAME is None):
@@ -191,10 +187,7 @@ async def upstream(event):
             event, "**• عليك وضع فارات هيروكو المطلوبة للتحديث**"
         )
     try:
-        txt = (
-            "فشل في التحديث لسورس جمثون "
-            + "**• حدث خطأ ما :**\n"
-        )
+        txt = "فشل في التحديث لسورس جمثون " + "**• حدث خطأ ما :**\n"
 
         repo = Repo()
     except NoSuchPathError as error:
@@ -246,16 +239,16 @@ async def upstream(event):
         )
 
     if force_update:
-        await event.edit(
-            "**• جار التحديث الاجباري الى اخر اصدار انتظر قليلا**"
-        )
+        await event.edit("**• جار التحديث الاجباري الى اخر اصدار انتظر قليلا**")
     if conf == "الان":
         await event.edit("**• جار تحديث سورس جمثون أنتظر قليلا**")
         await update_bot(event, repo, ups_rem, ac_br)
     return
 
 
-@sbb_b.ar_cmd(pattern="تحديث التنصيب$",)
+@sbb_b.ar_cmd(
+    pattern="تحديث التنصيب$",
+)
 async def upstream(event):
     if ENV:
         if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
@@ -271,10 +264,7 @@ async def upstream(event):
     off_repo = "https://github.com/jmthonen/zuhairy"
     os.chdir("/app")
     try:
-        txt = (
-            "**• لقد حدث خطأ اثناء التحديث**"
-            + "**لقد حدث خطأ ما**\n"
-        )
+        txt = "**• لقد حدث خطأ اثناء التحديث**" + "**لقد حدث خطأ ما**\n"
 
         repo = Repo()
     except NoSuchPathError as error:
@@ -297,4 +287,3 @@ async def upstream(event):
     ups_rem.fetch(ac_br)
     await event.edit("**• جار الان التحديث أنتظر قليلا**")
     await deploy(event, repo, ups_rem, ac_br, txt)
-
