@@ -1,5 +1,5 @@
-from .. import *
-
+from . import *
+from sbb_b import sbb_b
 
 @sbb_b.ar_cmd(pattern="الاوامر")
 async def hi(event):
