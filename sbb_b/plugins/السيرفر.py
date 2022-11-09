@@ -119,7 +119,7 @@ async def variable(event):  # sourcery no-metrics
             f1.write(string)
             f1.close()
         await switch_branch()
-        await event.client.reload(cat)
+        await event.client.reload(jmthon)
     if cmd == "حذف":
         jmthon = await edit_or_reply(event, "**- جار حذف قيممة هذا الفار**")
         await asyncio.sleep(1)
