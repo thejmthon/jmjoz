@@ -25,7 +25,7 @@ class Config(object):
     )
     TG_BOT_USERNAME = None
     # المنطقه الزمنيه احصل عليها من هنا  http://www.timezoneconverter.com/cgi-bin/findzone.tzc
-    TZ = os.environ.get("TZ", "Asia/Kolkata")
+    TZ = os.environ.get("TZ", "Asia/Baghdad")
     # رابط الريبو
     UPSTREAM_REPO = os.environ.get(
         "UPSTREAM_REPO", "https://github.com/jmthonar/sbb_b0"
