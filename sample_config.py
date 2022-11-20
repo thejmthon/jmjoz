@@ -27,18 +27,17 @@ class Config(object):
     # المنطقه الزمنيه احصل عليها من هنا  http://www.timezoneconverter.com/cgi-bin/findzone.tzc
     TZ = os.environ.get("TZ", "Asia/Baghdad")
     # رابط الريبو
-    UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/jmthonar/sbb_b0"
-    )
+    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/sbb-b/sbb_b")
     # ملفات خارجيه اضافيه
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if bool(EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "false")):
         if not url(EXTERNAL_REPO):
-            EXTERNAL_REPO = "https://github.com/sbb-b/JmPlugins"
+            EXTERNAL_REPO = "https://github.com/jmthonr/JmPlugins"
     else:
         EXTERNAL_REPO = None
     # فارات الميوزك
     VCMODE = os.environ.get("VCMODE", False)
+    PORT = os.environ.get("PORT", "8080")
     VCMODE = bool(VCMODE and (VCMODE.lower() != "false"))
     VC_SESSION = os.environ.get("VC_SESSION", None)
     ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
