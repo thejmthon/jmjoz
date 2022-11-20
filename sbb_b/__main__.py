@@ -55,7 +55,7 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("============================================================")
-    print("تم انتهاء عملية التنصيب بنجاح ")
+    print("تم انتهاء عملية التنصيب بنجاح على كويب")
     print(
         f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
         \nمجموعة قناة السورس  https://t.me/jmthon_support"
