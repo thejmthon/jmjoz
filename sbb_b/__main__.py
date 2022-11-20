@@ -1,9 +1,10 @@
 import contextlib
 import sys
+from aiohttp import web
 
 import sbb_b
 from sbb_b import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-
+from .core.server import web_server
 from .Config import Config
 from .core.logger import logging
 from .core.session import sbb_b
@@ -58,6 +59,10 @@ async def startup_process():
         \nمجموعة قناة السورس  https://t.me/jmthon_support"
     )
     print("============================================================")
+    app = web.AppRunner(await web_server())
+    await app.setup()
+    bind_address = "0.0.0.0"
+    await web.TCPSite(app, bind_address, Config.PORT).start()
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
