@@ -74,10 +74,10 @@ async def _(event):
     animation_ttl = range(12)
     event = await edit_or_reply(event, "`Deploying...`")
     animation_chars = [
-        "**Heroku Connecting To Latest Github Build **",
+        "**koyeb Connecting To Latest Github Build **",
         f"**Build started by user** {mention}",
         f"**Deploy** `535a74f0` **by user** {mention}",
-        "**Restarting Heroku Server...**",
+        "**Restarting koyeb Server...**",
         "**State changed from up to starting**",
         "**Stopping all processes with SIGTERM**",
         "**Process exited with** `status 143`",
