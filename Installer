@@ -2,7 +2,6 @@ telethon
 setuptools
 wheel
 aiohttp
-ffmpeg-python
 beautifulsoup4
 cfscrape
 cloudscraper
