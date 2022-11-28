@@ -1,11 +1,10 @@
-FROM python:3.10-slim-buster
-
-RUN apt update && apt upgrade -y
-RUN apt install git -y
-
-COPY requirements.txt /requirements.txt
-RUN cd /
+FROM nikolaik/python-nodejs:python3.9-nodejs18
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+COPY . /app/
+WORKDIR /app/
+RUN pip3 install --upgrade pip
 RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /sbb_b0
-WORKDIR /sbb_b0
 CMD ["python3","-m","sbb_b"]
