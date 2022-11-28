@@ -1,4 +1,4 @@
-FROM thejmthon/sbb_b0:slim-buster
+FROM python:3.10-slim-buster
 
 RUN git clone https://github.com/thejmthon/sbb_b0.git /root/sbb_b0
 
