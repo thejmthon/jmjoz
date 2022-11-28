@@ -1,11 +1,11 @@
 FROM python:3.10-slim-buster
 
-RUN git clone https://github.com/thejmthon/sbb_b0.git /root/sbb_b0
+RUN apt update && apt upgrade -y
+RUN apt install git -y
 
-WORKDIR /root/sbb_b0/
-
-RUN pip3 install -r requirements.txt
-
-ENV PATH="/home/sbb_b/bin:$PATH"
-
+COPY requirements.txt /requirements.txt
+RUN cd /
+RUN pip3 install -U pip && pip3 install -U -r requirements.txt
+RUN mkdir /sbb_b0
+WORKDIR /sbb_b0
 CMD ["python3","-m","sbb_b"]
