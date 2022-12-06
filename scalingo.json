@@ -32,7 +32,7 @@
             "value": "Asia/Baghdad"
         },
         "ENV": {
-            "description": "لا تغيره نهائيا! ",
+            "description": "Don't Change this!",
             "required": true,
             "value": "ANYTHING"
         }
