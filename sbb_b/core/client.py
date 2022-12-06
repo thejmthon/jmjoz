@@ -334,12 +334,27 @@ class JmthonClient(TelegramClient):
                 LOGS.debug(e)
         self.running_processes.clear()
 
+    def uid(self):
+        """Client's user id"""
+        self.me = self.get_chat("me")
+        if self.me.bot:
+            f"@{self.me.username}"
+        else:
+            setattr(self.me, "phone", None)
+            self.full_name
+        return self.me.id
+
+    def full_name(self):
+        """full name of Client"""
+        return self.utils.get_display_name(self.me)
+
 
 JmthonClient.fast_download_file = download_file
 JmthonClient.fast_upload_file = upload_file
 JmthonClient.reload = restart_script
 JmthonClient.get_msg_link = get_message_link
 JmthonClient.check_testcases = checking
+
 try:
     send_message_check = TelegramClient.send_message
 except AttributeError:
