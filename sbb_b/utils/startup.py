@@ -13,9 +13,8 @@ from telethon.errors import (
     ChannelsTooMuchError,
 )
 from telethon.tl.functions.channels import JoinChannelRequest
-
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-
+from telethon.utils import get_peer_id
 from ..Config import Config
 from ..core.logger import logging
 from ..core.session import sbb_b
@@ -40,31 +39,14 @@ elif os.path.exists("config.py"):
 
 
 async def setup_bot():
-    """
-    لاعداد السورس
-    """
-    try:
-        await sbb_b.connect()
-        config = await sbb_b(functions.help.GetConfigRequest())
-        for option in config.dc_options:
-            if option.ip_address == sbb_b.session.server_address:
-                if sbb_b.session.dc_id != option.id:
-                    LOGS.warning(
-                        f"اصلاح الداتا {sbb_b.session.dc_id}" f" الى {option.id}"
-                    )
-                sbb_b.session.set_dc(option.id, option.ip_address, option.port)
-                sbb_b.session.save()
-                break
-        bot_details = await sbb_b.tgbot.get_me()
-        Config.TG_BOT_USERNAME = f"@{bot_details.username}"
-        # await sbb_b.start(bot_token=Config.TG_BOT_USERNAME)
-        sbb_b.me = await sbb_b.get_me()
-        sbb_b.uid = sbb_b.tgbot.uid = utils.get_peer_id(sbb_b.me)
-        if Config.OWNER_ID == 0:
-            Config.OWNER_ID = utils.get_peer_id(sbb_b.me)
-    except Exception as e:
-        LOGS.error(f"STRING_SESSION - {e}")
-        sys.exit()
+    sbb_b.me = await sbb_b.get_me()
+    sbb_b.uid = sbb_b.me.id
+    if Config.OWNER_ID == 0:
+        Config.OWNER_ID = get_peer_id(sbb_b.me)
+    await sbb_b.tgbot.start(bot_token=Config.TG_BOT_USERNAME)
+    sbb_b.tgbot.me = await sbb_b.tgbot.get_me()
+    bot_details = sbb_b.tgbot.me
+    Config.TG_BOT_USERNAME = f"@{bot_details.username}"
 
 
 async def saves():
@@ -76,19 +58,7 @@ async def saves():
         print(str(e))
     try:
         await sbb_b(JoinChannelRequest("@jmthon"))
-    except BotMethodInvalidError:
-        pass
-    except ChannelsTooMuchError:
-        LOGS.info("انضم بقناة جمثون اولا @jmthon")
-    except ChannelPrivateError:
-        LOGS.critical(
-            "تم حظرك من استخدام سورس جمثون عليك الأعتذار الى مطور السورس @R0R77"
-        )
-    try:
         await sbb_b(JoinChannelRequest("@RR7PP"))
-    except BaseException:
-        pass
-    try:
         await sbb_b(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass
