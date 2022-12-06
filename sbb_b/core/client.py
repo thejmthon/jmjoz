@@ -324,11 +324,11 @@ class JmthonClient(TelegramClient):
             traceback.format_exception(etype=type(exc), value=exc, tb=exc.__traceback__)
         )
 
-    def full_name(self):
+    def full_name(self) -> None:
         """full name of Client"""
         return self.utils.get_display_name(self.me)
 
-    def uid(self):
+    def uid(self) -> None:
         """Client's user id"""
         self.me = self.get_chat("me")
         if self.me.bot:
