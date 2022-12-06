@@ -21,6 +21,7 @@ sbb_b.version = __version__
 sbb_b.tgbot.version = __version__
 LOGS = logging.getLogger("سورس جمثون")
 bot = sbb_b
+tbot = tgbot
 
 StartTime = time.time()
 jmthonversion = "7.2.0"
