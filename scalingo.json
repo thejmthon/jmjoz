@@ -8,17 +8,17 @@
     "env": {
         "ALIVE_NAME": {
             "description": "ضع هنا اسم حسابك على التليجرام",
-            "required": true
+            "required": true,
             "value":""
         },
         "APP_ID": {
             "description": "ضع هنا الايبي ايدي الخاص بك",
-            "required": true
+            "required": true,
             "value":""
         },
         "API_HASH": {
             "description": "ضع هنا الايبي هاش الخاص بك",
-            "required": true
+            "required": true,
             "value":""
         },
         "STRING_SESSION": {
@@ -27,7 +27,7 @@
         },
         "TG_BOT_TOKEN": {
             "description": "ضع توكن البوت المساعد الخاص بك",
-            "required": true
+            "required": true,
             "value":""
         },
         "TZ": {
