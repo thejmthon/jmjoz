@@ -1,15 +1,14 @@
-import glob
-import os
 import sys
 
 from aiohttp import web
+
 import sbb_b
-from sbb_b import tbot, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+from sbb_b import BOTLOG_CHATID, PM_LOGGER_GROUP_ID, tbot
+
 from .Config import Config
 from .core.logger import logging
 from .core.server import web_server
 from .core.session import sbb_b
-
 from .utils import (
     add_bot_to_logger_group,
     load_plugins,
@@ -23,6 +22,7 @@ from .utils import (
 LOGS = logging.getLogger("سورس جمثون")
 
 cmdhr = Config.COMMAND_HAND_LER
+
 
 async def jmthons(session=None, client=None, session_name="Main"):
     if session:
@@ -62,8 +62,9 @@ async def start_jmthon():
         await load_plugins("assistant")
         LOGS.info(f"تم انتهاء عملية التنصيب بنجاح على سكالينجو")
         LOGS.info(
-        f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
-        \nمجموعة قناة السورس  https://t.me/jmthon_support")
+            f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
+        \nمجموعة قناة السورس  https://t.me/jmthon_support"
+        )
         LOGS.info(f"» عدد جلسات التنصيب الحالية = {str(total)} «")
         await jmthonstart(total)
         app = web.AppRunner(await web_server())
@@ -73,6 +74,7 @@ async def start_jmthon():
     except Exception as e:
         LOGS.error(f"{str(e)}")
         sys.exit()
+
 
 sbb_b.loop.run_until_complete(start_jmthon())
 
