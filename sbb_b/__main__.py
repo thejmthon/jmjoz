@@ -1,12 +1,15 @@
-import contextlib
+import glob
+import os
 import sys
 
+from aiohttp import web
 import sbb_b
-from sbb_b import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-
+from sbb_b import tbot, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
+from .core.server import web_server
 from .core.session import sbb_b
+
 from .utils import (
     add_bot_to_logger_group,
     load_plugins,
@@ -21,55 +24,62 @@ LOGS = logging.getLogger("سورس جمثون")
 
 cmdhr = Config.COMMAND_HAND_LER
 
-try:
-    LOGS.info("يتم بدء البوت المساعد")
-    sbb_b.loop.run_until_complete(setup_bot())
-    LOGS.info("اكتملت عمليه البوت المساعد")
-except Exception as e:
-    LOGS.error(f"{e}")
-    sys.exit()
-
-try:
-    LOGS.info("يتم تفعيل وضع حمايه الحساب من الاختراق")
-    sbb_b.loop.create_task(saves())
-    LOGS.info("تم تفعيل وضع حمايه الحساب من الاختراق")
-except Exception as bb:
-    LOGS.error(f"- {bb}")
-    sys.exit()
+async def jmthons(session=None, client=None, session_name="Main"):
+    if session:
+        LOGS.info(f"••• جار بدأ الجلسة [{session_name}] •••")
+        try:
+            await client.start()
+            return 1
+        except:
+            LOGS.error(f"خطأ في الجلسة {session_name}!! تأكد وحاول مجددا !")
+            return 0
+    else:
+        return 0
 
 
-try:
-    LOGS.info("يتم تفعيل وضع الانلاين")
-    sbb_b.loop.run_until_complete(mybot())
-    LOGS.info("تم تفعيل وضع الانلاين بنجاح ✓")
-except Exception as meo:
-    LOGS.error(f"- {meo}")
-    sys.exit()
-
-
-async def startup_process():
-    await verifyLoggerGroup()
-    await load_plugins("plugins")
-    await load_plugins("assistant")
-    print("============================================================")
-    print("تم انتهاء عملية التنصيب بنجاح على كويب")
-    print(
-        f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
-        \nمجموعة قناة السورس  https://t.me/jmthon_support"
-    )
-    print("============================================================")
+# تأكد من تنصيب بعض الاكواد
+async def jmthonstart(total):
+    await setup_bot()
+    await mybot()
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
         await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
     await startupmessage()
-    return
+    await saves()
 
 
-sbb_b.loop.run_until_complete(startup_process())
+async def start_jmthon():
+    try:
+        tbot_id = await tbot.get_me()
+        Config.TG_BOT_USERNAME = f"@{tbot_id.username}"
+        sbb_b.tgbot = tbot
+        LOGS.info("•••  جار بدا سورس جمثون •••")
+        CLIENTR = await jmthons(Config.STRING_SESSION, sbb_b, "STRING_SESSION")
+        await tbot.start()
+        total = CLIENTR
+        await load_plugins("plugins")
+        await load_plugins("assistant")
+        LOGS.info(f"تم انتهاء عملية التنصيب بنجاح على سكالينجو")
+        LOGS.info(
+        f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
+        \nمجموعة قناة السورس  https://t.me/jmthon_support")
+        LOGS.info(f"» عدد جلسات التنصيب الحالية = {str(total)} «")
+        await jmthonstart(total)
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, Config.PORT).start()
+    except Exception as e:
+        LOGS.error(f"{str(e)}")
+        sys.exit()
 
-if len(sys.argv) in {1, 3, 4}:
-    with contextlib.suppress(ConnectionError):
-        sbb_b.run_until_disconnected()
-else:
+sbb_b.loop.run_until_complete(start_jmthon())
+
+if len(sys.argv) not in (1, 3, 4):
     sbb_b.disconnect()
+else:
+    try:
+        sbb_b.run_until_disconnected()
+    except ConnectionError:
+        pass
