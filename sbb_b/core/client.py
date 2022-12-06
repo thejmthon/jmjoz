@@ -338,10 +338,10 @@ class JmthonClient(TelegramClient):
         """Client's user id"""
         self.me = self.get_chat("me")
         if self.me.bot:
-            me = f"@{self.me.username}"
+            f"@{self.me.username}"
         else:
             setattr(self.me, "phone", None)
-            me = self.full_name
+            self.full_name
         return self.me.id
 
     def full_name(self):
