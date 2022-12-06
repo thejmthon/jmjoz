@@ -335,13 +335,11 @@ class JmthonClient(TelegramClient):
         self.running_processes.clear()
 
 
-
 JmthonClient.fast_download_file = download_file
 JmthonClient.fast_upload_file = upload_file
 JmthonClient.reload = restart_script
 JmthonClient.get_msg_link = get_message_link
 JmthonClient.check_testcases = checking
-
 try:
     send_message_check = TelegramClient.send_message
 except AttributeError:
