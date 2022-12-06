@@ -319,6 +319,20 @@ class JmthonClient(TelegramClient):
 
         return decorator
 
+    async def full_name(self):
+        """full name of Client"""
+        return self.utils.get_display_name(self.me)
+
+    async def uid(self):
+        """Client's user id"""
+        self.me = self.get_chat("me")
+        if self.me.bot:
+            me = f"@{self.me.username}"
+        else:
+            setattr(self.me, "phone", None)
+            me = self.full_name
+        return self.me.id
+
     async def get_traceback(self, exc: Exception) -> str:
         return "".join(
             traceback.format_exception(etype=type(exc), value=exc, tb=exc.__traceback__)
@@ -334,19 +348,6 @@ class JmthonClient(TelegramClient):
                 LOGS.debug(e)
         self.running_processes.clear()
 
-    def uid(self):
-        """Client's user id"""
-        self.me = self.get_chat("me")
-        if self.me.bot:
-            me = f"@{self.me.username}"
-        else:
-            setattr(self.me, "phone", None)
-            me = self.full_name
-        return self.me.id
-
-    def full_name(self):
-        """full name of Client"""
-        return self.utils.get_display_name(self.me)
 
 
 JmthonClient.fast_download_file = download_file
