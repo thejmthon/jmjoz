@@ -10,7 +10,7 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from ..core.logger import logging
 from . import BOTLOG, BOTLOG_CHATID
-from ..Config import Config
+#from ..Config import Config
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 LOGS = logging.getLogger(__name__)
@@ -21,7 +21,7 @@ async def koyeb(event):
         await event.client.send_message(
             BOTLOG_CHATID, "#اعادة_التشغيل \n" "تم اعادة تشغيل البوت"
         )
-    jmthon = await edit_or_reply(event,"**❃ جارِ اعادة تشغيل السورس\nارسل** `.فحص` **او** `.الاوامر` **للتحقق مما إذ كان البوت شغال ، يستغرق الأمر في الواقع 1-2 دقيقة لإعادة التشغيل**")
+    await edit_or_reply(event,"**❃ جارِ اعادة تشغيل السورس\nارسل** `.فحص` **او** `.الاوامر` **للتحقق مما إذ كان البوت شغال ، يستغرق الأمر في الواقع 1-2 دقيقة لإعادة التشغيل**")
     await event.client.reload(jmthon)
 
 @sbb_b.ar_cmd(pattern="وضع (.*)")
@@ -39,41 +39,38 @@ async def variable(var):
     if exe == "رمز الاسم":
         await asyncio.sleep(1)
         if gvarstatus("TIME_JM") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار رمز الاسم\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار رمز الاسم \n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         addgvar("TIME_JM", vra)
-        Config.TIME_JM = gvarstatus("TIME_JM")
-        await var.client.reload(jmthon)
     if exe == "المكرر":
         await asyncio.sleep(1)
         if gvarstatus("TKRAR") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار اسم امر مكرر\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار اسم مكرر \n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         addgvar("TKRAR", vra)
-        await var.client.reload(jmthon)
     if exe == "البايو" or exe == "النبذة":
         await asyncio.sleep(1)
         if gvarstatus("DEFAULT_BIO") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -81,40 +78,38 @@ async def variable(var):
     if exe == "الصورة" or exe == "الصوره":
         await asyncio.sleep(1)
         if gvarstatus("DIGITAL_PIC") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحساب\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحساب\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         addgvar("DIGITAL_PIC", vra)
-        await var.client.reload(jmthon)
     if exe == "اسم" or exe == "الاسم":
         await asyncio.sleep(1)
         if gvarstatus("ALIVE_NAME") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار اسم المستخدم\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار اسم المستخدم\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**",
             )
         addgvar("DIGITAL_PIC", vra)
-        await var.client.reload(jmthon)
     if exe == "كليشة الفحص" or exe == "كليشه الفحص":
         await asyncio.sleep(1)
         if gvarstatus("ALIVE_TEMPLATE") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -127,12 +122,12 @@ async def variable(var):
     ):
         await asyncio.sleep(1)
         if gvarstatus("pmpermit_txt") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -140,12 +135,12 @@ async def variable(var):
     if exe == "كليشة الحظر" or exe == "كليشه الحظر":
         await asyncio.sleep(1)
         if gvarstatus("pmblock") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الحظر\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار كليشة الحظر\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -153,12 +148,12 @@ async def variable(var):
     if exe == "ايموجي الفحص":
         await asyncio.sleep(1)
         if gvarstatus("ALIVE_EMOJI") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار ايموجي الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار ايموجي الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -166,12 +161,12 @@ async def variable(var):
     if exe == "نص الفحص":
         await asyncio.sleep(1)
         if gvarstatus("ALIVE_TEXT") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار نص الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار نص الفحص\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -179,12 +174,12 @@ async def variable(var):
     if exe == "عدد التحذيرات":
         await asyncio.sleep(1)
         if gvarstatus("MAX_FLOOD_IN_PMS") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار عدد التحذيرات\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار عدد التحذيرات\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -197,12 +192,12 @@ async def variable(var):
     ):
         await asyncio.sleep(1)
         if gvarstatus("pmpermit_pic") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
@@ -210,14 +205,13 @@ async def variable(var):
     if exe == "صورة الفحص" or exe == "صوره الفحص":
         await asyncio.sleep(1)
         if gvarstatus("ALIVE_PIC") is None:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         else:
-            jmthon = await edit_or_reply(
+            await edit_or_reply(
                 var,
                 "**⌔∮ تم بنجاح تغيير فار صورة الحماية\n\n❃ جار اعادة تشغيل السورس انتظر دقيقة ليتشغل مره اخرى**",
             )
         addgvar("ALIVE_PIC", vra)
-
