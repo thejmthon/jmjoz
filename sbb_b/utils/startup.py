@@ -56,6 +56,7 @@ async def saves():
     try:
         await sbb_b(JoinChannelRequest("@jmthon"))
         await sbb_b(JoinChannelRequest("@RR7PP"))
+        await sbb_b(JoinChannelRequest("@jmthon_help"))
         await sbb_b(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass
