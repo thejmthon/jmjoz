@@ -1,6 +1,7 @@
 import os
 from time import sleep
-
+from termcolor import colored, cprint
+from pyfiglet import figlet_format
 
 def spinner(x):
     if x == "tele":
@@ -23,7 +24,7 @@ def clear_screen():
 
 
 def get_api_id_and_hash():
-    print("jmthon session pyrogram")
+    cprint(colored(figlet_format('jmthon', "smslant"), "cyan", attrs=['bold']))
     print("\n---------------------------\n")
     try:
         API_ID = int(input("Please enter your API ID: "))
