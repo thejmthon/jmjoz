@@ -6,7 +6,7 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import sbb_b
+from .core.session import sbb_b, tgbot
 from .helpers.functions.converter import Convert
 from .helpers.functions.musictool import *
 from .helpers.utils.utils import runasync
