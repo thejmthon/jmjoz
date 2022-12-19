@@ -54,17 +54,13 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("============================================================")
-    print("تم انتهاء عملية التنصيب بنجاح")
-    print(
+    LOGS.info("============================================================")
+    LOGS.info("تم انتهاء عملية التنصيب بنجاح")
+    LOGS.info(
         f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
         \nمجموعة قناة السورس  https://t.me/jmthon_support"
     )
-    print("============================================================")
-    app = web.AppRunner(await web_server())
-    await app.setup()
-    bind_address = "0.0.0.0"
-    await web.TCPSite(app, bind_address, Config.PORT).start()
+    LOGS.info("============================================================")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
