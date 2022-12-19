@@ -3,6 +3,7 @@
 
 import os
 from typing import Set
+
 from dotenv import load_dotenv
 from telethon.tl.types import ChatBannedRights
 from validators.url import url
@@ -11,6 +12,7 @@ if os.path.exists(".env"):
     load_dotenv(".env")
 
 load_dotenv()
+
 
 class Config(object):
     LOGGER = True
