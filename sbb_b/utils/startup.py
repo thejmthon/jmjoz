@@ -7,11 +7,6 @@ from datetime import timedelta
 from pathlib import Path
 
 from telethon import Button, functions, types, utils
-from telethon.errors import (
-    BotMethodInvalidError,
-    ChannelPrivateError,
-    ChannelsTooMuchError,
-)
 from telethon.tl.functions.channels import JoinChannelRequest
 
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
