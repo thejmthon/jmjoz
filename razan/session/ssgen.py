@@ -38,7 +38,6 @@ def get_api_id_and_hash():
 def telethon_session():
     try:
         spinner("tele")
-
         x = "\bFound an existing installation of Telethon...\nSuccessfully Imported.\n\n"
     except ImportError:
         print("Installing Telethon...")
@@ -104,6 +103,8 @@ def pyro_session():
         print("Installing Pyrogram...")
         os.system("pip install pyrogram tgcrypto")
         x = "\bDone. Installed and imported Pyrogram."
+        from pyrogram import Client
+
     clear_screen()
     print(x)
 
