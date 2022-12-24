@@ -3,6 +3,7 @@ telethon-session-sqlalchemy
 setuptools
 wheel
 aiohttp
+python-dotenv
 beautifulsoup4
 cfscrape
 cloudscraper
