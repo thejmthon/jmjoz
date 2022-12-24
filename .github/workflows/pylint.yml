@@ -27,7 +27,7 @@ jobs:
       # commit changes
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'اعداد تلقائي'
+          commit_message: 'أعداد تلقائي'
           commit_options: '--no-verify'
           repository: .
           commit_user_name: jmthonr
