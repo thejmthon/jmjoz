@@ -2,7 +2,6 @@ import os
 from time import sleep
 
 
-
 def spinner(x):
     if x == "tele":
         print("Checking if Telethon is installed...")
