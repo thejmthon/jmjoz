@@ -2,11 +2,18 @@
 # اذا تستخدم هيروكو الفار يكون داخل القوس تكدر تاخذه وتضيف قيمته من اعدادات هيروكو
 import os
 from typing import Set
+from dotenv import find_dotenv, load_dotenv
+from dotenv import load_dotenv
+from distutils.util import strtobool
 
 from telethon.tl.types import ChatBannedRights
 from validators.url import url
 
+load_dotenv(find_dotenv())
 
+if os.path.exists("local.env"):
+    load_dotenv("local.env")
+    
 class Config(object):
     LOGGER = True
     # الفارات المطلوبة
