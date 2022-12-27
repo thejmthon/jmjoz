@@ -12,7 +12,7 @@ def jmthon():
     print(f"NOW PUT YOUR VARS CORRECTLY")
     with open(".env", "a") as file:
         for var in [
-            "ALIVE_AME",
+            "ALIVE_NAME",
             "APP_ID",
             "API_HASH",
             "STRING_SESSION",
