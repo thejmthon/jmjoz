@@ -50,4 +50,4 @@ echo "runing jmthon now"
 echo -e $ROZ
 cd sbb_b0
 pip3 install -r requirements.txt
-python3 razan/session/jmthon.py
+python3 jmthon.py
