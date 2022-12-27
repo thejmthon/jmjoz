@@ -1,8 +1,6 @@
 from os import system
 from time import sleep
 
-PANDA = "JMTHON USERBOT DEPLOY"
-
 
 def clear():
     system("clear")
