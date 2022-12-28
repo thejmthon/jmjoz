@@ -21,7 +21,7 @@ def jmthon():
             file.write(f"{var}={inpr}\n")
     print("* Created '.env' file successfully *")
     os.system("screen -S jmthon")
-    os.system("python3 -m sbb_b")
+    os.system("bash start")
 
 
 clear()
