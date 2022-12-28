@@ -1,7 +1,9 @@
 import os
 
+
 def clear():
     os.system("clear")
+
 
 def jmthon():
     print("NOW PUT YOUR VARS CORRECTLY")
@@ -20,6 +22,7 @@ def jmthon():
     print("* Created '.env' file successfully *")
     os.system("screen -S jmthon")
     os.system("python3 -m sbb_b")
+
 
 clear()
 jmthon()
