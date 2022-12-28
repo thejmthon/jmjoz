@@ -1,14 +1,11 @@
-from os import system
-from time import sleep
-
+import os
 
 def clear():
-    system("clear")
-
+    os.system("clear")
 
 def jmthon():
-    print(f"NOW PUT YOUR VARS CORRECTLY")
-    with open(".env", "a") as file:
+    print("NOW PUT YOUR VARS CORRECTLY")
+    with open(".env", "w") as file:
         for var in [
             "ALIVE_NAME",
             "APP_ID",
@@ -18,9 +15,11 @@ def jmthon():
             "TG_BOT_TOKEN",
             "TZ",
         ]:
-            inpr = input(f"Enter {var}\n- ")
+            inpr = input(f"Enter {var}: ")
             file.write(f"{var}={inpr}\n")
     print("* Created '.env' file successfully *")
-    sleep(0.1)
-    system("screen -S jmthon")
-    system("python3 -m sbb_b")
+    os.system("screen -S jmthon")
+    os.system("python3 -m sbb_b")
+
+clear()
+jmthon()
