@@ -14,6 +14,7 @@ echo -e $ROZ
 
 # Update and install dependencies  :)
 sudo apt update && upgrade -y
+sudo apt install postgresql postgresql-contrib
 sudo apt install --no-install-recommends -y \
 curl \
 git \
@@ -69,6 +70,25 @@ mv jmthon.py config.py
 echo "⚙️ Environment "
 echo -e $ROZ
 
+# Generate a random password  - باسوورد عشوائي لقاعدة البيانات   xD
+PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+
+# Connect to the PostgreSQL interactive terminal
+sudo su - postgres -c "psql" <<EOF
+
+ALTER USER postgres WITH PASSWORD '$PASSWORD';
+
+# Create a new database
+CREATE DATABASE jmthon;
+
+# back and exit
+\q
+exit
+EOF
+
+# database
+DATABASE_URL="postgresql://postgres:$PASSWORD@localhost:5432/jmthon"
+
 # Ask the user for some environment variables and add them to .env
 if [ ! -f .env ]; then
   touch .env
@@ -89,15 +109,13 @@ echo -e $ROZ
 echo "Enter your bot token:"
 read token
 echo -e $ROZ
-echo "Enter your database:"
-read database
 
 echo "ALIVE_NAME=$alive_name" >> .env
 echo "APP_ID=$app_id" >> .env
 echo "API_HASH=$api_hash" >> .env
 echo "STRING_SESSION=$session" >> .env
 echo "TG_BOT_TOKEN=$token" >> .env
-echo "DATABASE_URL=$database" >> .env
+echo "DATABASE_URL=$DATABASE_URL" >> .env
 clear
 
 # Install requirements and run the bot
