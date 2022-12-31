@@ -75,7 +75,7 @@ import os
 import random
 
 # Generate a random password
-password = ''.join(random.choices(string.ascii_letters + string.digits, k=32))
+password = "".join(random.choices(string.ascii_letters + string.digits, k=32))
 
 # Connect to the PostgreSQL interactive terminal
 os.system(f"sudo su - postgres -c 'psql' <<EOF")
@@ -107,4 +107,6 @@ with open(".env", "a") as f:
     f.write(f"DATABASE_URL={database_url}")
 
 # Run the command in a detached screen
-os.system("screen -S jmthon bash -c 'virtualenv venv && source venv/bin/activate && pip3 install -r requirements.txt && clear && python3 -m sbb_b'")
+os.system(
+    "screen -S jmthon bash -c 'virtualenv venv && source venv/bin/activate && pip3 install -r requirements.txt && clear && python3 -m sbb_b'"
+)
