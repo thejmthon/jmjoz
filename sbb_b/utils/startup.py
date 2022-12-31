@@ -31,7 +31,7 @@ cmdhr = Config.COMMAND_HAND_LER
 if ENV:
     VPS_NOLOAD = ["سيرفر"]
 elif os.path.exists("config.py"):
-    VPS_NOLOAD = ["هيروكو"]
+    VPS_NOLOAD = ["المنصة"]
 
 
 async def setup_bot():
