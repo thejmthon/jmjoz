@@ -78,10 +78,8 @@ sudo su - postgres -c "psql" <<EOF
 
 ALTER USER postgres WITH PASSWORD '$PASSWORD';
 
-# Create a new database
 CREATE DATABASE jmthon;
 
-# back and exit
 \q
 exit
 EOF
