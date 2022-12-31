@@ -65,7 +65,7 @@ echo -e $ROZ
 cd sbb_b0
 
 # Rename sample_config.py to config.py
-mv sample_config.py config.py
+mv jmthon.py config.py
 echo "⚙️ Environment "
 echo -e $ROZ
 
