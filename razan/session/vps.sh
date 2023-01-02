@@ -115,7 +115,3 @@ echo "STRING_SESSION=$session" >> .env
 echo "TG_BOT_TOKEN=$token" >> .env
 echo "DATABASE_URL=$DATABASE_URL" >> .env
 clear
-
-# Install requirements and run the bot
-screen -S jmthon -d -m bash -c "virtualenv venv && source venv/bin/activate && pip3 install -r requirements.txt && python3 -m sbb_b"
-screen -r
