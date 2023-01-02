@@ -115,4 +115,5 @@ echo "STRING_SESSION=$session" >> .env
 echo "TG_BOT_TOKEN=$token" >> .env
 echo "DATABASE_URL=$DATABASE_URL" >> .env
 clear
-screen -S jmthon 
+echo -e $JMTHON
+echo -e $ROZ
