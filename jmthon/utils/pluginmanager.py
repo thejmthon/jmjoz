@@ -83,7 +83,7 @@ def remove_plugin(shortname):
         for i in reversed(range(len(jmthon._event_builders))):
             ev, cb = jmthon._event_builders[i]
             if cb.__module__ == name:
-                del jmthonn._event_builders[i]
+                del jmthon._event_builders[i]
     except BaseException as exc:
         raise ValueError from exc
 
