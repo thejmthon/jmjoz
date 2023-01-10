@@ -68,7 +68,9 @@ async def get_users(event):
     s = 0
     f = 0
     error = "None"
-    await jmthon.edit("**▾∮ حالة الأضافة:**\n\n**▾∮ تتم جمع معلومات المستخدمين 🔄 ...⏣**")
+    await jmthon.edit(
+        "**▾∮ حالة الأضافة:**\n\n**▾∮ تتم جمع معلومات المستخدمين 🔄 ...⏣**"
+    )
     async for user in event.client.iter_participants(event.pattern_match.group(1)):
         try:
             if error.startswith("Too"):

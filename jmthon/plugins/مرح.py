@@ -1,9 +1,9 @@
 import random
 
-from razan.strings.fun import *
 from jmthon import jmthon
 from jmthon.core.managers import edit_or_reply
 from jmthon.helpers import get_user_from_event
+from razan.strings.fun import *
 
 from . import *
 
