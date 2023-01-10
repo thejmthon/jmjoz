@@ -11,7 +11,7 @@ from telethon.errors import QueryIdInvalidError
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..helpers.functions import rand_key
@@ -208,7 +208,7 @@ def paginate_help(
     return pairs
 
 
-@sbb_b.tgbot.on(InlineQuery)
+@jmthon.tgbot.on(InlineQuery)
 async def inline_handler(event):
     builder = event.builder
     result = None
@@ -225,7 +225,7 @@ async def inline_handler(event):
         match2 = re.findall(inf, query)
         hid = re.compile("hide (.*)")
         match3 = re.findall(hid, query)
-        if query.startswith("**sbb_b"):
+        if query.startswith("**jmthon"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
@@ -301,7 +301,7 @@ async def inline_handler(event):
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
-            troll = os.path.join("./sbb_b", "troll.txt")
+            troll = os.path.join("./jmthon", "troll.txt")
             try:
                 jsondata = json.load(open(troll))
             except Exception:
@@ -350,7 +350,7 @@ async def inline_handler(event):
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
-            secret = os.path.join("./sbb_b", "secrets.txt")
+            secret = os.path.join("./jmthon", "secrets.txt")
             try:
                 jsondata = json.load(open(secret))
             except Exception:
@@ -398,7 +398,7 @@ async def inline_handler(event):
         elif match3:
             query = query[5:]
             builder = event.builder
-            hide = os.path.join("./sbb_b", "hide.txt")
+            hide = os.path.join("./jmthon", "hide.txt")
             try:
                 jsondata = json.load(open(hide))
             except Exception:
@@ -421,7 +421,7 @@ async def inline_handler(event):
         elif string == "help":
             _result = main_menu()
             result = builder.article(
-                title="sbb_b Help™",
+                title="jmthon Help™",
                 description="**▾∮ قائمة التعليمات الخاصة ب جمثون **",
                 text=_result[0],
                 buttons=_result[1],
@@ -587,7 +587,7 @@ async def inline_handler(event):
         await event.answer([result] if result else None)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"close")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"close")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     buttons = [
@@ -596,14 +596,14 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit("غلق القائمة 🔒", buttons=buttons)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"check")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"check")))
 async def on_plugin_callback_query_handler(event):
     text = f"الملفات 🗃 : {len(PLG_INFO)}\nعدد الاوامر 👨‍💻 : {len(CMD_INFO)}\
         \n\nمساعدة <اسم الملف> : للحصول على معلومات الملف المساعد المحدد\nمساعدة <الامر> : للحصول ع معلومات الامر المحدد.\nاستفسار <الاومر> : للبحث عن أي أوامر."
     await event.answer(text, cache_time=0, alert=True)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"(.*)_menu")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"(.*)_menu")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     category = str(event.pattern_match.group(1).decode("UTF-8"))
@@ -614,7 +614,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text, buttons=buttons)
 
 
-@sbb_b.tgbot.on(
+@jmthonn.tgbot.on(
     CallbackQuery(
         data=re.compile(b"back_([a-z]+)_([a-z1-9]+)_([0-9]+)_?([a-z1-9]+)?_?([0-9]+)?")
     )
@@ -646,14 +646,14 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(text, buttons=buttons)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"mainmenu")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"mainmenu")))
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     _result = main_menu()
     await event.edit(_result[0], buttons=_result[1])
 
 
-@sbb_b.tgbot.on(
+@jmthon.tgbot.on(
     CallbackQuery(data=re.compile(rb"(.*)_prev\((.+?)\)_([a-z]+)_?([a-z]+)?_?(.*)?"))
 )
 @check_owner
@@ -684,7 +684,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(buttons=buttons)
 
 
-@sbb_b.tgbot.on(
+@jmthon.tgbot.on(
     CallbackQuery(data=re.compile(rb"(.*)_next\((.+?)\)_([a-z]+)_?([a-z]+)?_?(.*)?"))
 )
 @check_owner
@@ -712,7 +712,7 @@ async def on_plug_in_callback_query_handler(event):
     await event.edit(buttons=buttons)
 
 
-@sbb_b.tgbot.on(
+@jmthon.tgbot.on(
     CallbackQuery(
         data=re.compile(b"(.*)_cmdhelp_([a-z1-9]+)_([0-9]+)_([a-z]+)_([0-9]+)")
     )

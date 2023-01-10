@@ -6,7 +6,7 @@ from ..helpers.utils import _format
 from . import *
 
 
-@sbb_b.ar_cmd(pattern="امر التجربة")
+@jmthon.ar_cmd(pattern="امر التجربة")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -15,7 +15,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="تجربة(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="تجربة(?:\s|$)([\s\S]*)")
 async def _(event):
     cmd = "".join(event.message.message.split(maxsplit=1)[1:])
     if not cmd:

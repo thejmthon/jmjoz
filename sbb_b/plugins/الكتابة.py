@@ -1,7 +1,7 @@
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 
-@sbb_b.ar_cmd(pattern="تغميق(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="تغميق(?: |$)(.*)")
 async def _(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
@@ -14,7 +14,7 @@ async def _(event):
         await event.edit("**⌔∮ يجب عليك الرد على الرساله**")
 
 
-@sbb_b.ar_cmd(pattern="نسخ(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="نسخ(?: |$)(.*)")
 async def _(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
@@ -27,7 +27,7 @@ async def _(event):
         await event.edit("**⌔∮ يجب عليك الرد على الرساله**")
 
 
-@sbb_b.ar_cmd(pattern="مائل(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="مائل(?: |$)(.*)")
 async def _(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()

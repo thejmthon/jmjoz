@@ -1,4 +1,4 @@
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 GCAST_BLACKLIST = [
     -1001118102804,
@@ -11,11 +11,11 @@ DEVS = [
 ]
 
 
-@sbb_b.ar_cmd(pattern="للكروبات(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="للكروبات(?: |$)(.*)")
 async def gcast(event):
-    sbb_b = event.pattern_match.group(1)
-    if sbb_b:
-        msg = sbb_b
+    jmthon = event.pattern_match.group(1)
+    if jmthon:
+        msg = jmthon
     elif event.is_reply:
         msg = await event.get_reply_message()
     else:
@@ -40,11 +40,11 @@ async def gcast(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="للخاص(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="للخاص(?: |$)(.*)")
 async def gucast(event):
-    sbb_b = event.pattern_match.group(1)
-    if sbb_b:
-        msg = sbb_b
+    jmthon = event.pattern_match.group(1)
+    if jmthon:
+        msg = jmthon
     elif event.is_reply:
         msg = await event.get_reply_message()
     else:

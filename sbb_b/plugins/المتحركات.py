@@ -4,10 +4,10 @@ import requests
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import reply_id, unsavegif
-from . import sbb_b
+from . import jmthon
 
 
-@sbb_b.ar_cmd(pattern="متحركات(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="متحركات(?:\s|$)([\s\S]*)")
 async def some(event):
     inpt = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)

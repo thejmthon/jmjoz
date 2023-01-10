@@ -15,7 +15,7 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import delete_conv, yt_search
 from ..helpers.tools import media_type
 from ..helpers.utils import reply_id
-from . import sbb_b, song_download
+from . import jmthon, song_download
 
 LOGS = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ SONG_SENDING_STRING = "<code>تم العثور على المطلوب انتظر 
 # =========================================================== #
 
 
-@sbb_b.ar_cmd(pattern="بحث(320)?(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="بحث(320)?(?:\s|$)([\s\S]*)")
 async def song(event):
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
@@ -68,7 +68,7 @@ async def song(event):
             os.remove(files)
 
 
-@sbb_b.ar_cmd(pattern="فيديو(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="فيديو(?:\s|$)([\s\S]*)")
 async def vsong(event):
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
@@ -106,7 +106,7 @@ async def vsong(event):
             os.remove(files)
 
 
-@sbb_b.ar_cmd(pattern="(ا(ل)?ا(س)?م)(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="(ا(ل)?ا(س)?م)(?:\s|$)([\s\S]*)")
 async def shazamcmd(event):
     reply = await event.get_reply_message()
     mediatype = await media_type(reply)
@@ -148,7 +148,7 @@ async def shazamcmd(event):
             try:
                 purgeflag = await conv.send_message("/start")
             except YouBlockedUserError:
-                await sbb_b(unblock("DeezerMusicBot"))
+                await jmthon(unblock("DeezerMusicBot"))
                 purgeflag = await conv.send_message("/start")
             await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)

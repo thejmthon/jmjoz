@@ -1,8 +1,8 @@
 from ..helpers.functions.functions import make_inline
-from . import edit_delete, reply_id, sbb_b
+from . import edit_delete, reply_id, jmthon
 
 
-@sbb_b.ar_cmd(pattern="لستة(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="لستة(?:\s|$)([\s\S]*)")
 async def _(event):
     reply_to_id = await reply_id(event)
     reply_message = await event.get_reply_message()

@@ -3,9 +3,9 @@ import re
 from telethon import Button
 from telethon.events import CallbackQuery, InlineQuery
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @sbb_b  ~ @RR7PP
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @jmthon  ~ @RR7PP
 from ..core.decorators import check_owner
 
 CALC = {}
@@ -38,16 +38,16 @@ lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
 lst.append([Button.inline("=", data="calc=")])
 
 
-@sbb_b.ar_cmd(pattern="الحاسبة(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="الحاسبة(?:\s|$)([\s\S]*)")
 async def icalc(e):
     if e.client._bot:
-        return await e.reply("**الحاسبة العلمية لسورس جمثون\n @sbb_b**", buttons=lst)
+        return await e.reply("**الحاسبة العلمية لسورس جمثون\n @jmthon**", buttons=lst)
     results = await e.client.inline_query(Config.TG_BOT_USERNAME, "calc")
     await results[0].click(e.chat_id, silent=True, hide_via=True)
     await e.delete()
 
 
-@sbb_b.tgbot.on(InlineQuery)
+@jmthon.tgbot.on(InlineQuery)
 async def inlinecalc(event):
     query_user_id = event.query.user_id
     query = event.text
@@ -57,13 +57,13 @@ async def inlinecalc(event):
     ) and string == "calc":
         event.builder
         calc = event.builder.article(
-            "Calc", text="**الحاسبة العلمية لسورس جمثون\n @sbb_b**", buttons=lst
+            "Calc", text="**الحاسبة العلمية لسورس جمثون\n @jmthon**", buttons=lst
         )
         await event.answer([calc])
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @sbb_b  ~ @RR7PP
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"calc(.*)")))
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @jmthon  ~ @RR7PP
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"calc(.*)")))
 @check_owner
 async def _(e):  # sourcery no-metrics
     x = (e.data_match.group(1)).decode()
@@ -73,7 +73,7 @@ async def _(e):  # sourcery no-metrics
         if CALC.get(user):
             CALC.pop(user)
         await e.edit(
-            "**الحاسبة العلمية لسورس جمثون\n @sbb_b**",
+            "**الحاسبة العلمية لسورس جمثون\n @jmthon**",
             buttons=[Button.inline("افتح مره اخرى", data="recalc")],
         )
     elif x == "C":
@@ -128,8 +128,8 @@ async def _(e):  # sourcery no-metrics
         await e.answer(str(x))
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @sbb_b  ~ @RR7PP
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"recalc")))
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @jmthon  ~ @RR7PP
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"recalc")))
 @check_owner
 async def _(e):
     m = [
@@ -157,4 +157,4 @@ async def _(e):
     tultd = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
     lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
     lst.append([Button.inline("=", data="calc=")])
-    await e.edit("**الحاسبة العلمية لسورس جمثون\n @sbb_b**", buttons=lst)
+    await e.edit("**الحاسبة العلمية لسورس جمثون\n @jmthon**", buttons=lst)

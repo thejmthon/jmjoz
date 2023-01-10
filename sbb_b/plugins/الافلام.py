@@ -3,7 +3,7 @@ import os
 from justwatch import JustWatch, justwatchapi
 from pySmartDL import SmartDL
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -82,7 +82,7 @@ def get_provider(url):
     return url
 
 
-@sbb_b.ar_cmd(pattern="فلم ([\s\S]*)")
+@jmthon.ar_cmd(pattern="فلم ([\s\S]*)")
 async def _(event):
     query = event.pattern_match.group(1)
     et = await edit_or_reply(event, "**- جار البحث في المواقع انتظر قليلا**")

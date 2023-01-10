@@ -1,12 +1,12 @@
 from telethon.tl import functions
 
-from .. import sbb_b
+from .. import jmthon
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..utils.tools import create_supergroup
 
 
-@sbb_b.ar_cmd(pattern="صنع (مجموعة خارقة|مجموعة عادية|قناة) ([\s\S]*)")
+@jmthon.ar_cmd(pattern="صنع (مجموعة خارقة|مجموعة عادية|قناة) ([\s\S]*)")
 async def _(event):
     type_of_group = event.pattern_match.group(1)
     group_name = event.pattern_match.group(2)

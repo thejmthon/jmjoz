@@ -1,9 +1,9 @@
 import asyncio
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 
-@sbb_b.ar_cmd(pattern="وهمي كتابه(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="وهمي كتابه(?: |$)(.*)")
 async def _(event):
     roz = event.pattern_match.group(1)
     if not (roz or roz.isdigit()):
@@ -21,7 +21,7 @@ async def _(event):
         await asyncio.sleep(roz)
 
 
-@sbb_b.ar_cmd(pattern="وهمي صوت(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="وهمي صوت(?: |$)(.*)")
 async def _(event):
     roz = event.pattern_match.group(1)
     if not (roz or roz.isdigit()):
@@ -39,7 +39,7 @@ async def _(event):
         await asyncio.sleep(roz)
 
 
-@sbb_b.ar_cmd(pattern="وهمي فيديو(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="وهمي فيديو(?: |$)(.*)")
 async def _(event):
     roz = event.pattern_match.group(1)
     if not (roz or roz.isdigit()):
@@ -57,7 +57,7 @@ async def _(event):
         await asyncio.sleep(roz)
 
 
-@sbb_b.ar_cmd(pattern="وهمي لعبه(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="وهمي لعبه(?: |$)(.*)")
 async def _(event):
     roz = event.pattern_match.group(1)
     if not (roz or roz.isdigit()):

@@ -7,7 +7,7 @@ from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
 from telethon.tl.types import Channel, Chat, InputPhoto, User
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -26,7 +26,7 @@ USERNAME_SUCCESS = "⌔∮ تم تغيير اسم المستخدم الخاص ب
 USERNAME_TAKEN = "⌔∮ أسم المستخدم مأخوذ مسبقا."
 
 
-@sbb_b.ar_cmd(pattern="وضع بايو ([\s\S]*)")
+@jmthon.ar_cmd(pattern="وضع بايو ([\s\S]*)")
 async def _(event):
     bio = event.pattern_match.group(1)
     try:
@@ -36,7 +36,7 @@ async def _(event):
         await edit_or_reply(event, f"**خطأ:**\n`{e}`")
 
 
-@sbb_b.ar_cmd(pattern="وضع اسم ([\s\S]*)")
+@jmthon.ar_cmd(pattern="وضع اسم ([\s\S]*)")
 async def _(event):
     names = event.pattern_match.group(1)
     first_name = names
@@ -54,7 +54,7 @@ async def _(event):
         await edit_or_reply(event, f"**خطأ:**\n`{e}`")
 
 
-@sbb_b.ar_cmd(pattern="وضع صورة$")
+@jmthon.ar_cmd(pattern="وضع صورة$")
 async def _(event):
     reply_message = await event.get_reply_message()
     jmthonevent = await edit_or_reply(
@@ -99,7 +99,7 @@ async def _(event):
         LOGS.info(str(e))
 
 
-@sbb_b.ar_cmd(pattern="وضع يوزر ([\s\S]*)")
+@jmthon.ar_cmd(pattern="وضع يوزر ([\s\S]*)")
 async def update_username(event):
     newusername = event.pattern_match.group(1)
     try:
@@ -111,7 +111,7 @@ async def update_username(event):
         await edit_or_reply(event, f"**خطا:**\n`{e}`")
 
 
-@sbb_b.ar_cmd(pattern="حسابي$")
+@jmthon.ar_cmd(pattern="حسابي$")
 async def count(event):
     u = 0
     g = 0
@@ -147,7 +147,7 @@ async def count(event):
     await jmthonevent.edit(result)
 
 
-@sbb_b.ar_cmd(pattern="ازالة الصورة ?([\s\S]*)")
+@jmthon.ar_cmd(pattern="ازالة الصورة ?([\s\S]*)")
 async def remove_profilepic(delpfp):
     group = delpfp.text[8:]
     if group == "جميعها":
@@ -171,7 +171,7 @@ async def remove_profilepic(delpfp):
     await edit_delete(delpfp, f"**- تم بنجاح حذف {len(input_photos)} من صور الحساب")
 
 
-@sbb_b.ar_cmd(pattern="معرفاتي$")
+@jmthon.ar_cmd(pattern="معرفاتي$")
 async def _(event):
     result = await event.client(GetAdminedPublicChannelsRequest())
     output_str = "**المعرفات الخاصه بك التي تم صنعها:**\n" + "".join(

@@ -1,11 +1,11 @@
 import asyncio
 
-from . import edit_or_reply, sbb_b
+from . import edit_or_reply, jmthonnn
 
 plugin_category = "fun"
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="تحميل$",
     command=("تحميل", plugin_category),
     info={
@@ -24,7 +24,7 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="مربع$",
     command=("مربع", plugin_category),
     info={
@@ -43,7 +43,7 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="up$",
     command=("up", plugin_category),
     info={
@@ -62,7 +62,7 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="دائره$",
     command=("دائره", plugin_category),
     info={
@@ -81,7 +81,7 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="قلب$",
     command=("قلب", plugin_category),
     info={
@@ -100,7 +100,7 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="انيم$",
     command=("انيم", plugin_category),
     info={
@@ -123,14 +123,14 @@ async def _(event):
         "😧",
         "😡",
         "😢",
-        "__**[المطور....]**__(t.me/sbb_b)",
+        "__**[المطور....]**__(t.me/jmthonnn)",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="بشره$",
     command=("بشره", plugin_category),
     info={
@@ -149,7 +149,7 @@ async def _(event):
         await event.edit(animation_chars[i % 6])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="قرد$",
     command=("قرد", plugin_category),
     info={
@@ -168,7 +168,7 @@ async def _(event):
         await event.edit(animation_chars[i % 6])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="herber$",
     command=("herber", plugin_category),
     info={
@@ -198,7 +198,7 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="يد$",
     command=("يد", plugin_category),
     info={
@@ -231,7 +231,7 @@ async def _(event):
         await event.edit(animation_chars[i % 13])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="العد التنازلي$",
     command=("العد التنازلي", plugin_category),
     info={
@@ -263,7 +263,7 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@sbb_b.ar_cmd(
+@jmthonnn.ar_cmd(
     pattern="قلوب$",
     command=("قلوب", plugin_category),
     info={

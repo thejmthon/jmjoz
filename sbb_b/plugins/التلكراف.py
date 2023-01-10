@@ -11,7 +11,7 @@ from urlextract import URLExtract
 from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_or_reply
-from . import BOTLOG, BOTLOG_CHATID, sbb_b
+from . import BOTLOG, BOTLOG_CHATID, jmthon
 
 LOGS = logging.getLogger(__name__)
 
@@ -27,9 +27,9 @@ def resize_image(image):
     im.save(image, "PNG")
 
 
-@sbb_b.ar_cmd(pattern="(ت(ل)?ك(راف)?) ?(m|t|ميديا|نص)(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="(ت(ل)?ك(راف)?) ?(m|t|ميديا|نص)(?:\s|$)([\s\S]*)")
 async def _(event):
-    sbb_bevent = await edit_or_reply(event, "** ⌔∮ جار انشاء رابط تلكراف**")
+    jmthonevent = await edit_or_reply(event, "** ⌔∮ جار انشاء رابط تلكراف**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -37,7 +37,7 @@ async def _(event):
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
-        return await sbb_bevent.edit(
+        return await jmthonevent.edit(
             "** ⌔∮ قم بالرد على هذه الرسالة للحصول على رابط تلكراف فورا**",
         )
 
@@ -48,19 +48,19 @@ async def _(event):
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
-        await sbb_bevent.edit(f"**⌔∮ تم التحميل الى {downloaded_file_name}**")
+        await jmthonevent.edit(f"**⌔∮ تم التحميل الى {downloaded_file_name}**")
         if downloaded_file_name.endswith((".webp")):
             resize_image(downloaded_file_name)
         try:
             media_urls = upload_file(downloaded_file_name)
         except exceptions.TelegraphException as exc:
-            await sbb_bevent.edit(f"** ⌔∮ خطأ : **\n**{exc}**")
+            await jmthonevent.edit(f"** ⌔∮ خطأ : **\n**{exc}**")
             os.remove(downloaded_file_name)
         else:
             end = datetime.now()
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
-            await sbb_bevent.edit(
+            await jmthonevent.edit(
                 f"** ⌔∮ الرابط : **[إضغط هنا](https://graph.org{media_urls[0]})\
                     \n** ⌔∮ الوقت المأخوذ : {ms} ثانية.**",
                 link_preview=True,
@@ -95,9 +95,9 @@ async def _(event):
             response = telegraph.create_page(title_of_page, html_content=page_content)
         end = datetime.now()
         ms = (end - start).seconds
-        sbb_b = f"https://graph.org/{response['path']}"
-        await sbb_bevent.edit(
-            f"**الرابط**:  [اضغط هنا]({sbb_b})\
+        jmthon = f"https://graph.org/{response['path']}"
+        await jmthonevent.edit(
+            f"**الرابط**:  [اضغط هنا]({jmthon})\
                  \n**الوقت المستغرق** : {ms} **ثواني**",
             link_preview=True,
         )

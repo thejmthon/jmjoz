@@ -1,10 +1,10 @@
 import re
 
 from razan.strings import get_download_url
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 
-@sbb_b.ar_cmd(pattern="بينترست?(.*)")
+@jmthon.ar_cmd(pattern="بينترست?(.*)")
 async def _(event):
     R = event.pattern_match.group(1)
     links = re.findall(r"\bhttps?://.*\.\S+", R)

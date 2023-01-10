@@ -3,23 +3,23 @@ import html
 from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 
-from sbb_b.Config import Config
-from sbb_b.plugins import (
+from jmthon.Config import Config
+from jmthon.plugins import (
     ALIVE_NAME,
     BOTLOG,
     BOTLOG_CHATID,
     edit_delete,
     get_user_from_event,
-    sbb_b,
+    jmthon,
 )
-from sbb_b.sql_helper.globals import gvarstatus
+from jmthon.sql_helper.globals import gvarstatus
 
 DEFAULTUSER = gvarstatus("FIRST_NAME") or ALIVE_NAME
 DEFAULTUSERBIO = Config.DEFAULT_BIO or "﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾"
 ANT7AL = gvarstatus("ANT7AL") or "(اعادة الحساب|اعادة)"
 
 
-@sbb_b.ar_cmd(pattern="انتحال(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="انتحال(?:\s|$)([\s\S]*)")
 async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
@@ -55,7 +55,7 @@ async def _(event):
         )
 
 
-@sbb_b.ar_cmd(pattern=f"{ANT7AL}$")
+@jmthon.ar_cmd(pattern=f"{ANT7AL}$")
 async def revert(event):
     firstname = DEFAULTUSER
     lastname = gvarstatus("LAST_NAME") or ""

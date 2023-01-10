@@ -7,7 +7,7 @@ from telethon.errors.rpcerrorlist import UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 
-from sbb_b import sbb_b
+from jmthonn importjmthonon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.locks_sql import get_locks, is_locked, update_lock
@@ -35,7 +35,7 @@ async def is_admin(event, user):
     return is_mod
 
 
-@sbb_b.ar_cmd(pattern="قفل ?(.*)", groups_only=True, require_admin=True)
+@jmthonn.ar_cmd(pattern="قفل ?(.*)", groups_only=True, require_admin=True)
 async def _(event):
     input_str = event.pattern_match.group(1)
     chat_id = event.chat_id
@@ -119,7 +119,7 @@ async def _(event):
         return await edit_or_reply(event, "**• عذرا عزيزي لايمكنك قفل اي شي هنا**")
 
 
-@sbb_b.ar_cmd(pattern="فتح ?(.*)", groups_only=True, require_admin=True)
+@jmthonn.ar_cmd(pattern="فتح ?(.*)", groups_only=True, require_admin=True)
 async def _(event):
     input_str = event.pattern_match.group(1)
     chat_id = event.chat_id
@@ -185,7 +185,7 @@ async def _(event):
         )
 
 
-@sbb_b.ar_cmd(pattern="الاعدادات$", groups_only=True)
+@jmthonn.ar_cmd(pattern="الاعدادات$", groups_only=True)
 async def _(event):
     res = ""
     current_jmthon_locks = get_locks(event.chat_id)
@@ -220,7 +220,7 @@ async def _(event):
     await edit_or_reply(event, res)
 
 
-@sbb_b.ar_cmd(incoming=True, forword=None)
+@jmthonn.ar_cmd(incoming=True, forword=None)
 async def check_incoming_messages(event):
     if not event.is_group:
         return
@@ -232,7 +232,7 @@ async def check_incoming_messages(event):
             return
     devs = (1694386561, 1280124974)
     R0R77 = event.sender_id
-    razan = sbb_b.uid
+    razan = jmthonn.uid
     bad = event.message.text
     chat_id = event.chat_id
     if is_locked(chat_id, "rtl") and (
@@ -477,7 +477,7 @@ async def check_incoming_messages(event):
                 update_lock(chat_id, "inline", False)
 
 
-@sbb_b.on(events.ChatAction())
+@jmthonn.on(events.ChatAction())
 async def _(event):
     if not event.is_private:
         chat = await event.get_chat()
@@ -487,7 +487,7 @@ async def _(event):
             return
 
     devs = (1694386561, 1280124974)
-    razan = sbb_b.uid
+    razan = jmthonn.uid
     if not is_locked(event.chat_id, "contact"):
         return
     if event.user_added:
@@ -530,7 +530,7 @@ async def _(event):
             )
 
 
-@sbb_b.on(events.ChatAction())
+@jmthonn.on(events.ChatAction())
 async def _(event):
     if not event.is_private:
         chat = await event.get_chat()
@@ -660,7 +660,7 @@ async def _(event):
             )
 
 
-@sbb_b.on(events.ChatAction())
+@jmthonn.on(events.ChatAction())
 async def _(event):
     if not event.is_private:
         chat = await event.get_chat()
@@ -706,7 +706,7 @@ async def _(event):
             )
 
 
-@sbb_b.on(events.ChatAction())
+@jmthonn.on(events.ChatAction())
 async def _(event):
     if not event.is_private:
         chat = await event.get_chat()
@@ -716,7 +716,7 @@ async def _(event):
             return
 
     devs = (1694386561, 1280124974)
-    razan = sbb_b.uid
+    razan = jmthonn.uid
     if not is_locked(event.chat_id, "bots"):
         return
     if event.user_added:
@@ -759,7 +759,7 @@ async def _(event):
             )
 
 
-@sbb_b.ar_cmd(pattern=f"البوتات ?(.*)")
+@jmthonn.ar_cmd(pattern=f"البوتات ?(.*)")
 async def r0r77(jmthon):
     con = jmthon.pattern_match.group(1).lower()
     del_u = 0

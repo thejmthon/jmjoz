@@ -6,7 +6,7 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import sbb_b, tgbot
+from .core.session import jmthon, tgbot
 from .helpers.functions.converter import Convert
 from .helpers.functions.musictool import *
 from .helpers.utils.utils import runasync
@@ -14,13 +14,13 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.2.0"
 __license__ = "GNU Affero General Public License v3.0"
-__author__ = "سورس جمثون <https://github.com/jmthonen/sbb_b0>"
+__author__ = "سورس جمثون <https://github.com/jmthonen/jmthon0>"
 __copyright__ = f" حقوق سورس جمثون (C) 2020 - 2022  {__author__}"
 
-sbb_b.version = __version__
-sbb_b.tgbot.version = __version__
+jmthon.version = __version__
+jmthon.tgbot.version = __version__
 LOGS = logging.getLogger("سورس جمثون")
-bot = sbb_b
+bot = jmthon
 tbot = tgbot
 
 StartTime = time.time()
@@ -29,7 +29,7 @@ jmthonversion = "7.2.0"
 
 def close_connection(*_):
     print("تم اغلاق الاتصال بالسورس")
-    runasync(sbb_b.disconnect())
+    runasync(jmthon.disconnect())
     sys.exit(143)
 
 

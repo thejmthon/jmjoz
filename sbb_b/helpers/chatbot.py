@@ -3,8 +3,8 @@ import re
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.contacts import UnblockRequest as unblock
 
-from sbb_b import sbb_b
-from sbb_b.helpers.functions import delete_conv
+from jmthon import jmthon
+from jmthon.helpers.functions import delete_conv
 
 from ..sql_helper.globals import addgvar, gvarstatus
 
@@ -18,7 +18,7 @@ async def ai_api(event):
             try:
                 purgeflag = await conv.send_message("/start")
             except YouBlockedUserError:
-                await sbb_b(unblock("Kukichatbot"))
+                await jmthon(unblock("Kukichatbot"))
                 purgeflag = await conv.send_message("/start")
             await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)

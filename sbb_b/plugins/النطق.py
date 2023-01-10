@@ -4,13 +4,13 @@ from datetime import datetime
 
 from gtts import gTTS
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from . import deEmojify, reply_id
 
 
-@sbb_b.ar_cmd(pattern="انطق(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="انطق(?:\s|$)([\s\S]*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     start = datetime.now()

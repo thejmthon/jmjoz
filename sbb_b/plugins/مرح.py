@@ -1,14 +1,14 @@
 import random
 
 from razan.strings.fun import *
-from sbb_b import sbb_b
-from sbb_b.core.managers import edit_or_reply
-from sbb_b.helpers import get_user_from_event
+from jmthon import jmthon
+from jmthon.core.managers import edit_or_reply
+from jmthon.helpers import get_user_from_event
 
 from . import *
 
 
-@sbb_b.ar_cmd(pattern="رفع بكلبي(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع بكلبي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -21,7 +21,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع زوجي(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع زوجي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -35,7 +35,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع مطي(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع مطي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -52,7 +52,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع مرتي(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع مرتي(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -70,7 +70,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع كلب(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع كلب(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -88,13 +88,13 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="كت(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="كت(?: |$)(.*)")
 async def mention(mention):
     reza = random.choice(kttwerz)
     await edit_or_reply(mention, f"**- {reza}**")
 
 
-@sbb_b.ar_cmd(pattern="هينه(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="هينه(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -110,7 +110,7 @@ async def permalink(mention):
     await edit_or_reply(mention, f"{sos} .")
 
 
-@sbb_b.ar_cmd(pattern="نسبة الحب(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="نسبة الحب(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -122,7 +122,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="نسبة الانوثة(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="نسبة الانوثة(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -140,7 +140,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="نسبة الغباء(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="نسبة الغباء(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -152,7 +152,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع تاج(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع تاج(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -165,7 +165,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع قرد(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع قرد(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -183,7 +183,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="اوصف(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="اوصف(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -193,7 +193,7 @@ async def permalink(mention):
     await edit_or_reply(mention, f"{rzona}")
 
 
-@sbb_b.ar_cmd(pattern="شغله(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="شغله(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -205,7 +205,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="نسبة الرجولة(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="نسبة الرجولة(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -223,7 +223,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع حيوان(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع حيوان(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -236,7 +236,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع بزون(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع بزون(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -249,7 +249,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.ar_cmd(pattern="رفع زاحف(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="رفع زاحف(?: |$)(.*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -262,7 +262,7 @@ async def permalink(mention):
     )
 
 
-@sbb_b.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
 async def rzfun(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -272,7 +272,7 @@ async def rzfun(mention):
     await edit_or_reply(mention, f"**نزوج وماتباوع على غيري 🥺💞 ܰ**")
 
 
-@sbb_b.on(admin_cmd(pattern="طلاك(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="طلاك(?:\s|$)([\s\S]*)"))
 async def mention(mention):
     user, custom = await get_user_from_event(mention)
     if not user:

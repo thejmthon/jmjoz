@@ -23,7 +23,7 @@ from telethon.tl.types import (
     InputStickerSetID,
 )
 
-from sbb_b import Convert, sbb_b
+from jmthon import Convert, jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import crop_and_divide
@@ -80,7 +80,7 @@ async def delpack(jmthonevent, conv, args, packname):
     try:
         await conv.send_message("/delpack")
     except YouBlockedUserError:
-        await sbb_b(unblock("stickers"))
+        await jmthon(unblock("stickers"))
         await conv.send_message("/delpack")
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
@@ -134,7 +134,7 @@ async def newpacksticker(
     try:
         await conv.send_message(cmd)
     except YouBlockedUserError:
-        await sbb_b(unblock("stickers"))
+        await jmthon(unblock("stickers"))
         await conv.send_message(cmd)
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
@@ -196,7 +196,7 @@ async def add_to_pack(
     try:
         await conv.send_message("/addsticker")
     except YouBlockedUserError:
-        await sbb_b(unblock("stickers"))
+        await jmthon(unblock("stickers"))
         await conv.send_message("/addsticker")
     vtry = True if is_video else None
     await conv.get_response()
@@ -269,7 +269,7 @@ async def add_to_pack(
     return pack, packname
 
 
-@sbb_b.ar_cmd(pattern="ملصق(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="ملصق(?:\s|$)([\s\S]*)")
 async def kang(args):
     photo = None
     emojibypass = False
@@ -463,7 +463,7 @@ async def kang(args):
                 )
 
 
-@sbb_b.ar_cmd(pattern="حزمة(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="حزمة(?:\s|$)([\s\S]*)")
 async def pack_kang(event):
     user = await event.client.get_me()
     if user.username:
@@ -651,7 +651,7 @@ async def pack_kang(event):
     await jmthonevent.edit(result)
 
 
-@sbb_b.ar_cmd(pattern="فاس$")
+@jmthon.ar_cmd(pattern="فاس$")
 async def pussyjmthon(event):
     message = await event.get_reply_message()
     user = await event.client.get_me()
@@ -713,7 +713,7 @@ async def pussyjmthon(event):
         os.remove(sticker[1])
 
 
-@sbb_b.ar_cmd(pattern="تحويل بملصق(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="تحويل بملصق(?:\s|$)([\s\S]*)")
 async def pic2packcmd(event):
     reply = await event.get_reply_message()
     mediatype = await media_type(reply)
@@ -771,7 +771,7 @@ async def pic2packcmd(event):
         try:
             await event.client.send_message(chat, "/cancel")
         except YouBlockedUserError:
-            await sbb_b(unblock("stickers"))
+            await jmthon(unblock("stickers"))
             await event.client.send_message(chat, "/cancel")
         await conv.wait_event(events.NewMessage(incoming=True, from_users=chat))
         await event.client.send_message(chat, "/newpack")
@@ -810,7 +810,7 @@ async def pic2packcmd(event):
         )
 
 
-@sbb_b.ar_cmd(pattern="معلومات_ألملصق$")
+@jmthon.ar_cmd(pattern="معلومات_ألملصق$")
 async def get_pack_info(event):
     if not event.is_reply:
         return await edit_delete(event, "يجب عليك الرد على ملصق اولا", 5)

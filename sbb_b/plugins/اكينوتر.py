@@ -11,7 +11,7 @@ from telethon import Button
 from telethon.errors import BotMethodInvalidError
 from telethon.events import CallbackQuery, InlineQuery
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.decorators import check_owner
@@ -20,7 +20,7 @@ games = {}
 aki_photo = "https://graph.org/file/b0ff07069e8637783fdae.jpg"
 
 
-@sbb_b.ar_cmd(pattern="اكينوتر(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="اكينوتر(?:\s|$)([\s\S]*)")
 async def rozdo(e):
     sta = akinator.Akinator()
     games.update({e.chat_id: {e.id: sta}})
@@ -37,7 +37,7 @@ async def rozdo(e):
         await e.delete()
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"aki_?(.*)")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"aki_?(.*)")))
 @check_owner
 async def daj(e):
     adt = e.pattern_match.group(1).strip().decode("utf-8")
@@ -56,7 +56,7 @@ async def daj(e):
     await e.edit(f"Q. {qu}", buttons=bts)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"aka_?(.*)")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"aka_?(.*)")))
 @check_owner
 async def rooks(e):
     mk = e.pattern_match.group(1).decode("utf-8").split("_")
@@ -83,7 +83,7 @@ async def rooks(e):
     await e.edit(text, buttons=bts)
 
 
-@sbb_b.tgbot.on(InlineQuery)
+@jmthon.tgbot.on(InlineQuery)
 async def rozak(e):
     query_user_id = e.query.user_id
     query = e.text

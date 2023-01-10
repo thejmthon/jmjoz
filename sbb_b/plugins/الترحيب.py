@@ -2,8 +2,8 @@
 from telethon import events
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
-from sbb_b.core.logger import logging
+from jmthon import jmthon
+from jmthon.core.logger import logging
 
 from ..core.managers import edit_or_reply
 from ..sql_helper.globals import gvarstatus
@@ -18,7 +18,7 @@ from . import BOTLOG_CHATID
 LOGS = logging.getLogger(__name__)
 
 
-@sbb_b.on(events.ChatAction)
+@jmthon.on(events.ChatAction)
 async def _(event):  # sourcery no-metrics  # sourcery skip: low-code-quality
     cws = get_current_welcome_settings(event.chat_id)
     if (
@@ -84,7 +84,7 @@ async def _(event):  # sourcery no-metrics  # sourcery skip: low-code-quality
         update_previous_welcome(event.chat_id, current_message.id)
 
 
-@sbb_b.ar_cmd(pattern="ترحيب(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="ترحيب(?:\s|$)([\s\S]*)")
 async def save_welcome(event):
     msg = await event.get_reply_message()
     string = "".join(event.text.split(maxsplit=1)[1:])
@@ -118,7 +118,7 @@ async def save_welcome(event):
     await edit_or_reply("- لقد حدث خطأ اثناء وضع الترحيب لهذه الدردشة")
 
 
-@sbb_b.ar_cmd(pattern="حذف الترحيبات$")
+@jmthon.ar_cmd(pattern="حذف الترحيبات$")
 async def del_welcome(event):
     if rm_welcome_setting(event.chat_id) is True:
         await edit_or_reply(event, "**- تم حذف جميع رسائل الترحيب المضافة**")
@@ -126,7 +126,7 @@ async def del_welcome(event):
         await edit_or_reply(event, "**- ليس لديك اي رسائل ترحيب هن بالاصل**")
 
 
-@sbb_b.ar_cmd(pattern="الترحيبات$")
+@jmthon.ar_cmd(pattern="الترحيبات$")
 async def show_welcome(event):
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:

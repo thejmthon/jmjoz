@@ -6,11 +6,11 @@ LOGS = logging.getLogger(__name__)
 
 
 # للتأكد من الادمن
-async def is_admin(sbb_b, chat_id, userid):
+async def is_admin(jmthon, chat_id, userid):
     if not str(chat_id).startswith("-100"):
         return False
     try:
-        req_jo = await sbb_b.get_permissions(chat_id, userid)
+        req_jo = await jmthon.get_permissions(chat_id, userid)
         chat_participant = req_jo.participant
         if isinstance(
             chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)

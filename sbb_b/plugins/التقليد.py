@@ -1,4 +1,4 @@
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.echo_sql import (
@@ -13,12 +13,12 @@ from ..sql_helper.echo_sql import (
 from . import get_user_from_event
 
 
-@sbb_b.ar_cmd(pattern="تقليد$")
+@jmthon.ar_cmd(pattern="تقليد$")
 async def echo(event):
     if event.reply_to_msg_id is None:
         return await edit_or_reply(event, "⌔∮ يرجى الرد على الشخص الذي تريد ازعاجه ،")
-    sbb_bevent = await edit_or_reply(event, "⌔∮ يتم تفعيل هذا الامر انتظر قليلا ،")
-    user, rank = await get_user_from_event(event, sbb_bevent, nogroup=True)
+    jmthonevent = await edit_or_reply(event, "⌔∮ يتم تفعيل هذا الامر انتظر قليلا ،")
+    user, rank = await get_user_from_event(event, jmthonevent, nogroup=True)
     if not user:
         return
     reply_msg = await event.get_reply_message()
@@ -37,15 +37,15 @@ async def echo(event):
     try:
         addecho(chat_id, user_id, chat_name, user_name, user_username, chat_type)
     except Exception as e:
-        await edit_delete(sbb_bevent, f"⌔∮ خطأ\n`{str(e)}`")
+        await edit_delete(jmthonevent, f"⌔∮ خطأ\n`{str(e)}`")
     else:
         await edit_or_reply(
-            sbb_bevent,
+            jmthonevent,
             "**⌔∮ تم تفعيل امر التقليد على هذا الشخص\nسيتم تقليد جميع رسائله هنا**",
         )
 
 
-@sbb_b.ar_cmd(pattern="الغاء تقليد$")
+@jmthon.ar_cmd(pattern="الغاء تقليد$")
 async def echo(event):
     if event.reply_to_msg_id is None:
         return await edit_or_reply(event, "يجب عليك الرد على المستخدم لتقليد رسائله")
@@ -56,14 +56,14 @@ async def echo(event):
         try:
             remove_echo(chat_id, user_id)
         except Exception as e:
-            await edit_delete(sbb_bevent, f"**خطأ:**\n`{e}`")
+            await edit_delete(jmthonevent, f"**خطأ:**\n`{e}`")
         else:
             await edit_or_reply(event, "⌔∮ تم ايقاف التقليد لهذا المستخدم")
     else:
         await edit_or_reply(event, "⌔∮ لم يتم تفعيل التقليد على هذا المستخدم اصلا")
 
 
-@sbb_b.ar_cmd(pattern="حذف المقلدهم( للكل)?")
+@jmthon.ar_cmd(pattern="حذف المقلدهم( للكل)?")
 async def echo(event):
     input_str = event.pattern_match.group(1)
     if input_str:
@@ -96,7 +96,7 @@ async def echo(event):
             )
 
 
-@sbb_b.ar_cmd(pattern="المقلدهم( للكل)?$")
+@jmthon.ar_cmd(pattern="المقلدهم( للكل)?$")
 async def echo(event):
     input_str = event.pattern_match.group(1)
     private_chats = ""
@@ -144,7 +144,7 @@ async def echo(event):
     await edit_or_reply(event, output_str)
 
 
-@sbb_b.ar_cmd(incoming=True, edited=False)
+@jmthon.ar_cmd(incoming=True, edited=False)
 async def samereply(event):
     if is_echo(event.chat_id, event.sender_id) and (
         event.message.text or event.message.sticker

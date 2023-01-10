@@ -1,12 +1,12 @@
 import telethon.password as pwd_mod
 from telethon.tl import functions
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 
 
-@sbb_b.ar_cmd(pattern="تحويل ملكية ([\s\S]*)")
+@jmthon.ar_cmd(pattern="تحويل ملكية ([\s\S]*)")
 async def _(event):
     user_name = event.pattern_match.group(1)
     try:

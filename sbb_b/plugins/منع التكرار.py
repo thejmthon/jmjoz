@@ -5,7 +5,7 @@ from telethon.tl.types import ChatBannedRights
 
 from ..sql_helper import antiflood_sql as sql
 from ..utils import is_admin
-from . import edit_or_reply, sbb_b
+from . import edit_or_reply, jmthon
 
 CHAT_FLOOD = sql.__load_flood_settings()
 
@@ -14,7 +14,7 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 )
 
 
-@sbb_b.ar_cmd(incoming=True, groups_only=True)
+@jmthon.ar_cmd(incoming=True, groups_only=True)
 async def _(event):
     if not CHAT_FLOOD:
         return
@@ -51,7 +51,7 @@ async def _(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="ضع التكرار(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,

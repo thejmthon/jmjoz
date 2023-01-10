@@ -6,23 +6,23 @@ from telethon.tl.types import InputMessagesFilterDocument
 from ..Config import Config
 from ..helpers.utils import install_pip
 from ..utils import load_module
-from . import BOTLOG, BOTLOG_CHATID, sbb_b
+from . import BOTLOG, BOTLOG_CHATID, jmthon
 
 if Config.PLUGIN_CHANNEL:
 
     async def install():
-        documentss = await sbb_b.get_messages(
+        documentss = await jmthon.get_messages(
             Config.PLUGIN_CHANNEL, None, filter=InputMessagesFilterDocument
         )
         total = int(documentss.total)
         for module in range(total):
             plugin_to_install = documentss[module].id
             plugin_name = documentss[module].file.name
-            if os.path.exists(f"sbb_b/plugins/{plugin_name}"):
+            if os.path.exists(f"jmthon/plugins/{plugin_name}"):
                 return
-            downloaded_file_name = await sbb_b.download_media(
-                await sbb_b.get_messages(Config.PLUGIN_CHANNEL, ids=plugin_to_install),
-                "sbb_b/plugins/",
+            downloaded_file_name = await jmthon.download_media(
+                await jmthon.get_messages(Config.PLUGIN_CHANNEL, ids=plugin_to_install),
+                "jmthon/plugins/",
             )
             path1 = Path(downloaded_file_name)
             shortname = path1.stem
@@ -38,9 +38,9 @@ if Config.PLUGIN_CHANNEL:
                     if check > 5:
                         break
             if BOTLOG:
-                await sbb_b.send_message(
+                await jmthon.send_message(
                     BOTLOG_CHATID,
                     f"**- تم بنجاح تنزيل** `{os.path.basename(downloaded_file_name)}`",
                 )
 
-    sbb_b.loop.create_task(install())
+    jmthon.loop.create_task(install())

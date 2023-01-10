@@ -12,7 +12,7 @@ from telethon import types
 from telethon.utils import get_extension
 
 from ..Config import Config
-from . import edit_delete, edit_or_reply, progress, sbb_b
+from . import edit_delete, edit_or_reply, progress, jmthon
 
 thumb_image_path = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
@@ -26,7 +26,7 @@ def zipdir(dirName):
     return filePaths
 
 
-@sbb_b.ar_cmd(pattern="زايب(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="زايب(?:\s|$)([\s\S]*)")
 async def zip_file(event):
     input_str = event.pattern_match.group(1)
     if not input_str:
@@ -57,7 +57,7 @@ async def zip_file(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="تار(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="تار(?:\s|$)([\s\S]*)")
 async def tar_file(event):
     input_str = event.pattern_match.group(1)
     if not input_str:
@@ -89,7 +89,7 @@ async def tar_file(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="ان زايب(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="ان زايب(?:\s|$)([\s\S]*)")
 async def zip_file(event):
     if input_str := event.pattern_match.group(1):
         path = Path(input_str)
@@ -163,7 +163,7 @@ async def zip_file(event):
         )
 
 
-@sbb_b.ar_cmd(pattern="ان تار(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="ان تار(?:\s|$)([\s\S]*)")
 async def untar_file(event):
     if input_str := event.pattern_match.group(1):
         path = Path(input_str)

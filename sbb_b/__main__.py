@@ -1,11 +1,11 @@
 import contextlib
 import sys
 
-import sbb_b
-from sbb_b import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+import jmthon
+from jmthon import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
 from .core.logger import logging
-from .core.session import sbb_b
+from .core.session import jmthon
 from .utils import (
     add_bot_to_logger_group,
     load_plugins,
@@ -20,7 +20,7 @@ LOGS = logging.getLogger("سورس جمثون")
 
 try:
     LOGS.info("يتم بدء البوت المساعد")
-    sbb_b.loop.run_until_complete(setup_bot())
+    jmthon.loop.run_until_complete(setup_bot())
     LOGS.info("اكتملت عمليه البوت المساعد")
 except Exception as e:
     LOGS.error(f"{e}")
@@ -28,7 +28,7 @@ except Exception as e:
 
 try:
     LOGS.info("يتم تفعيل وضع حمايه الحساب من الاختراق")
-    sbb_b.loop.create_task(saves())
+    jmthon.loop.create_task(saves())
     LOGS.info("تم تفعيل وضع حمايه الحساب من الاختراق")
 except Exception as bb:
     LOGS.error(f"- {bb}")
@@ -37,7 +37,7 @@ except Exception as bb:
 
 try:
     LOGS.info("يتم تفعيل وضع الانلاين")
-    sbb_b.loop.run_until_complete(mybot())
+    jmthon.loop.run_until_complete(mybot())
     LOGS.info("تم تفعيل وضع الانلاين بنجاح ✓")
 except Exception as meo:
     LOGS.error(f"- {meo}")
@@ -63,10 +63,10 @@ async def startup_process():
     return
 
 
-sbb_b.loop.run_until_complete(startup_process())
+jmthon.loop.run_until_complete(startup_process())
 
 if len(sys.argv) in {1, 3, 4}:
     with contextlib.suppress(ConnectionError):
-        sbb_b.run_until_disconnected()
+        jmthon.run_until_disconnected()
 else:
-    sbb_b.disconnect()
+    jmthon.disconnect()

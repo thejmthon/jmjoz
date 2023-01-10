@@ -1,7 +1,7 @@
 from .. import *
 
 
-@sbb_b.ar_cmd(pattern="الاوامر")
+@jmthon.ar_cmd(pattern="الاوامر")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -10,7 +10,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="الامر1")
+@jmthon.ar_cmd(pattern="الامر1")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -18,7 +18,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="الامر2")
+@jmthon.ar_cmd(pattern="الامر2")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -26,7 +26,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م3")
+@jmthon.ar_cmd(pattern="م3")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -35,7 +35,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م4")
+@jmthon.ar_cmd(pattern="م4")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -44,7 +44,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م5")
+@jmthon.ar_cmd(pattern="م5")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -52,7 +52,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م6")
+@jmthon.ar_cmd(pattern="م6")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -61,7 +61,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م7")
+@jmthon.ar_cmd(pattern="م7")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -70,7 +70,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م8")
+@jmthon.ar_cmd(pattern="م8")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -78,7 +78,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م9")
+@jmthon.ar_cmd(pattern="م9")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -86,7 +86,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م10")
+@jmthon.ar_cmd(pattern="م10")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -94,7 +94,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م11")
+@jmthon.ar_cmd(pattern="م11")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -102,7 +102,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م12")
+@jmthon.ar_cmd(pattern="م12")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -110,7 +110,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م13")
+@jmthon.ar_cmd(pattern="م13")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -118,7 +118,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م14")
+@jmthon.ar_cmd(pattern="م14")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -126,7 +126,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م15")
+@jmthon.ar_cmd(pattern="م15")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -134,7 +134,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م16")
+@jmthon.ar_cmd(pattern="م16")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -142,7 +142,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م17")
+@jmthon.ar_cmd(pattern="م17")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -150,7 +150,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م18")
+@jmthon.ar_cmd(pattern="م18")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -158,7 +158,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م19")
+@jmthon.ar_cmd(pattern="م19")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -167,7 +167,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م20")
+@jmthon.ar_cmd(pattern="م20")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -176,7 +176,7 @@ async def hi(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م21")
+@jmthon.ar_cmd(pattern="م21")
 async def we(event):
     await edit_or_reply(
         event,
@@ -185,7 +185,7 @@ async def we(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="م22")
+@jmthon.ar_cmd(pattern="م22")
 async def ae(event):
     await edit_or_reply(
         event,

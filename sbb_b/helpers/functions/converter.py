@@ -2,11 +2,11 @@ import os
 
 from PIL import Image
 
-from sbb_b.core.logger import logging
-from sbb_b.core.managers import edit_or_reply
-from sbb_b.helpers.functions.vidtools import take_screen_shot
-from sbb_b.helpers.tools import fileinfo, media_type, meme_type
-from sbb_b.helpers.utils.utils import runcmd
+from jmthon.core.logger import logging
+from jmthon.core.managers import edit_or_reply
+from jmthon.helpers.functions.vidtools import take_screen_shot
+from jmthon.helpers.tools import fileinfo, media_type, meme_type
+from jmthon.helpers.utils.utils import runcmd
 
 LOGS = logging.getLogger(__name__)
 

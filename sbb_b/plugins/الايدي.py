@@ -1,14 +1,14 @@
 from telethon.utils import pack_bot_file_id
 
-from sbb_b import sbb_b
-from sbb_b.core.logger import logging
+from jmthon import jmthon
+from jmthon.core.logger import logging
 
 from ..core.managers import edit_delete, edit_or_reply
 
 LOGS = logging.getLogger(__name__)
 
 
-@sbb_b.ar_cmd(pattern="الايدي(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="الايدي(?:\s|$)([\s\S]*)")
 async def _(event):
     if input_str := event.pattern_match.group(2):
         try:

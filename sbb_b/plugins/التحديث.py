@@ -9,7 +9,7 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from sbb_b import HEROKU_APP, UPSTREAM_REPO_URL, sbb_b
+from jmthon import HEROKU_APP, UPSTREAM_REPO_URL, jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -174,7 +174,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             HEROKU_APP.restart()
 
 
-@sbb_b.ar_cmd(pattern="تحديث(| الان)?$")
+@jmthon.ar_cmd(pattern="تحديث(| الان)?$")
 async def upstream(event):
     conf = event.pattern_match.group(1).strip()
     event = await edit_or_reply(
@@ -246,7 +246,7 @@ async def upstream(event):
     return
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تحديث التنصيب$",
 )
 async def upstream(event):

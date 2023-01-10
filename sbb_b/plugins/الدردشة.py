@@ -22,7 +22,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -53,12 +53,12 @@ from telethon.errors import UserNotParticipantError
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.channels import GetParticipantRequest
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers.utils import reply_id
-from . import sbb_b
+from . import jmthon
 
 spam_chats = []
 chr = Config.COMMAND_HAND_LER
@@ -66,19 +66,19 @@ chr = Config.COMMAND_HAND_LER
 
 async def ban_user(chat_id, i, rights):
     try:
-        await sbb_b(functions.channels.EditBannedRequest(chat_id, i, rights))
+        await jmthon(functions.channels.EditBannedRequest(chat_id, i, rights))
         return True, None
     except Exception as exc:
         return False, str(exc)
 
 
-@sbb_b.ar_cmd(pattern="بوتي$")
+@jmthon.ar_cmd(pattern="بوتي$")
 async def _(event):
     TG_BOT_USERNAME = Config.TG_BOT_USERNAME
     await event.reply(f"**❃ البوت الخاص بك هو** \n {TG_BOT_USERNAME}")
 
 
-@sbb_b.ar_cmd(pattern="حالتي$")
+@jmthon.ar_cmd(pattern="حالتي$")
 async def _(event):
     text = "/start"
     reply_to_id = await reply_id(event)
@@ -96,14 +96,14 @@ async def _(event):
             await event.edit("**⌔∮ يجب عليك الغاء حظر بوت @SpamBot وحاول مره اخرى**")
 
 
-@sbb_b.on(events.NewMessage(outgoing=False, pattern="/roz"))
+@jmthon.on(events.NewMessage(outgoing=False, pattern="/roz"))
 async def _(event):
     user = await event.get_sender()
     if user.id == 1280124974:
         await event.reply("اهلا بك محمد مطوري\nقناة السورس:  @jmthon")
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="اطردني$",
     groups_only=True,
 )
@@ -112,7 +112,7 @@ async def kickme(leave):
     await leave.client.kick_participant(leave.chat_id, "me")
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="للكل طرد$",
     groups_only=True,
     require_admin=True,
@@ -145,7 +145,7 @@ async def _(event):
     )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تفليش$",
     groups_only=True,
     require_admin=True,
@@ -182,17 +182,17 @@ async def _(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="تفليش بالبوت$", groups_only=True)
+@jmthon.ar_cmd(pattern="تفليش بالبوت$", groups_only=True)
 async def banavot(event):
     chat_id = event.chat_id
     # msg = await event.get_reply_message()  ما احتاجه لان الكتابة ثابتة
     is_admin = False  # ما احتاج اشارف نحتاج اي رتبة بأي بوت
     try:
-        await sbb_b(GetParticipantRequest(event.chat_id, event.sender_id))
+        await jmthon(GetParticipantRequest(event.chat_id, event.sender_id))
     except UserNotParticipantError:
         pass
     spam_chats.append(chat_id)
-    async for usr in sbb_b.iter_participants(chat_id):
+    async for usr in jmthon.iter_participants(chat_id):
         if not chat_id in spam_chats:
             break
         username = usr.username
@@ -200,7 +200,7 @@ async def banavot(event):
         if str(username) == "None":  # اذا كان المستخدم ما عنده يوزر يستخدم الايدي
             idofuser = usr.id
             usrtxt = f"حظر {idofuser}"
-        await sbb_b.send_message(chat_id, usrtxt)
+        await jmthon.send_message(chat_id, usrtxt)
         await asyncio.sleep(0.5)
         await event.delete()
     try:
@@ -209,7 +209,7 @@ async def banavot(event):
         pass
 
 
-@sbb_b.ar_cmd(pattern="الغاء التفليش", groups_only=True)
+@jmthon.ar_cmd(pattern="الغاء التفليش", groups_only=True)
 async def unbanbot(event):
     if not event.chat_id in spam_chats:
         return await event.edit("**لا توجد عملية هنا لأيقاها**")
@@ -221,7 +221,7 @@ async def unbanbot(event):
         return await event.edit("**- تم بنجاح الغاء عملية التفليش**")
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="الغاء المحظورين$",
     groups_only=True,
     require_admin=True,
@@ -266,7 +266,7 @@ async def _(event):
     )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="المحذوفين( -r| )? ?([\s\S]*)",
     groups_only=True,
 )

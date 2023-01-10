@@ -2,7 +2,7 @@ import re
 
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_or_reply
 from ..sql_helper.filter_sql import (
@@ -14,7 +14,7 @@ from ..sql_helper.filter_sql import (
 from . import BOTLOG, BOTLOG_CHATID
 
 
-@sbb_b.ar_cmd(incoming=True)
+@jmthon.ar_cmd(incoming=True)
 async def filter_incoming_handler(event):
     if event.sender_id == event.client.uid:
         return
@@ -75,7 +75,7 @@ async def filter_incoming_handler(event):
             )
 
 
-@sbb_b.ar_cmd(pattern="رد (.*)")
+@jmthon.ar_cmd(pattern="رد (.*)")
 async def add_new_filter(event):
     keyword = event.pattern_match.group(1)
     string = event.text.partition(keyword)[2]
@@ -116,7 +116,7 @@ async def add_new_filter(event):
     await edit_or_reply(event, f"لقد حدث اثناء اعداد الرد {keyword}")
 
 
-@sbb_b.ar_cmd(pattern="الردود$")
+@jmthon.ar_cmd(pattern="الردود$")
 async def on_snip_list(event):
     OUT_STR = "**- لم يتم حفظ اي رد هنا**"
     filters = get_filters(event.chat_id)
@@ -132,7 +132,7 @@ async def on_snip_list(event):
     )
 
 
-@sbb_b.ar_cmd(pattern="حذف رد ([\s\S]*)")
+@jmthon.ar_cmd(pattern="حذف رد ([\s\S]*)")
 async def remove_a_filter(event):
     filt = event.pattern_match.group(1)
     if not remove_filter(event.chat_id, filt):
@@ -141,7 +141,7 @@ async def remove_a_filter(event):
         await event.edit(f"الرد {filt} تم بنجاح حذفه")
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="حذف الردود$",
 )
 async def on_all_snip_delete(event):

@@ -1,13 +1,13 @@
 import asyncio
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_or_reply
 from ..helpers.utils import _format
 from . import ALIVE_NAME
 
 
-@sbb_b.ar_cmd(pattern="تهكير$")
+@jmthon.ar_cmd(pattern="تهكير$")
 async def _(event):
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
@@ -42,7 +42,7 @@ async def _(event):
         )
 
 
-@sbb_b.ar_cmd(pattern="تهكير2$")
+@jmthon.ar_cmd(pattern="تهكير2$")
 async def _(event):
     animation_interval = 2
     animation_ttl = range(12)
@@ -65,7 +65,7 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@sbb_b.ar_cmd(pattern="تهكير3$")
+@jmthon.ar_cmd(pattern="تهكير3$")
 async def _(event):
     animation_interval = 2
     animation_ttl = range(15)

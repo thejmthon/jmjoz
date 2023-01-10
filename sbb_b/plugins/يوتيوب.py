@@ -31,7 +31,7 @@ from ..helpers import progress, reply_id
 from ..helpers.functions import delete_conv
 from ..helpers.functions.utube import _mp3Dl, get_yt_video_id, get_ytthumb, ytsearch
 from ..helpers.utils import _format
-from . import sbb_b
+from . import jmthon
 
 BASE_YT_URL = "https://www.youtube.com/watch?v="
 extractor = URLExtract()
@@ -142,7 +142,7 @@ async def fix_attributes(
     return new_attributes, mime_type
 
 
-@sbb_b.ar_cmd(pattern="تحميل صوتي(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="تحميل صوتي(?:\s|$)([\s\S]*)")
 async def download_audio(event):
     msg = event.pattern_match.group(1)
     rmsg = await event.get_reply_message()
@@ -163,7 +163,7 @@ async def download_audio(event):
                 url, download=False
             )
         except ExtractorError:
-            vid_data = {"title": url, "uploader": "sbb_b", "formats": []}
+            vid_data = {"title": url, "uploader": "jmthon", "formats": []}
         startTime = time()
         retcode = await _mp3Dl(url=url, starttime=startTime, uid="320")
         if retcode != 0:
@@ -223,7 +223,7 @@ async def download_audio(event):
     await jmthonevent.delete()
 
 
-@sbb_b.ar_cmd(pattern="تحميل فيديو(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="تحميل فيديو(?:\s|$)([\s\S]*)")
 async def download_video(event):
     msg = event.pattern_match.group(1)
     rmsg = await event.get_reply_message()
@@ -293,7 +293,7 @@ async def download_video(event):
     await event.delete()
 
 
-@sbb_b.ar_cmd(pattern="انستا(?: |$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="انستا(?: |$)([\s\S]*)")
 async def insta_dl(event):
     link = event.pattern_match.group(1)
     reply = await event.get_reply_message()
@@ -314,7 +314,7 @@ async def insta_dl(event):
         try:
             v1_flag = await conv.send_message("/start")
         except YouBlockedUserError:
-            await sbb_b(unblock("IgGramBot"))
+            await jmthon(unblock("IgGramBot"))
             v1_flag = await conv.send_message("/start")
         await conv.get_response()
         await event.client.send_read_acknowledge(conv.chat_id)
@@ -347,7 +347,7 @@ async def insta_dl(event):
             try:
                 v2_flag = await conv.send_message("/start")
             except YouBlockedUserError:
-                await sbb_b(unblock("videomaniacbot"))
+                await jmthon(unblock("videomaniacbot"))
                 v2_flag = await conv.send_message("/start")
             await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
@@ -369,7 +369,7 @@ async def insta_dl(event):
             await delete_conv(event, v2, v2_flag)
 
 
-@sbb_b.ar_cmd(pattern="نتائج(?: |$)(\d*)? ?([\s\S]*)")
+@jmthon.ar_cmd(pattern="نتائج(?: |$)(\d*)? ?([\s\S]*)")
 async def yt_search(event):
     if event.is_reply and not event.pattern_match.group(2):
         query = await event.get_reply_message()

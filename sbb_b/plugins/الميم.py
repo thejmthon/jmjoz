@@ -1,11 +1,11 @@
 import asyncio
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_or_reply
 
 
-@sbb_b.ar_cmd(pattern="فصخ ([\s\S]*)")
+@jmthon.ar_cmd(pattern="فصخ ([\s\S]*)")
 async def typewriter(typew):
     message = typew.pattern_match.group(1)
     sleep_time = 0.2
@@ -22,7 +22,7 @@ async def typewriter(typew):
         await asyncio.sleep(sleep_time)
 
 
-@sbb_b.ar_cmd(pattern="عيد (\d*) ([\s\S]*)")
+@jmthon.ar_cmd(pattern="عيد (\d*) ([\s\S]*)")
 async def _(event):
     cat = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
     message = cat[1]

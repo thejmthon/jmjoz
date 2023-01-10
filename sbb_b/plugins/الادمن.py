@@ -20,7 +20,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.data import _sudousers_list
 from ..core.logger import logging
@@ -65,7 +65,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="الصورة( -وضع| -حذف)$",
     groups_only=True,
     require_admin=True,
@@ -113,7 +113,7 @@ async def set_group_photo(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="رفع مشرف(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,
@@ -147,7 +147,7 @@ async def promote(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تنزيل مشرف(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,
@@ -180,7 +180,7 @@ async def demote(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="حظر(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,
@@ -233,7 +233,7 @@ async def _ban_person(event):
             )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="الغاء حظر(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,
@@ -261,7 +261,7 @@ async def nothanos(event):
         await jmthonevent.edit(f"**خطأ :**\n`{e}`")
 
 
-@sbb_b.ar_cmd(incoming=True)
+@jmthon.ar_cmd(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, event.chat_id):
         try:
@@ -270,7 +270,7 @@ async def watcher(event):
             LOGS.info(str(e))
 
 
-@sbb_b.ar_cmd(pattern="كتم(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="كتم(?:\s|$)([\s\S]*)")
 async def startgmute(event):
     if event.is_private:
         await event.edit("**⌔∮ ربما ستحدث بعض الاخطاء و المشاكل**")
@@ -281,7 +281,7 @@ async def startgmute(event):
         user, reason = await get_user_from_event(event)
         if not user:
             return
-        if user.id == sbb_b.uid:
+        if user.id == jmthon.uid:
             return await edit_or_reply(event, "**⌔∮ عذرا لا يمكنني كتم نفسي **")
         userid = user.id
     try:
@@ -329,7 +329,7 @@ async def startgmute(event):
             await reply.forward_to(BOTLOG_CHATID)
 
 
-@sbb_b.ar_cmd(pattern="الغاء كتم(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="الغاء كتم(?:\s|$)([\s\S]*)")
 async def endgmute(event):
     if event.is_private:
         await event.edit("**⌔∮ قد تحدث بعض الاخطاء و المشاكل**")
@@ -340,7 +340,7 @@ async def endgmute(event):
         user, reason = await get_user_from_event(event)
         if not user:
             return
-        if user.id == sbb_b.uid:
+        if user.id == jmthon.uid:
             return await edit_or_reply(event, "⌔∮ عذرا لا يمكنني كتم نفسي اصلا")
         userid = user.id
     try:
@@ -385,13 +385,13 @@ async def endgmute(event):
             )
 
 
-@sbb_b.ar_cmd(incoming=True)
+@jmthon.ar_cmd(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="طرد(?:\s|$)([\s\S]*)",
     groups_only=True,
     require_admin=True,
@@ -420,7 +420,7 @@ async def kick(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تثبيت( بالاشعار|$)",
 )
 async def pin(event):
@@ -452,7 +452,7 @@ async def pin(event):
         )
 
 
-@sbb_b.ar_cmd(pattern="الغاء تثبيت( الكل|$)")
+@jmthon.ar_cmd(pattern="الغاء تثبيت( الكل|$)")
 async def unpin(event):
     to_unpin = event.reply_to_msg_id
     options = (event.pattern_match.group(1)).strip()
@@ -491,7 +491,7 @@ async def unpin(event):
         )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="الاحداث( -ج)?(?: |$)(\d*)?",
     groups_only=True,
     require_admin=True,

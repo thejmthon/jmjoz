@@ -1,10 +1,10 @@
 import asyncio
 from collections import deque
 
-from . import edit_or_reply, sbb_b
+from . import edit_or_reply, jmthonnn
 
 
-@sbb_b.ar_cmd(pattern="غبي$")
+@jmthonnn.ar_cmd(pattern="غبي$")
 async def _(event):
     animation_interval = 1
     animation_ttl = range(14)
@@ -30,7 +30,7 @@ async def _(event):
         await event.edit(animation_chars[i % 14])
 
 
-@sbb_b.ar_cmd(pattern="القنابل$")
+@jmthonnn.ar_cmd(pattern="القنابل$")
 async def _(event):
     event = await edit_or_reply(event, "bombs")
     await event.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n")
@@ -55,7 +55,7 @@ async def _(event):
     await asyncio.sleep(2)
 
 
-@sbb_b.ar_cmd(pattern="قتل$")
+@jmthonnn.ar_cmd(pattern="قتل$")
 async def _(event):
     animation_interval = 0.7
     animation_ttl = range(12)
@@ -79,7 +79,7 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@sbb_b.ar_cmd(pattern="شنو$")
+@jmthonnn.ar_cmd(pattern="شنو$")
 async def _(event):
     animation_interval = 0.8
     animation_ttl = range(5)
@@ -96,7 +96,7 @@ async def _(event):
         await event.edit(animation_chars[i % 5], link_preview=True)
 
 
-@sbb_b.ar_cmd(pattern="طوبة$")
+@jmthonnn.ar_cmd(pattern="طوبة$")
 async def _(event):
     animation_interval = 0.3
     animation_ttl = range(30)
@@ -118,7 +118,7 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@sbb_b.ar_cmd(pattern="مربعات$")
+@jmthonnn.ar_cmd(pattern="مربعات$")
 async def _(event):
     animation_interval = 0.3
     animation_ttl = range(15)
@@ -145,7 +145,7 @@ async def _(event):
         await event.edit(animation_chars[i % 15])
 
 
-@sbb_b.ar_cmd(pattern="حلويات$")
+@jmthonnn.ar_cmd(pattern="حلويات$")
 async def _(event):
     event = await edit_or_reply(event, "candy")
     deq = deque(list("🍦🍧🍩🍪🎂🍰🧁🍫🍬🍭"))
@@ -155,7 +155,7 @@ async def _(event):
         deq.rotate(1)
 
 
-@sbb_b.ar_cmd(pattern="نار$")
+@jmthonnn.ar_cmd(pattern="نار$")
 async def _(event):
     event = await edit_or_reply(event, "احـراق")
     await event.edit("احـركه")

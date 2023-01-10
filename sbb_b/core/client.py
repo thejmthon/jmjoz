@@ -193,7 +193,7 @@ class JmthonClient(TelegramClient):
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import sbb_b
+            from .session import jmthon
 
             if not func.__doc__ is None:
                 CMD_INFO[command[0]].append((func.__doc__).strip())
@@ -206,18 +206,18 @@ class JmthonClient(TelegramClient):
                     except BaseException:
                         LOADED_CMDS.update({command[0]: [wrapper]})
                 if edited:
-                    sbb_b.add_event_handler(
+                    jmthon.add_event_handler(
                         wrapper,
                         MessageEdited(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                     )
-                sbb_b.add_event_handler(
+                jmthon.add_event_handler(
                     wrapper,
                     NewMessage(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                 )
                 if allow_sudo and gvarstatus("sudoenable") is not None:
                     if command is None or command[0] in sudo_enabledcmds:
                         if edited:
-                            sbb_b.add_event_handler(
+                            jmthon.add_event_handler(
                                 wrapper,
                                 MessageEdited(
                                     pattern=REGEX_.regex2,
@@ -225,7 +225,7 @@ class JmthonClient(TelegramClient):
                                     **kwargs,
                                 ),
                             )
-                        sbb_b.add_event_handler(
+                        jmthon.add_event_handler(
                             wrapper,
                             NewMessage(
                                 pattern=REGEX_.regex2,
@@ -241,8 +241,8 @@ class JmthonClient(TelegramClient):
                 except BaseException:
                     LOADED_CMDS.update({file_test: [func]})
                 if edited:
-                    sbb_b.add_event_handler(func, events.MessageEdited(**kwargs))
-                sbb_b.add_event_handler(func, events.NewMessage(**kwargs))
+                    jmthon.add_event_handler(func, events.MessageEdited(**kwargs))
+                jmthon.add_event_handler(func, events.NewMessage(**kwargs))
             return wrapper
 
         return decorator
@@ -308,12 +308,12 @@ class JmthonClient(TelegramClient):
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import sbb_b
+            from .session import jmthon
 
             if edited is True:
-                sbb_b.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
+                jmthon.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
             else:
-                sbb_b.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
+                jmthon.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
 
             return wrapper
 

@@ -4,26 +4,26 @@ from pathlib import Path
 from ..Config import Config
 from ..core import CMD_INFO, PLG_INFO
 from ..utils import load_module, remove_plugin
-from . import CMD_HELP, CMD_LIST, SUDO_LIST, edit_delete, edit_or_reply, sbb_b
+from . import CMD_HELP, CMD_LIST, SUDO_LIST, edit_delete, edit_or_reply, jmthon
 
 DELETE_TIMEOUT = 5
 thumb_image_path = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
 
 def plug_checker(plugin):
-    plug_path = f"./sbb_b/plugins/{plugin}.py"
+    plug_path = f"./jmthon/plugins/{plugin}.py"
     if not os.path.exists(plug_path):
         plug_path = f"./xtraplugins/{plugin}.py"
     return plug_path
 
 
-@sbb_b.ar_cmd(pattern="تنصيب$")
+@jmthon.ar_cmd(pattern="تنصيب$")
 async def install(event):
     if event.reply_to_msg_id:
         try:
             downloaded_file_name = await event.client.download_media(
                 await event.get_reply_message(),
-                "sbb_b/plugins/",
+                "jmthon/plugins/",
             )
             if "(" not in downloaded_file_name:
                 path1 = Path(downloaded_file_name)
@@ -44,7 +44,7 @@ async def install(event):
             os.remove(downloaded_file_name)
 
 
-@sbb_b.ar_cmd(pattern="الغاء تنصيب ([\s\S]*)")
+@jmthon.ar_cmd(pattern="الغاء تنصيب ([\s\S]*)")
 async def unload(event):
     shortname = event.pattern_match.group(1)
     path = plug_checker(shortname)

@@ -15,7 +15,7 @@ from telethon.errors import PhotoInvalidDimensionsError
 from telethon.tl.functions.messages import SendMediaRequest
 from telethon.utils import get_attributes
 
-from sbb_b import Convert, sbb_b
+from jmthon import Convert, jmthon
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -33,7 +33,7 @@ PATH = os.path.join("./temp", "temp_vid.mp4")
 thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
 
-@sbb_b.ar_cmd(pattern="دائري ?((-)?s)?$")
+@jmthon.ar_cmd(pattern="دائري ?((-)?s)?$")
 async def video_jmthonfile(event):  # sourcery no-metrics
     reply = await event.get_reply_message()
     args = event.pattern_match.group(1)
@@ -180,7 +180,7 @@ async def video_jmthonfile(event):  # sourcery no-metrics
     await jmthonevent.delete()
 
 
-@sbb_b.ar_cmd(pattern="(لصورة|تحويل صورة)$")
+@jmthon.ar_cmd(pattern="(لصورة|تحويل صورة)$")
 async def _(event):
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
@@ -203,7 +203,7 @@ async def _(event):
     await output[0].delete()
 
 
-@sbb_b.ar_cmd(pattern="(لملصق|تحويل ملصق)$")
+@jmthon.ar_cmd(pattern="(لملصق|تحويل ملصق)$")
 async def _(event):
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
@@ -228,7 +228,7 @@ async def _(event):
     await output[0].delete()
 
 
-@sbb_b.ar_cmd(pattern="لملف ([\s\S]*)")
+@jmthon.ar_cmd(pattern="لملف ([\s\S]*)")
 async def get(event):
     name = event.text[5:]
     if name is None:
@@ -245,7 +245,7 @@ async def get(event):
         await edit_or_reply(event, "الاستخدام:  `.لملف` + اسم الملف بالرد على نص")
 
 
-@sbb_b.ar_cmd(pattern="لكتابة$")
+@jmthon.ar_cmd(pattern="لكتابة$")
 async def get(event):
     reply = await event.get_reply_message()
     mediatype = await media_type(reply)
@@ -281,7 +281,7 @@ async def get(event):
         os.remove(file_loc)
 
 
-@sbb_b.ar_cmd(pattern="الملف لصورة$")
+@jmthon.ar_cmd(pattern="الملف لصورة$")
 async def on_file_to_photo(event):
     target = await event.get_reply_message()
     try:
@@ -318,7 +318,7 @@ async def on_file_to_photo(event):
     await jmthont.delete()
 
 
-@sbb_b.ar_cmd(pattern="(تحويل متحركة|لمتحركة)$")
+@jmthon.ar_cmd(pattern="(تحويل متحركة|لمتحركة)$")
 async def _(event):
     jmthonreply = await event.get_reply_message()
     memetype = await meme_type(jmthonreply)
@@ -361,7 +361,7 @@ async def _(event):
             os.remove(files)
 
 
-@sbb_b.ar_cmd(pattern="تحويل الى (صوتي|بصمة)")
+@jmthon.ar_cmd(pattern="تحويل الى (صوتي|بصمة)")
 async def _(event):
     if not event.reply_to_msg_id:
         await edit_or_reply(event, "**- يجب عليك الرد على الميديا المراد تحويلها**")

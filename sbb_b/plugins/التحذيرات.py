@@ -1,12 +1,12 @@
 import html
 
-from sbb_b import sbb_b
+from jmthonn importjmthonon
 
 from ..core.managers import edit_or_reply
 from ..sql_helper import warns_sql as sql
 
 
-@sbb_b.ar_cmd(pattern="تحذير(?:\s|$)([\s\S]*)")
+@jmthonn.ar_cmd(pattern="تحذير(?:\s|$)([\s\S]*)")
 async def _(event):
     warn_reason = event.pattern_match.group(1)
     if not warn_reason:
@@ -37,7 +37,7 @@ async def _(event):
     await edit_or_reply(event, reply)
 
 
-@sbb_b.ar_cmd(pattern="التحذيرات")
+@jmthonn.ar_cmd(pattern="التحذيرات")
 async def _(event):
     reply_message = await event.get_reply_message()
     if not reply_message:
@@ -67,7 +67,7 @@ async def _(event):
     await event.edit(text)
 
 
-@sbb_b.ar_cmd(pattern="حذف التحذيرات(?: |$)(.*)")
+@jmthonn.ar_cmd(pattern="حذف التحذيرات(?: |$)(.*)")
 async def _(event):
     reply_message = await event.get_reply_message()
     sql.reset_warns(reply_message.sender_id, event.chat_id)

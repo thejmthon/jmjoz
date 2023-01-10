@@ -11,7 +11,7 @@ from telethon.errors.rpcerrorlist import (
     WebpageMediaEmptyError,
 )
 
-from sbb_b import StartTime, jmthonversion, sbb_b
+from jmthon import StartTime, jmthonversion, jmthon
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
@@ -21,7 +21,7 @@ from ..sql_helper.globals import gvarstatus
 from . import mention
 
 
-@sbb_b.ar_cmd(pattern="فحص$")
+@jmthon.ar_cmd(pattern="فحص$")
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     ANIME = None
@@ -89,12 +89,12 @@ def jmthonalive_text():
     return jmthon_caption
 
 
-@sbb_b.ar_cmd(pattern="السورس$")
+@jmthon.ar_cmd(pattern="السورس$")
 async def repo(event):
     RR7PP = Config.TG_BOT_USERNAME
     if event.reply_to_msg_id:
         await event.get_reply_message()
-    response = await sbb_b.inline_query(RR7PP, "السورس")
+    response = await jmthon.inline_query(RR7PP, "السورس")
     await response[0].click(event.chat_id)
     await event.delete()
 
@@ -117,8 +117,8 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        await sbb_b.get_me()
-        if query.startswith("السورس") and event.query.user_id == sbb_b.uid:
+        await jmthon.get_me()
+        if query.startswith("السورس") and event.query.user_id == jmthon.uid:
             buttons = [
                 [
                     Button.url("قنـاة السـورس ⚙️", "https://t.me/JMTHON"),

@@ -18,7 +18,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_input_location
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
@@ -28,7 +28,7 @@ from . import BOTLOG, BOTLOG_CHATID
 LOGS = logging.getLogger(__name__)
 
 
-@sbb_b.ar_cmd(pattern="المشرفين(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="المشرفين(?: |$)(.*)")
 async def _(event):
     mentions = "**⌔∮ مشرفين هذه المجموعة  ✪**: \n"
     reply_message = await reply_id(event)
@@ -70,7 +70,7 @@ async def _(event):
     await event.delete()
 
 
-@sbb_b.ar_cmd(pattern="البوتات(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="البوتات(?: |$)(.*)")
 async def _(event):
     mentions = "**⌔∮ البوتات في هذه المجموعة 🝰 : ** \n"
     input_str = event.pattern_match.group(1)
@@ -99,7 +99,7 @@ async def _(event):
     await edit_or_reply(event, mentions)
 
 
-@sbb_b.ar_cmd(pattern="الاعضاء(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="الاعضاء(?: |$)(.*)")
 async def get_users(show):
     mentions = "**مستخدمين هذه المجموعة**: \n"
     await reply_id(show)
@@ -113,7 +113,7 @@ async def get_users(show):
     else:
         if not show.is_group:
             return await edit_or_reply(show, "**⌔∮ هذه ليست مجموعة ✕**")
-    sbb_bevent = await edit_or_reply(show, "**⌔∮ جاري سحب قائمة معرّفات الأعضاء 🝛**")
+    jmthonevent = await edit_or_reply(show, "**⌔∮ جاري سحب قائمة معرّفات الأعضاء 🝛**")
     try:
         if show.pattern_match.group(1):
             async for user in show.client.iter_participants(chat.id):
@@ -133,25 +133,25 @@ async def get_users(show):
                     )
     except Exception as e:
         mentions += " " + str(e) + "\n"
-    await edit_or_reply(sbb_bevent, mentions)
+    await edit_or_reply(jmthonevent, mentions)
 
 
-@sbb_b.ar_cmd(pattern="معلومات(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="معلومات(?: |$)(.*)")
 async def info(event):
-    sbb_bevent = await edit_or_reply(event, "**⪼ يتمّ جلب معلومات الدردشة، إنتظر ⅏**")
-    chat = await get_chatinfo(event, sbb_bevent)
+    jmthonevent = await edit_or_reply(event, "**⪼ يتمّ جلب معلومات الدردشة، إنتظر ⅏**")
+    chat = await get_chatinfo(event, jmthonevent)
     caption = await fetch_info(chat, event)
     try:
-        await sbb_bevent.edit(caption, parse_mode="html")
+        await jmthonevent.edit(caption, parse_mode="html")
     except Exception as e:
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID, f"**⌔∮ هناك خطأ في معلومات الدردشة ✕ : **\n`{str(e)}`"
             )
-        await sbb_bevent.edit("**⌔∮ حدث خطأ ما، يرجى التحقق من الأمر ⎌**")
+        await jmthonevent.edit("**⌔∮ حدث خطأ ما، يرجى التحقق من الأمر ⎌**")
 
 
-async def get_chatinfo(event, sbb_bevent):
+async def get_chatinfo(event, jmthonevent):
     chat = event.pattern_match.group(1)
     chat_info = None
     if chat:
@@ -172,18 +172,18 @@ async def get_chatinfo(event, sbb_bevent):
         try:
             chat_info = await event.client(GetFullChannelRequest(chat))
         except ChannelInvalidError:
-            await sbb_bevent.edit("**⌔∮ لم يتمّ العثور على القناة/المجموعة ✕**")
+            await jmthonevent.edit("**⌔∮ لم يتمّ العثور على القناة/المجموعة ✕**")
             return None
         except ChannelPrivateError:
-            await sbb_bevent.edit(
+            await jmthonevent.edit(
                 "**⌔∮ هذه مجموعة أو قناة خاصة أو لقد تمّ حظري منه ⛞**"
             )
             return None
         except ChannelPublicGroupNaError:
-            await sbb_bevent.edit("**⌔∮ القناة أو المجموعة الخارقة غير موجودة ✕**")
+            await jmthonevent.edit("**⌔∮ القناة أو المجموعة الخارقة غير موجودة ✕**")
             return None
         except (TypeError, ValueError) as err:
-            await sbb_bevent.edit(str(err))
+            await jmthonevent.edit(str(err))
             return None
     return chat_info
 

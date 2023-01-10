@@ -1,9 +1,9 @@
 from covid import Covid
 
-from . import covidindia, edit_delete, edit_or_reply, sbb_b
+from . import covidindia, edit_delete, edit_or_reply, jmthon
 
 
-@sbb_b.ar_cmd(pattern="كورونا(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="كورونا(?:\s|$)([\s\S]*)")
 async def corona(event):
     input_str = event.pattern_match.group(1)
     country = (input_str).title() if input_str else "iraq"

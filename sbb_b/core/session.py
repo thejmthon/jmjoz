@@ -18,7 +18,7 @@ else:
     session = "jmthon"
 
 try:
-    sbb_b = JmthonClient(
+    jmthon = JmthonClient(
         session=session,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
@@ -34,7 +34,7 @@ except Exception as e:
     )
     sys.exit()
 
-sbb_b.tgbot = tgbot = JmthonClient(
+jmthon.tgbot = tgbot = JmthonClient(
     session="jmthonTgbot",
     api_id=Config.APP_ID,
     api_hash=Config.API_HASH,

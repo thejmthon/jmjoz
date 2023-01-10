@@ -94,9 +94,9 @@ async def safe_check_text(msg):  # sourcery no-metrics
     if not msg:
         return False
     msg = str(msg)
-    from .session import sbb_b
+    from .session import jmthon
 
-    phone = str((await sbb_b.get_entity(sbb_b.uid)).phone)
+    phone = str((await jmthon.get_entity(jmthon.uid)).phone)
     return bool(
         (
             (Config.STRING_SESSION in msg)

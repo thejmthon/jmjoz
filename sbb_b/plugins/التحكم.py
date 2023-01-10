@@ -3,8 +3,8 @@ from datetime import datetime
 
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
-from sbb_b.core.logger import logging
+from jmthon import jmthon
+from jmthon.core.logger import logging
 
 from .. import *
 from ..Config import Config
@@ -15,7 +15,7 @@ from ..sql_helper import global_collectionjson as sql
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 
 
-@sbb_b.ar_cmd(pattern="اوامر التحكم")
+@jmthon.ar_cmd(pattern="اوامر التحكم")
 async def hi(event):
     await edit_or_reply(
         event,
@@ -43,7 +43,7 @@ def get_key(val):
     return None
 
 
-@sbb_b.ar_cmd(pattern="التحكم (تفعيل|تعطيل)$")
+@jmthon.ar_cmd(pattern="التحكم (تفعيل|تعطيل)$")
 async def chat_blacklist(event):
     input_str = event.pattern_match.group(1)
     sudousers = _sudousers_list()
@@ -86,7 +86,7 @@ async def chat_blacklist(event):
     await edit_delete(event, "**- ميزة التحكم بالأصل مُعطلة**")
 
 
-@sbb_b.ar_cmd(pattern="اضف متحكم(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="اضف متحكم(?:\s|$)([\s\S]*)")
 async def add_sudo_user(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
@@ -118,7 +118,7 @@ async def add_sudo_user(event):
     await event.client.reload(msg)
 
 
-@sbb_b.ar_cmd(pattern="ازالة متحكم(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="ازالة متحكم(?:\s|$)([\s\S]*)")
 async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
@@ -141,7 +141,7 @@ async def _(event):
     await event.client.reload(msg)
 
 
-@sbb_b.ar_cmd(pattern="المتحكمين$")
+@jmthon.ar_cmd(pattern="المتحكمين$")
 async def _(event):
     sudochats = _sudousers_list()
     try:
@@ -162,4 +162,4 @@ async def _(event):
     await edit_or_reply(event, result)
 
 
-sbb_b.loop.create_task(_init())
+jmthon.loop.create_task(_init())

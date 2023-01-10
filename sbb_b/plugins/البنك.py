@@ -6,7 +6,7 @@
 import os
 from datetime import datetime
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 #
 from . import hmention, reply_id
@@ -18,7 +18,7 @@ PING_PIC = os.environ.get("PING_PIC") or (
 JM_TXT = os.environ.get("PING_TEXT") or "مـن لا يتعلم من الماضي لا يرحمه المستقبل  . 🖤"
 
 
-@sbb_b.ar_cmd(pattern="بنك$")
+@jmthon.ar_cmd(pattern="بنك$")
 async def _(event):
     reply_to_id = await reply_id(event)
     start = datetime.now()

@@ -2,7 +2,7 @@ import re
 
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_or_reply
 from ..sql_helper import blacklist_sql as sql
@@ -10,7 +10,7 @@ from ..utils import is_admin
 from . import BOTLOG_CHATID
 
 
-@sbb_b.ar_cmd(incoming=True, groups_only=True)
+@jmthon.ar_cmd(incoming=True, groups_only=True)
 async def on_new_message(event):
     name = event.raw_text
     snips = sql.get_chat_blacklist(event.chat_id)
@@ -32,7 +32,7 @@ async def on_new_message(event):
             break
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="منع(?:\s|$)([\s\S]*)",
     require_admin=True,
 )
@@ -50,7 +50,7 @@ async def _(event):
     )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="الغاء منع(?:\s|$)([\s\S]*)",
     require_admin=True,
 )
@@ -68,7 +68,7 @@ async def _(event):
     )
 
 
-@sbb_b.ar_cmd(
+@jmthon.ar_cmd(
     pattern="قائمة المنع$",
     require_admin=True,
 )

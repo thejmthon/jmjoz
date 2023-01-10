@@ -4,7 +4,7 @@ from telethon import Button, events
 from telethon.events import CallbackQuery
 
 from razan.CMD.aomari import *
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core import check_owner
@@ -20,8 +20,8 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        await sbb_b.get_me()
-        if query.startswith("اوامري") and event.query.user_id == sbb_b.uid:
+        await jmthon.get_me()
+        if query.startswith("اوامري") and event.query.user_id == jmthon.uid:
             buttons = [
                 [Button.inline("معلومات جمثون", data="AOMRDB")],
                 [
@@ -41,7 +41,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 ],
             ]
             result = builder.article(
-                title="sbb_b",
+                title="jmthon",
                 text=ROE,
                 buttons=buttons,
                 link_preview=False,
@@ -49,17 +49,17 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         await event.answer([result] if result else None)
 
 
-@sbb_b.ar_cmd(pattern="اوامري")
+@jmthon.ar_cmd(pattern="اوامري")
 async def repo(event):
     start = Config.TG_BOT_USERNAME
     if event.reply_to_msg_id:
         await event.get_reply_message()
-    response = await sbb_b.inline_query(start, "اوامري")
+    response = await jmthon.inline_query(start, "اوامري")
     await response[0].click(event.chat_id)
     await event.delete()
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"MAIN")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"MAIN")))
 @check_owner
 async def _(event):
     butze = [
@@ -83,7 +83,7 @@ async def _(event):
     await event.edit(ROE, buttons=butze)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"VARJMTHON")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"VARJMTHON")))
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات الفارات:",
@@ -98,7 +98,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"namevar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"namevar")))
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الاسم والبايو والخ:",
@@ -120,7 +120,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"symnamvar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"symnamvar")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -139,7 +139,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"phovarlok")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"phovarlok")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -161,7 +161,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"biolokvar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"biolokvar")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -181,7 +181,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"numlokvar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"numlokvar")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -205,7 +205,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"nameprvr")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"nameprvr")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -225,7 +225,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"pmvars")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"pmvars")))
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الحماية:",
@@ -244,7 +244,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"banklish")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"banklish")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -264,7 +264,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"warnvars")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"warnvars")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -283,7 +283,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"pmvarkish")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"pmvarkish")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -303,7 +303,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"picpmvar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"picpmvar")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -324,7 +324,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"alivevar")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"alivevar")))
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الفحص:",
@@ -340,7 +340,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"picvars")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"picvars")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الفحص
@@ -360,7 +360,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"kleshalive")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"kleshalive")))
 async def varssett(event):
     await event.edit(
         """ نوع الفار: فارات الفحص
@@ -379,7 +379,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"rmzalive")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"rmzalive")))
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الفحص
@@ -398,7 +398,7 @@ async def varssett(event):
     )
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"EXTRACMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"EXTRACMD")))
 @check_owner
 async def _(event):
     butze = [
@@ -431,21 +431,21 @@ async def _(event):
     await event.edit(ROE, buttons=butze)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"HEMAIREF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"HEMAIREF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(HEMAIREF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"KTABAFE")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"KTABAFE")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(KTABAFE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"EXTRAC7")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"EXTRAC7")))
 @check_owner
 async def _(event):
     butze = [
@@ -474,7 +474,7 @@ async def _(event):
     await event.edit(ROE, buttons=butze)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"DOWMANLODE4")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"DOWMANLODE4")))
 @check_owner
 async def _(event):
     butze = [
@@ -499,182 +499,182 @@ async def _(event):
     await event.edit(ROE, buttons=butze)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"INSTAGRAMCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"INSTAGRAMCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(INSTAGRAMCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"YOUTUBECMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"YOUTUBECMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(YOUTUBECMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"YOUTUBECCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"YOUTUBECCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(YOUTUBECCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETSM")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETSM")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(ALIVETSM, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEFDO")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEFDO")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(ALIVEFDO, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"BENTRSTCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"BENTRSTCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(BENTRSTCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"YIOFDD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"YIOFDD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(YIOFDD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"PICSERACJ")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"PICSERACJ")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="DOWMANLODE4")]]
     await event.edit(PICSERACJ, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"PICYEYS")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"PICYEYS")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(PICYEYS, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"AJMTHOEF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"AJMTHOEF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(AJMTHOEF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"JISORO")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"JISORO")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(JISORO, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"LTABAMEKF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"LTABAMEKF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(LTABAMEKF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ITESRAZAN")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ITESRAZAN")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(ITESRAZAN, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TOGIDEF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TOGIDEF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(TOGIDEF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"STIKERPIC")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"STIKERPIC")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(STIKERPIC, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"VASCHER")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"VASCHER")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRAC7")]]
     await event.edit(VASCHER, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TAGE4E")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TAGE4E")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(TAGE4E, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"PROFUIECMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"PROFUIECMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(PROFUIECMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"SACAMF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"SACAMF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(SACAMF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"R7ALTIE")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"R7ALTIE")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(R7ALTIE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"SALACMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"SALACMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(SALACMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"DATECMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"DATECMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(DATECMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"COROONA")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"COROONA")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(COROONA, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"SAVETECXT")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"SAVETECXT")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(SAVETECXT, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRG")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRG")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="EXTRACMD")]]
     await event.edit(ALIVETRG, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"BOTCMD4")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"BOTCMD4")))
 @check_owner
 async def _(event):
     butze = [
@@ -702,56 +702,56 @@ async def _(event):
 #
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALICVEINLI")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALICVEINLI")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(ALICVEINLI, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEAUD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEAUD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(ALIVEAUD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVESLB")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVESLB")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(ALIVESLB, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"IMSLEEPF")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"IMSLEEPF")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(IMSLEEPF, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"UPDATE4E")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"UPDATE4E")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(UPDATE4E, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALICES")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALICES")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(ALICES, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALNTDOS")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALNTDOS")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="BOTCMD4")]]
     await event.edit(ALNTDOS, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"toolsed1")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"toolsed1")))
 @check_owner
 async def _(event):
     buttons = [
@@ -779,14 +779,14 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEMEE")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEMEE")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(ALIVEMEE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ADDMEM7")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ADDMEM7")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
@@ -796,7 +796,7 @@ async def _(event):
 #######################################################################
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TOOLCMD2")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TOOLCMD2")))
 @check_owner
 async def _(event):
     buttons = [
@@ -823,21 +823,21 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEDIII")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEDIII")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(ALIVEDIII, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALMKD5D")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALMKD5D")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
     await event.edit(ALMKD5D, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"NOAZAJ4")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"NOAZAJ4")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -845,7 +845,7 @@ async def _(event):
 
 
 #
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TELEHTMED")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TELEHTMED")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -855,7 +855,7 @@ async def _(event):
 # TELEHTMED
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TKRAR3ADI")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TKRAR3ADI")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -865,7 +865,7 @@ async def _(event):
 # ثثثث
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"MKRRR5")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"MKRRR5")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -875,7 +875,7 @@ async def _(event):
 # ويو جوا
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"FGKHEF8")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"FGKHEF8")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -885,14 +885,14 @@ async def _(event):
 # اي
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"SPAM3AAH")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"SPAM3AAH")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
     await event.edit(SPAM3AAH, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"STOPTKRARE")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"STOPTKRARE")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
@@ -902,35 +902,35 @@ async def _(event):
 ######
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"BROADEV1")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"BROADEV1")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(BROADEV1, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"BRWAADV1")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"BRWAADV1")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(BRWAADV1, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"CLIONEACMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"CLIONEACMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(CLIONEACMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIBACK")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIBACK")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(ALIBACK, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"KSHFCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"KSHFCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
@@ -938,14 +938,14 @@ async def _(event):
 
 
 #
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ADDTKLED")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ADDTKLED")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
     await event.edit(ADDTKLED, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"STOPAZAG")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"STOPAZAG")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="toolsed1")]]
@@ -955,7 +955,7 @@ async def _(event):
 ##
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TASLIACMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TASLIACMD")))
 @check_owner
 async def _(event):
     buttons = [
@@ -968,21 +968,21 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TSLEACMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TSLEACMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TASLIACMD")]]
     await event.edit(TSLEACMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"TRFEHCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"TRFEHCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="TASLIACMD")]]
     await event.edit(TRFEHCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"admincmd_s")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"admincmd_s")))
 @check_owner
 async def _(event):
     buttons = [
@@ -1007,7 +1007,7 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"admin2")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"admin2")))
 @check_owner
 async def _(event):
     buttons = [
@@ -1035,14 +1035,14 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETFL")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETFL")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVETFL, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"admi3")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"admi3")))
 @check_owner
 async def _(event):
     buttons = [
@@ -1067,14 +1067,14 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALMN3CMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALMN3CMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALMN3CMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ADMSS4")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ADMSS4")))
 @check_owner
 async def _(event):
     buttons = [
@@ -1101,238 +1101,238 @@ async def _(event):
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALTKRARCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALTKRARCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ALTKRARCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ACCD5SS")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ACCD5SS")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ACCD5SS, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALMSHRFE1")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALMSHRFE1")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ALMSHRFE1, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRS")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRS")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ALIVETRS, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"MELICLW")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"MELICLW")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(MELICLW, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALLRD5")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALLRD5")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ALLRD5, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALLRDSTOP")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALLRDSTOP")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(ALLRDSTOP, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"RSTOPRD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"RSTOPRD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(RSTOPRD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"RDAJFDA")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"RDAJFDA")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="ADMSS4")]]
     await event.edit(RDAJFDA, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"UMBLCTR")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"UMBLCTR")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(UMBLCTR, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"LISTBLCK")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"LISTBLCK")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(LISTBLCK, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"A3ALMN3")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"A3ALMN3")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(A3ALMN3, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRS")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRS")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALIVETRS, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEundf")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEundf")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALIVEundf, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRSB")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETRSB")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALIVETRSB, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETSV")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETSV")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALIVETSV, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEunTHR")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEunTHR")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admi3")]]
     await event.edit(ALIVEunTHR, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETHR")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVETHR")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVETHR, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEgma")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEgma")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVEgma, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEADV")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEADV")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVEADV, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVErfe")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVErfe")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVErfe, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEnzl")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEnzl")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVEnzl, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVESOR")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVESOR")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVESOR, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEsod")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEsod")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVEsod, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEtnadmin")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEtnadmin")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admin2")]]
     await event.edit(ALIVEtnadmin, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEbin")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEbin")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEbin, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEunbin")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEunbin")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEunbin, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEadmin")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEadmin")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEadmin, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"KICKCMD")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"KICKCMD")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(KICKCMD, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEMHA")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEMHA")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEMHA, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"bancmd")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"bancmd")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEBand, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"unbancmd")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"unbancmd")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEunban, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEcatm")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEcatm")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]
     await event.edit(ALIVEcatm, buttons=buttons, link_preview=False)
 
 
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"unmutecmd")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"unmutecmd")))
 @check_owner
 async def _(event):
     buttons = [[Button.inline("رجوع", data="admincmd_s")]]

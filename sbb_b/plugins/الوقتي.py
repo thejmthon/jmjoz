@@ -13,7 +13,7 @@ from telethon.tl import functions
 from ..Config import Config
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import edit_delete, logging, sbb_b
+from . import edit_delete, logging, jmthon
 
 DEFAULTUSERBIO = gvarstatus("DEFAULT_BIO") or " ﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾  "
 DEFAULTUSER = gvarstatus("DEFAULT_NAME") or Config.ALIVE_NAME
@@ -22,9 +22,9 @@ CHANGE_TIME = int(gvarstatus("CHANGE_TIME")) if gvarstatus("CHANGE_TIME") else 6
 DEFAULT_PIC = gvarstatus("DEFAULT_PIC") or None
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
-autopic_path = os.path.join(os.getcwd(), "sbb_B", "original_pic.png")
-digitalpic_path = os.path.join(os.getcwd(), "sbb_B", "digital_pic.png")
-autophoto_path = os.path.join(os.getcwd(), "sbb_B", "photo_pfp.png")
+autopic_path = os.path.join(os.getcwd(), "jmthon", "original_pic.png")
+digitalpic_path = os.path.join(os.getcwd(), "jmthon", "digital_pic.png")
+autophoto_path = os.path.join(os.getcwd(), "jmthon", "photo_pfp.png")
 
 digitalpfp = (
     gvarstatus("DIGITAL_PIC") or "https://graph.org/file/63a826d5e5f0003e006a0.jpg"
@@ -71,16 +71,16 @@ async def digitalpicloop():
         fnt = ImageFont.truetype(jmthon, 65)
         drawn_text.text((300, 400), current_time, font=fnt, fill=(280, 280, 280))
         img.save(autophoto_path)
-        file = await sbb_b.upload_file(autophoto_path)
+        file = await jmthon.upload_file(autophoto_path)
         try:
             if i > 0:
-                await sbb_b(
+                await jmthon(
                     functions.photos.DeletePhotosRequest(
-                        await sbb_b.get_profile_photos("me", limit=1)
+                        await jmthon.get_profile_photos("me", limit=1)
                     )
                 )
             i += 1
-            await sbb_b(functions.photos.UploadProfilePhotoRequest(file))
+            await jmthon(functions.photos.UploadProfilePhotoRequest(file))
             os.remove(autophoto_path)
             await asyncio.sleep(60)
         except BaseException:
@@ -98,7 +98,7 @@ async def autoname_loop():
         name = f"{RR7PP} {HM}"
         LOGS.info(name)
         try:
-            await sbb_b(functions.account.UpdateProfileRequest(first_name=name))
+            await jmthon(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
@@ -115,14 +115,14 @@ async def autobio_loop():
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
-            await sbb_b(functions.account.UpdateProfileRequest(about=bio))
+            await jmthon(functions.account.UpdateProfileRequest(about=bio))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(CHANGE_TIME)
 
 
-@sbb_b.ar_cmd(pattern="الصورة الوقتية$")
+@jmthon.ar_cmd(pattern="الصورة الوقتية$")
 async def _(event):
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
     downloader.start(blocking=False)
@@ -135,7 +135,7 @@ async def _(event):
     await digitalpicloop()
 
 
-@sbb_b.ar_cmd(pattern="اسم وقتي$")
+@jmthon.ar_cmd(pattern="اسم وقتي$")
 async def _(event):
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
         return await edit_delete(event, "**- الاسم الوقتي بالاصل شغال")
@@ -144,7 +144,7 @@ async def _(event):
     await autoname_loop()
 
 
-@sbb_b.ar_cmd(pattern="بايو وقتي$")
+@jmthon.ar_cmd(pattern="بايو وقتي$")
 async def _(event):
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
         return await edit_delete(event, "**- البايو الوقتي بالاصل شغال**")
@@ -153,7 +153,7 @@ async def _(event):
     await autobio_loop()
 
 
-@sbb_b.ar_cmd(pattern="انهاء ([\s\S]*)")
+@jmthon.ar_cmd(pattern="انهاء ([\s\S]*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     if (
@@ -217,6 +217,6 @@ async def _(event):
         )
 
 
-sbb_b.loop.create_task(digitalpicloop())
-sbb_b.loop.create_task(autoname_loop())
-sbb_b.loop.create_task(autobio_loop())
+jmthon.loop.create_task(digitalpicloop())
+jmthon.loop.create_task(autoname_loop())
+jmthon.loop.create_task(autobio_loop())

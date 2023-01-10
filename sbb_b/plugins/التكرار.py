@@ -9,7 +9,7 @@ from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.utils import get_display_name
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -115,7 +115,7 @@ async def spam_function(event, sandy, roz, sleeptimem, sleeptimet, DelaySpam=Fal
             )
 
 
-@sbb_b.ar_cmd(pattern="كرر ([\s\S]*)")
+@jmthon.ar_cmd(pattern="كرر ([\s\S]*)")
 async def spammer(event):
     sandy = await event.get_reply_message()
     roz = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
@@ -136,7 +136,7 @@ async def spammer(event):
     await spam_function(event, sandy, roz, sleeptimem, sleeptimet)
 
 
-@sbb_b.ar_cmd(pattern="spspam$")
+@jmthon.ar_cmd(pattern="spspam$")
 async def stickerpack_spam(event):
     reply = await event.get_reply_message()
     if (
@@ -212,7 +212,7 @@ async def stickerpack_spam(event):
         await event.client.send_file(BOTLOG_CHATID, reqd_sticker_set.documents[0])
 
 
-@sbb_b.ar_cmd(pattern="سبام (.*)")
+@jmthon.ar_cmd(pattern="سبام (.*)")
 async def tmeme(event):
     cspam = "".join(event.text.split(maxsplit=1)[1:])
     message = cspam.replace(" ", "")
@@ -237,7 +237,7 @@ async def tmeme(event):
             )
 
 
-@sbb_b.ar_cmd(pattern="وسبام (.*)")
+@jmthon.ar_cmd(pattern="وسبام (.*)")
 async def tmeme(event):
     wspam = "".join(event.text.split(maxsplit=1)[1:])
     message = wspam.split()
@@ -262,7 +262,7 @@ async def tmeme(event):
             )
 
 
-@sbb_b.ar_cmd(pattern=f"{TKRAR} (.*)")
+@jmthon.ar_cmd(pattern=f"{TKRAR} (.*)")
 async def spammer(event):
     reply = await event.get_reply_message()
     input_str = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -284,7 +284,7 @@ async def spammer(event):
     await spam_function(event, reply, jmthon, sleeptimem, sleeptimet, DelaySpam=True)
 
 
-@sbb_b.ar_cmd(pattern="تعبير مكرر$")
+@jmthon.ar_cmd(pattern="تعبير مكرر$")
 async def react_spam(event):
     msg = await event.get_reply_message()
     if not msg:
@@ -328,7 +328,7 @@ async def react_spam(event):
                 pass
 
 
-@sbb_b.ar_cmd(pattern="ايقاف التكرار ?(.*)")
+@jmthon.ar_cmd(pattern="ايقاف التكرار ?(.*)")
 async def stopspamrz(event):
     if gvarstatus("spamwork") is not None and gvarstatus("spamwork") == "true":
         delgvar("spamwork")

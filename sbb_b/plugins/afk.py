@@ -3,7 +3,7 @@ from datetime import datetime
 
 from telethon.tl import functions, types
 
-from sbb_b import sbb_b as jmthon
+from jmthon import jmthon as jmthon
 
 from ..Config import Config
 from ..core.logger import logging

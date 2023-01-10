@@ -8,7 +8,7 @@ from pytz import timezone as tz
 
 from ..Config import Config
 from ..sql_helper.globals import gvarstatus
-from . import edit_or_reply, logging, sbb_b
+from . import edit_or_reply, logging, jmthon
 
 LOGS = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ def sun(unix, ctimezone):
     return datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
 
 
-@sbb_b.ar_cmd(pattern="طقس(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="طقس(?:\s|$)([\s\S]*)")
 async def get_weather(event):
     if not Config.OPEN_WEATHER_MAP_APPID:
         return await edit_or_reply(

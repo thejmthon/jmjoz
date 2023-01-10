@@ -5,7 +5,7 @@ import re
 
 from validators.url import url
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _jmthonutils
@@ -30,7 +30,7 @@ async def switch_branch():
     with open(config, "r") as f:
         configs = f.read()
     BRANCH = "master"
-    REPO = "https://github.com/thejmthon/sbb_b0"
+    REPO = "https://github.com/thejmthon/jmthon0"
     EXTERNAL = False
     for match in re.finditer(
         r"(?:(UPSTREAM_REPO|UPSTREAM_REPO_BRANCH|EXTERNAL_REPO)(?:[ = \"\']+(.*[^\"\'\n])))",
@@ -51,7 +51,7 @@ async def switch_branch():
         await _jmthonutils.runcmd("rm -rf xtraplugins")
 
 
-@sbb_b.ar_cmd(pattern="(وضع|جلب|حذف) فار ([\s\S]*)")
+@jmthon.ar_cmd(pattern="(وضع|جلب|حذف) فار ([\s\S]*)")
 async def variable(event):  # sourcery no-metrics
     if not os.path.exists(config):
         return await edit_delete(
@@ -142,7 +142,7 @@ async def variable(event):  # sourcery no-metrics
         await event.client.reload(jmthon)
 
 
-@sbb_b.ar_cmd(pattern="(ري|كلين)لود$")
+@jmthon.ar_cmd(pattern="(ري|كلين)لود$")
 async def _(event):
     cmd = event.pattern_match.group(1)
     jmthon = await edit_or_reply(

@@ -2,10 +2,10 @@ import json
 
 import requests
 
-from . import edit_delete, edit_or_reply, sbb_b
+from . import edit_delete, edit_or_reply, jmthon
 
 
-@sbb_b.ar_cmd(pattern="صلاة(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="صلاة(?:\s|$)([\s\S]*)")
 async def get_adzan(adzan):
     adzan.pattern_match.group(1)
     LOKASI = adzan.pattern_match.group(1)
@@ -19,7 +19,7 @@ async def get_adzan(adzan):
         )  # ترجمه فريق جمثون على التيلكرام
         return
     result = json.loads(request.text)
-    sbb_bresult = f"<b>اوقات صلاه المسلمين 👳‍♂️ </b>\
+    jmthonresult = f"<b>اوقات صلاه المسلمين 👳‍♂️ </b>\
             \n\n<b>المدينة     : </b><i>{result['results']['location']['city']}</i>\
             \n<b>الدولة  : </b><i>{result['results']['location']['country']}</i>\
             \n<b>التاريخ     : </b><i>{result['results']['datetime'][0]['date']['gregorian']}</i>\
@@ -34,4 +34,4 @@ async def get_adzan(adzan):
             \n<b>العشاء     : </b><i>{result['results']['datetime'][0]['times']['Isha']}</i>\
             \n<b>منتصف الليل : </b><i>{result['results']['datetime'][0]['times']['Midnight']}</i>\
     "
-    await edit_or_reply(adzan, sbb_bresult, "html")
+    await edit_or_reply(adzan, jmthonresult, "html")

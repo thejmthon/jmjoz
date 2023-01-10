@@ -4,10 +4,10 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
-from sbb_b import sbb_b
-from sbb_b.Config import Config
-from sbb_b.core.logger import logging
-from sbb_b.core.managers import edit_or_reply
+from jmthon import jmthon
+from jmthon.Config import Config
+from jmthon.core.logger import logging
+from jmthon.core.managers import edit_or_reply
 
 LOGS = logging.getLogger(__name__)
 
@@ -100,7 +100,7 @@ async def fetch_info(replied_user, event):
     return photo, caption
 
 
-@sbb_b.ar_cmd(pattern="ايدي(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="ايدي(?: |$)(.*)")
 async def who(event):
     roz = await edit_or_reply(event, "**⌔∮ جار التعرف على المستخدم انتظر قليلا**")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
@@ -132,7 +132,7 @@ async def who(event):
         await roz.edit(caption, parse_mode="html")
 
 
-@sbb_b.ar_cmd(pattern="رابط الحساب(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="رابط الحساب(?:\s|$)([\s\S]*)")
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:

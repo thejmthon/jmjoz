@@ -2,7 +2,7 @@ from time import time
 
 import speedtest
 
-from sbb_b import sbb_b
+from jmthon import jmthon
 
 from ..core.managers import edit_or_reply
 from ..helpers.utils import reply_id
@@ -18,7 +18,7 @@ def convert_from_bytes(size):
     return f"{round(size, 2)} {units[n]}"
 
 
-@sbb_b.ar_cmd(pattern="الانترنت(?:\s|$)([\s\S]*)")
+@jmthon.ar_cmd(pattern="الانترنت(?:\s|$)([\s\S]*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     as_text = False

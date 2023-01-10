@@ -1,12 +1,12 @@
 import asyncio
 from collections import deque
 
-from . import edit_delete, edit_or_reply, mention, sbb_b
+from . import edit_delete, edit_or_reply, mention, jmthonn
 
 plugin_category = "fun"
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="نجمه$",
     command=("نجمه", plugin_category),
     info={
@@ -24,7 +24,7 @@ async def _(event):
         deq.rotate(1)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="مكعبات$",
     command=("مكعبات", plugin_category),
     info={
@@ -42,7 +42,7 @@ async def _(event):
         deq.rotate(1)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="مطر$",
     command=("مطر", plugin_category),
     info={
@@ -60,7 +60,7 @@ async def _(event):
         deq.rotate(1)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="deploy$",
     command=("deploy", plugin_category),
     info={
@@ -81,10 +81,10 @@ async def _(event):
         "**State changed from up to starting**",
         "**Stopping all processes with SIGTERM**",
         "**Process exited with** `status 143`",
-        "**Starting process with command** `python3 -m sbb_b`",
+        "**Starting process with command** `python3 -m jmthonn`",
         "**State changed from starting to up**",
-        "__INFO:sbb_b:Logged in as 557667062__",
-        "__INFO:sbb_b:Successfully loaded all plugins__",
+        "__INFO:jmthonn:Logged in as 557667062__",
+        "__INFO:jmthonn:Successfully loaded all plugins__",
         "**Build Succeeded**",
     ]
     for i in animation_ttl:
@@ -92,7 +92,7 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="تفريغ(?: |$)(.*)",
     command=("تفريغ", plugin_category),
     info={
@@ -138,7 +138,7 @@ async def _(event):
             await event.edit(something_else)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="فليم$",
     command=("فليم", plugin_category),
     info={
@@ -550,13 +550,13 @@ _/)______./¯"""/') ___/)___/)__,-----------’)_• ___/)_/)__./¯/)/)
 ]
 
 
-@sbb_b.on(admin_cmd(pattern="احبك"))
-async def rz(sbb_b):
+@jmthonn.on(admin_cmd(pattern="احبك"))
+async def rz(jmthonn):
     roz = random.choice(love)
-    return await edit_or_reply(sbb_b, roz)
+    return await edit_or_reply(jmthonn, roz)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="طائره$",
     command=("طائره", plugin_category),
     info={
@@ -584,7 +584,7 @@ async def _(event):
     await asyncio.sleep(3)
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="شرطه$",
     command=("شرطه", plugin_category),
     info={
@@ -616,7 +616,7 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="jio$",
     command=("jio", plugin_category),
     info={
@@ -655,7 +655,7 @@ async def _(event):
         await event.edit(animation_chars[i % 19])
 
 
-@sbb_b.ar_cmd(
+@jmthonn.ar_cmd(
     pattern="النضام الشمسي$",
     command=("النضام الشمسي", plugin_category),
     info={
