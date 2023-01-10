@@ -84,7 +84,7 @@ async def nekobot(cat):
     info={
         "header": "Change my mind banner with given custom text",
         "usage": "{tr}غير عقلي <text>",
-        "examples": "{tr}غير عقلي Catjmthon is One of the Popularjmthonon",
+        "examples": "{tr}غير عقلي Catjmthon is One of the Popularjmthon",
     },
 )
 async def nekobot(cat):

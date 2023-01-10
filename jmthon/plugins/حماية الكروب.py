@@ -7,7 +7,7 @@ from telethon.errors.rpcerrorlist import UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 
-from jmthon importjmthonon
+from jmthon import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.locks_sql import get_locks, is_locked, update_lock
