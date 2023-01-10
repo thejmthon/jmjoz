@@ -19,8 +19,6 @@ from .utils import (
 
 LOGS = logging.getLogger("سورس جمثون")
 
-cmdhr = Config.COMMAND_HAND_LER
-
 try:
     LOGS.info("يتم بدء البوت المساعد")
     sbb_b.loop.run_until_complete(setup_bot())
