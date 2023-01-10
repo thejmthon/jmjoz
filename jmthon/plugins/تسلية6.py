@@ -1,5 +1,5 @@
 #  =============================
-#  == jmthonn - QHR_1  -  RR7PP =
+#  == jmthon - QHR_1  -  RR7PP =
 #  =============================
 
 
@@ -7,7 +7,7 @@ import asyncio
 import os
 import re
 
-from jmthonn importjmthonon
+from jmthon import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import reply_id
@@ -16,13 +16,13 @@ from . import changemymind, deEmojify, kannagen, moditweet, reply_id, trumptweet
 plugin_category = "fun"
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="ترامب(?:\s|$)([\s\S]*)",
     command=("ترامب", plugin_category),
     info={
         "header": "trump tweet sticker with given custom text",
         "usage": "{tr}ترامب <text>",
-        "examples": "{tr}trump  is One of the Popular jmthonn",
+        "examples": "{tr}trump  is One of the Popular jmthon",
     },
 )
 async def nekobot(cat):
@@ -47,7 +47,7 @@ async def nekobot(cat):
         os.remove(catfile)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="مودي(?:\s|$)([\s\S]*)",
     command=("مودي", plugin_category),
     info={
@@ -78,13 +78,13 @@ async def nekobot(cat):
         os.remove(catfile)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="بنر(?:\s|$)([\s\S]*)",
     command=("بنر", plugin_category),
     info={
         "header": "Change my mind banner with given custom text",
         "usage": "{tr}غير عقلي <text>",
-        "examples": "{tr}غير عقلي Catjmthonn is One of the Popularjmthonon",
+        "examples": "{tr}غير عقلي Catjmthon is One of the Popularjmthonon",
     },
 )
 async def nekobot(cat):
@@ -108,13 +108,13 @@ async def nekobot(cat):
         os.remove(catfile)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="كانا(?:\s|$)([\s\S]*)",
     command=("كانا", plugin_category),
     info={
         "header": "kanna chan sticker with given custom text",
         "usage": "{tr}كانا text",
-        "examples": "{tr}kanna  is One of the Popular jmthonn",
+        "examples": "{tr}kanna  is One of the Popular jmthon",
     },
 )
 async def nekobot(cat):
@@ -139,13 +139,13 @@ async def nekobot(cat):
         os.remove(catfile)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تويت(?:\s|$)([\s\S]*)",
     command=("تويت", plugin_category),
     info={
         "header": "The desired person tweet sticker with given custom text",
         "usage": "{tr}تويت <username> ; <text>",
-        "examples": "{tr}tweet iamsrk ; is One of the Popular jmthonn",
+        "examples": "{tr}tweet iamsrk ; is One of the Popular jmthon",
     },
 )
 async def nekobot(cat):

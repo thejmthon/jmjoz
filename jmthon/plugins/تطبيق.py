@@ -6,10 +6,10 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 
 from ..helpers import ellipse_create, file_check
-from . import edit_delete, edit_or_reply, jmthonn
+from . import edit_delete, edit_or_reply, jmthon
 
-bg_url_1 = "https://raw.githubusercontent.com/jmthonn/Jmthon-Resources/master/Resources/App/app-full.jpg"
-bg_url_2 = "https://raw.githubusercontent.com/jmthonn/Jmthon-Resources/master/Resources/App/app-suggest.jpg"
+bg_url_1 = "https://raw.githubusercontent.com/jmthon/Jmthon-Resources/master/Resources/App/app-full.jpg"
+bg_url_2 = "https://raw.githubusercontent.com/jmthon/Jmthon-Resources/master/Resources/App/app-suggest.jpg"
 
 
 def text_draw(font_name, font_size, img, text, width, hight, fill="white"):
@@ -23,7 +23,7 @@ def text_draw(font_name, font_size, img, text, width, hight, fill="white"):
     )
 
 
-@jmthonn.ar_cmd(pattern="تطبيق ([\s\S]*)")
+@jmthon.ar_cmd(pattern="تطبيق ([\s\S]*)")
 async def app_search(event):
     query = event.pattern_match.group(1)
     if not query:

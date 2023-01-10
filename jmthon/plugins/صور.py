@@ -3,14 +3,14 @@ import shutil
 
 from telethon.errors.rpcerrorlist import MediaEmptyError
 
-from jmthonn importjmthonon
+from jmthon importjmthonon
 
 from ..core.managers import edit_or_reply
 from ..helpers.google_image_download import googleimagesdownload
 from ..helpers.utils import reply_id
 
 
-@jmthonn.ar_cmd(pattern="صور(?: |$)(\d*)? ?([\s\S]*)")
+@jmthon.ar_cmd(pattern="صور(?: |$)(\d*)? ?([\s\S]*)")
 async def img_sampler(event):
     reply_to_id = await reply_id(event)
     if event.is_reply and not event.pattern_match.group(2):
@@ -22,7 +22,7 @@ async def img_sampler(event):
         return await edit_or_reply(
             event, "⌔∮ يجب عليك كتابه ما تريد البحث عنه مع الامر"
         )
-    jmthonn = await edit_or_reply(event, "**❃ يتم البحث انتظر قليلا**")
+    jmthon = await edit_or_reply(event, "**❃ يتم البحث انتظر قليلا**")
     if event.pattern_match.group(1) != "":
         lim = int(event.pattern_match.group(1))
         if lim > 10:
@@ -41,7 +41,7 @@ async def img_sampler(event):
     try:
         paths = response.download(arguments)
     except Exception as e:
-        return await jmthonn.edit(f"Error: \n`{e}`")
+        return await jmthon.edit(f"Error: \n`{e}`")
     lst = paths[0][query.replace(",", " ")]
     try:
         await event.client.send_file(event.chat_id, lst, reply_to=reply_to_id)
@@ -52,4 +52,4 @@ async def img_sampler(event):
             except MediaEmptyError:
                 pass
     shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await jmthonn.delete()
+    await jmthon.delete()

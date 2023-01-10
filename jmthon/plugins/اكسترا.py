@@ -64,7 +64,7 @@ async def se(event):
 @jmthon.ar_cmd(pattern="احذف (.*)")
 async def se(event):
     exe = event.text[5:]
-    await jmthonn.get_dialogs()
+    await jmthon.get_dialogs()
     chat = exe
     await jmthon.delete_dialog(chat, revoke=True)
     await event.edit("- تم بنجاح حذف الدردشة مع المستخدم بنجاح")

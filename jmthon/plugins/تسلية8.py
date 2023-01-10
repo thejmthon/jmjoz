@@ -8,7 +8,7 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import InputMessagesFilterDocument
 
-from jmthonn importjmthonon
+from jmthon importjmthonon
 
 from ..core.managers import edit_or_reply
 from ..helpers.functions import deEmojify, hide_inlinebot, waifutxt
@@ -28,7 +28,7 @@ async def get_font_file(client, channel_id, search_kw=""):
     return await client.download_media(font_file_message)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="نص(?:\s|$)([\s\S]*)",
     command=("نص", plugin_category),
     info={
@@ -54,7 +54,7 @@ async def waifu(animu):
 
 
 # 12 21 28 30
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="ستيكر ?(?:(.*?) ?; )?([\s\S]*)",
     command=("ستيكر", plugin_category),
     info={
@@ -99,7 +99,7 @@ async def sticklet(event):
         ((512 - width) / 2, (512 - height) / 2), sticktext, font=font, fill=(R, G, B)
     )
     image_stream = io.BytesIO()
-    image_stream.name = "jmthonn.webp"
+    image_stream.name = "jmthon.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
     # finally, reply the sticker
@@ -116,7 +116,7 @@ async def sticklet(event):
 
 
 # WRITED BY - @VUUZZ - @RR7PP
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="هونك(?:\s|$)([\s\S]*)",
     command=("هونك", plugin_category),
     info={
@@ -140,13 +140,13 @@ async def honk(event):
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تغريد(?:\s|$)([\s\S]*)",
     command=("تغريد", plugin_category),
     info={
         "header": "Make a cool tweet of your account",
         "usage": "{tr}twt <text/reply to msg>",
-        "examples": "{tr}twt jmthonn",
+        "examples": "{tr}twt jmthon",
     },
 )
 async def twt(event):
@@ -164,7 +164,7 @@ async def twt(event):
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="دوغي(?:\s|$)([\s\S]*)",
     command=("دوغي", plugin_category),
     info={
@@ -191,7 +191,7 @@ async def doge(event):
 # WRITED BY - @VUUZZ - @RR7PP
 
 
-@jmthonn.ar_cmd(
+@jmthon.ar_cmd(
     pattern="غلاكس(|ر)(?:\s|$)([\s\S]*)",
     command=("غلاكس", plugin_category),
     info={
