@@ -111,7 +111,9 @@ async def startupmessage():
                     BOTLOG_CHATID,
                     "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
                     caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                    buttons=[(Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)],
+                    buttons=[
+                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                    ],
                 )
                 addgvar("DEPLOY", "Done")
         except Exception as e:
@@ -122,7 +124,9 @@ async def startupmessage():
                 await sbb_b.tgbot.send_message(
                     BOTLOG_CHATID,
                     "**تم اعادة سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                    buttons=[(Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)],
+                    buttons=[
+                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                    ],
                 )
         except Exception as e:
             LOGS.error(e)
