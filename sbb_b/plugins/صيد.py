@@ -36,11 +36,9 @@ def check_user(username):
         )
         >= 0
     ):
-        return "Available"
+        return True
     else:
-        with open("users.txt", "a") as f:
-            f.write(f"\n{username}")
-        return "Unavailable"
+        return False
 
 
 def gen_user(choice):
@@ -129,7 +127,6 @@ async def _(event):
     msg = event.text.split()
     choice = str(msg[1])
     try:
-
         ch = str(msg[2])
         if "@" in ch:
             ch = ch.replace("@", "")
@@ -153,10 +150,10 @@ async def _(event):
     for i in range(19000000):
         username = gen_user(choice)
         if username == "error":
+            await msg.edit("خطأ , هذا النوع غير متوفر .")
             return
         isav = check_user(username)
-        if "Available" in isav:
-            await asyncio.sleep(1)
+        if True in isav:
             try:
                 await sbb_b(
                     functions.channels.UpdateUsernameRequest(
@@ -180,15 +177,12 @@ async def _(event):
                 )
                 break
             except Exception as eee:
-                if "The username is already" in str(eee):
-                    pass
-                else:
-                    await sbb_b.send_message(
-                        event.chat_id,
-                        f"""خطأ مع @{username} , الخطأ :
+                await sbb_b.send_message(
+                    event.chat_id,
+                    f"""خطأ مع @{username} , الخطأ :
 {str(eee)}""",
-                    )
-                    break
+                )
+                break
         else:
             pass
         trys[0] += 1
@@ -223,7 +217,7 @@ async def _(event):
 
     for i in range(1000000000000):
         isav = check_user(username)
-        if "Available" in isav:
+        if True in isav:
             try:
                 await sbb_b(
                     functions.channels.UpdateUsernameRequest(
@@ -241,7 +235,7 @@ async def _(event):
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
                 await event.client.send_message(
-                    event.chat_id, f"اليوزر @{username} مبند . "
+                    event.chat_id, f"اليوزر @{username} غير صالح . "
                 )
                 break
             except telethon.errors.FloodError as e:
@@ -255,11 +249,12 @@ async def _(event):
                     f"""خطأ مع {username} , الخطأ :
 {str(eee)}""",
                 )
+                break
         else:
             pass
         trys2[0] += 1
 
-        await asyncio.sleep(5)
+        await asyncio.sleep(1.3)
     isclaim.clear()
     isclaim.append("off")
     await sbb_b.send_message(event.chat_id, "تم الانتهاء من التثبيت ")
