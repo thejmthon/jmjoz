@@ -104,19 +104,32 @@ async def mybot():
 
 
 async def startupmessage():
-    """
-    رسالة التشغيل
-    """
-    try:
-        if BOTLOG:
-            Config.JMTHONLOGO = await sbb_b.tgbot.send_file(
-                BOTLOG_CHATID,
-                "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
-                caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                buttons=[(Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)],
-            )
-    except Exception as e:
-        LOGS.error(e)
+    if not gvarstatus("DEPLOY"):
+        try:
+            if BOTLOG:
+                await sbb_b.tgbot.send_file(
+                    BOTLOG_CHATID,
+                    "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
+                    caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
+                    buttons=[
+                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                    ],
+                )
+                addgvar("DEPLOY", "Done")
+        except Exception as e:
+            LOGS.error(e)
+    else:
+        try:
+            if BOTLOG:
+                await sbb_b.tgbot.send_message(
+                    BOTLOG_CHATID,
+                    "**تم اعادة سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
+                    buttons=[
+                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                    ],
+                )
+        except Exception as e:
+            LOGS.error(e)
         return None
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
