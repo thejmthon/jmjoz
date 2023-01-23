@@ -1,6 +1,7 @@
 import asyncio
 import glob
 import os
+import re
 import sys
 import urllib.request
 from datetime import timedelta
@@ -112,7 +113,7 @@ async def startupmessage():
                     "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
                     caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
                     buttons=[
-                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                        (Button.inline("اضغط هنا", data="initft_2"),)
                     ],
                 )
                 addgvar("DEPLOY", "Done")
@@ -157,6 +158,68 @@ async def startupmessage():
         return None
 
 
+STRINGS = {
+    1: """🎇 **- شكراً لتنصيبك سورس جمثون **
+•• من الاسفل بعض الخيارات التي ستساعدك في جمثون.""",
+    2: """🎉** حول جمثون**
+🧿 جمثون هو يوزربوت في مكتبة التيليثون تم صنعه بأستخدام البايثون. يحتوي على اكثر من 100 أمر تساعدك في التليجرام و جمثون هو افضل سورس من ناحية الامان.
+❣ قناة السورس **@jmthon**""",
+    3: """**💡• قنوات السورس •**
+
+قناة الكلايش:  @JJOTT
+قناة الملاحظات: @RRRDF
+قناة السورس: @JMTHON
+قناة المساعدة: @JMTHON_HELP
+مجموعة المساعدة: @JMTHON_SUPPORT""",
+    4: f"""• `لمعرفة جميع اوامر السورس ارسل`
+  - `.اوامري`
+  - `.الاوامر`""",
+    5: """• **لأي مساعدة ثانية **
+  - أنضم في مجموعة المساعدة **@jmthon_support**.
+• شكرا لك لقرائتك هذه المقالة.""",
+}
+
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initft_(\\d+)")))
+async def deploy(e):
+    CURRENT = int(e.data_match.group(1))
+    if CURRENT == 5:
+        return await e.edit(
+            STRINGS[5],
+            buttons=[
+                Button.inline("<< رجوع", data="initbk_4")],link_preview=False,)
+    await e.edit(
+        STRINGS[CURRENT],
+        buttons=[
+            
+            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
+            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
+        ],
+        link_preview=False,
+    )
+    
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initbk_(\\d+)")))
+async def ineiq(e):
+    CURRENT = int(e.data_match.group(1))
+    if CURRENT == 1:
+        return await e.edit(
+            STRINGS[1],
+            buttons=[
+                Button.inline("البدأ >>", data="initft_2")
+            ],
+            link_preview=False,
+        )
+    await e.edit(
+        STRINGS[CURRENT],
+        buttons=[
+            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
+            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
+        ],
+        link_preview=False,
+    )
+
+
+        
+        
 async def add_bot_to_logger_group(chat_id):
     """
     اضافة البوت للكروبات
