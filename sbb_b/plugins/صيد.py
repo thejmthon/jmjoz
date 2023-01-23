@@ -1,19 +1,19 @@
 # by: t.meDar4k
 
-import random
 import asyncio
+import random
+
+import requests
 import telethon
 from telethon import events
-import requests
-from sbb_b import sbb_b
 from telethon.sync import functions
 from user_agent import generate_user_agent
 
+from sbb_b import sbb_b
 
-
-a = 'qwertyuiopassdfghjklzxcvbnm'
-b = '1234567890'
-e = 'qwertyuiopassdfghjklzxcvbnm1234567890'
+a = "qwertyuiopassdfghjklzxcvbnm"
+b = "1234567890"
+e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
 trys, trys2 = [0], [0]
 isclaim = ["off"]
@@ -21,15 +21,21 @@ isauto = ["off"]
 
 
 def check_user(username):
-    url = "https://t.me/"+str(username)
+    url = "https://t.me/" + str(username)
     headers = {
         "User-Agent": generate_user_agent(),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"}
+        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
+    }
 
     response = requests.get(url, headers=headers)
-    if response.text.find('If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"') >= 0:
+    if (
+        response.text.find(
+            'If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"'
+        )
+        >= 0
+    ):
         return "Available"
     else:
         with open("users.txt", "a") as f:
@@ -43,28 +49,28 @@ def gen_user(choice):
         d = random.choices(b)
         f = [c[0], d[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
 
     elif choice == "ثلاثيات":
         c = random.choices(a)
         d = random.choices(b)
         s = random.choices(e)
         f = [c[0], "_", d[0], "_", s[0]]
-        username = ''.join(f)
+        username = "".join(f)
     elif choice == "سداسيات":
         c = d = random.choices(a)
         d = random.choices(e)
         f = [c[0], c[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
     elif choice == "بوتات":
         c = random.choices(a)
         d = random.choices(e)
         s = random.choices(e)
         f = [c[0], s[0], d[0]]
         # random.shuffle(f)
-        username = ''.join(f)
-        username = username+'bot'
+        username = "".join(f)
+        username = username + "bot"
 
     elif choice == "خماسي حرفين":
         c = random.choices(a)
@@ -72,27 +78,27 @@ def gen_user(choice):
 
         f = [c[0], d[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
 
     elif choice == "خماسي":
         c = d = random.choices(a)
         d = random.choices(b)
         f = [c[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
 
     elif choice == "سباعيات":
         c = d = random.choices(a)
         d = random.choices(b)
         f = [c[0], c[0], c[0], c[0], d[0], c[0], c[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
     elif choice == "تيست":
         c = d = random.choices(a)
         d = random.choices(b)
         f = [c[0], d[0], c[0], d[0], d[0], c[0], c[0], d[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
+        username = "".join(f)
     else:
         return "error"
     return username
@@ -100,7 +106,8 @@ def gen_user(choice):
 
 @sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.الصيد"))
 async def _(event):
-    await event.edit('''
+    await event.edit(
+        """
 .صيد + النوع  + القناة يلي تريد تثبت عليها (اختياري)
 الانواع : ثلاثيات - بوتات - سباعيات - خماسي - سداسيات
 مثال : .صيد ثلاثيات @jmthon
@@ -109,7 +116,8 @@ async def _(event):
 
 . حالةالصيد | لعرض حالة الصيد
 .حالة التثبيت | لعرض حالة التثبيت
-''')
+"""
+    )
 
 
 # كلايم عدد نوع قناة
@@ -122,20 +130,23 @@ async def _(event):
     try:
 
         ch = str(msg[2])
-        if '@' in ch:
+        if "@" in ch:
             ch = ch.replace("@", "")
         await event.edit(f"حسناً سيتم بدء الصيد في @{ch} .")
     except:
         try:
-            ch = await sbb_b(functions.channels.CreateChannelRequest(
-                title='jmthon Userbot',
-                about='Best src in the whole world ! - @jmthon',
-            ))
+            ch = await sbb_b(
+                functions.channels.CreateChannelRequest(
+                    title="jmthon Userbot",
+                    about="Best src in the whole world ! - @jmthon",
+                )
+            )
             ch = ch.updates[1].channel_id
             await event.edit(f"حسناً سيتم بدء الصيد !")
-            pass
         except Exception as e:
-            await sbb_b.send_message(event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}")
+            await sbb_b.send_message(
+                event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
+            )
     isclaim.clear()
     isclaim.append("on")
     for i in range(19000000):
@@ -146,21 +157,31 @@ async def _(event):
         if "Available" in isav:
             await asyncio.sleep(1)
             try:
-                await sbb_b(functions.channels.UpdateUsernameRequest(
-                    channel=ch, username=username))
-                await event.client.send_message(event.chat_id, f'''
+                await sbb_b(
+                    functions.channels.UpdateUsernameRequest(
+                        channel=ch, username=username
+                    )
+                )
+                await event.client.send_message(
+                    event.chat_id,
+                    f"""
     تم صيد (@{username}) !
     جمثون : @jmthon
     محمد : @R0R77
-    ''')
+    """,
+                )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
                 pass
             except telethon.errors.FloodError as e:
-                await sbb_b.send_message(event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية .")
+                await sbb_b.send_message(
+                    event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
+                )
                 break
             except Exception as eee:
-                await sbb_b.send_message(event.chat_id, f'''خطأ مع @{username} , الخطأ :{str(eee)}''')
+                await sbb_b.send_message(
+                    event.chat_id, f"""خطأ مع @{username} , الخطأ :{str(eee)}"""
+                )
                 break
         else:
             pass
@@ -172,22 +193,24 @@ async def _(event):
 
 @sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.تثبيت (.*)"))
 async def _(event):
-    trys = 0
     msg = event.text.split()
     try:
         ch = str(msg[2])
         await event.edit(f"حسناً سيتم بدء التثبيت في @{ch} .")
     except:
         try:
-            ch = await sbb_b(functions.channels.CreateChannelRequest(
-                title='jmthon userbot',
-                about='Best src in the whole world ! - @jmthon',
-            ))
+            ch = await sbb_b(
+                functions.channels.CreateChannelRequest(
+                    title="jmthon userbot",
+                    about="Best src in the whole world ! - @jmthon",
+                )
+            )
             ch = ch.updates[1].channel_id
             await event.edit(f"حسناً سيتم بدء التثبيت !")
-            pass
         except Exception as e:
-            await sbb_b.send_message(event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}")
+            await sbb_b.send_message(
+                event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
+            )
     isauto.clear()
     isauto.append("on")
     username = str(msg[1])
@@ -196,28 +219,39 @@ async def _(event):
         isav = check_user(username)
         if "Available" in isav:
             try:
-                await sbb_b(functions.channels.UpdateUsernameRequest(
-                    channel=ch, username=username))
-                await event.client.send_message(event.chat_id, f'''
+                await sbb_b(
+                    functions.channels.UpdateUsernameRequest(
+                        channel=ch, username=username
+                    )
+                )
+                await event.client.send_message(
+                    event.chat_id,
+                    f"""
     تم صيد (@{username}) !
     جمثون : @jmthon
     محمد : @R0R77
-    ''')
+    """,
+                )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                await event.client.send_message(event.chat_id, f"اليوزر @{username} مبند . ")
+                await event.client.send_message(
+                    event.chat_id, f"اليوزر @{username} مبند . "
+                )
                 break
             except telethon.errors.FloodError as e:
-                await sbb_b.send_message(event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية .")
+                await sbb_b.send_message(
+                    event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
+                )
                 break
             except Exception as eee:
-                await sbb_b.send_message(event.chat_id, f'''خطأ مع {username} , الخطأ :{str(eee)}''')
+                await sbb_b.send_message(
+                    event.chat_id, f"""خطأ مع {username} , الخطأ :{str(eee)}"""
+                )
         else:
             pass
         trys2[0] += 1
 
         await asyncio.sleep(5)
-    trys = ""
     isclaim.clear()
     isclaim.append("off")
     await sbb_b.send_message(event.chat_id, "تم الانتهاء من التثبيت ")
