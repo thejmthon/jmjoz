@@ -112,9 +112,7 @@ async def startupmessage():
                     BOTLOG_CHATID,
                     "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
                     caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                    buttons=[
-                        (Button.inline("اضغط هنا", data="initft_2"),)
-                    ],
+                    buttons=[(Button.inline("اضغط هنا", data="initft_2"),)],
                 )
                 addgvar("DEPLOY", "Done")
         except Exception as e:
@@ -179,33 +177,14 @@ STRINGS = {
 • شكرا لك لقرائتك هذه المقالة.""",
 }
 
+
 @sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initft_(\\d+)")))
 async def deploy(e):
     CURRENT = int(e.data_match.group(1))
     if CURRENT == 5:
         return await e.edit(
             STRINGS[5],
-            buttons=[
-                Button.inline("<< رجوع", data="initbk_4")],link_preview=False,)
-    await e.edit(
-        STRINGS[CURRENT],
-        buttons=[
-            
-            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
-            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
-        ],
-        link_preview=False,
-    )
-    
-@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initbk_(\\d+)")))
-async def ineiq(e):
-    CURRENT = int(e.data_match.group(1))
-    if CURRENT == 1:
-        return await e.edit(
-            STRINGS[1],
-            buttons=[
-                Button.inline("البدأ >>", data="initft_2")
-            ],
+            buttons=[Button.inline("<< رجوع", data="initbk_4")],
             link_preview=False,
         )
     await e.edit(
@@ -218,8 +197,25 @@ async def ineiq(e):
     )
 
 
-        
-        
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initbk_(\\d+)")))
+async def ineiq(e):
+    CURRENT = int(e.data_match.group(1))
+    if CURRENT == 1:
+        return await e.edit(
+            STRINGS[1],
+            buttons=[Button.inline("البدأ >>", data="initft_2")],
+            link_preview=False,
+        )
+    await e.edit(
+        STRINGS[CURRENT],
+        buttons=[
+            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
+            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
+        ],
+        link_preview=False,
+    )
+
+
 async def add_bot_to_logger_group(chat_id):
     """
     اضافة البوت للكروبات
