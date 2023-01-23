@@ -9,6 +9,7 @@ from pathlib import Path
 
 from telethon import Button, functions, types, utils
 from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.events import CallbackQuery
 
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
