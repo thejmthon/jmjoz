@@ -9,7 +9,9 @@ from sbb_b import sbb_b
 from ..Config import Config
 from ..core import check_owner
 
-ROE = "** هـذه هي قائمة اوامـر سـورس جمثون **"
+ROE = """** اهلا بك عزيزي المستخدم في قائمة اوامر جمثون
+من هنا يمكنك تصفح جميع الاوامر المتاحة **"""
+
 ROZADM = "من هنا يمكنك ايجاد جميع"
 RAZAN = Config.TG_BOT_USERNAME
 
@@ -25,7 +27,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             buttons = [
                 [Button.inline("معلومات جمثون", data="AOMRDB")],
                 [
-                    Button.inline("البوت", data="eeeeq"),
+                    Button.inline("البوت", data="BOTCMD4"),
                     Button.inline("الكروب", data="admincmd_s"),
                 ],
                 [
@@ -65,7 +67,7 @@ async def _(event):
     butze = [
         [Button.inline("معلومات جمثون", data="AOMRDB")],
         [
-            Button.inline("البوت", data="eeeeq"),
+            Button.inline("البوت", data="BOTCMD4"),
             Button.inline("الكروب", data="admincmd_s"),
         ],
         [
@@ -160,6 +162,23 @@ async def varssett(event):
         ],
     )
 
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"AOMRDB")))
+async def varssett(event):
+    await event.edit(
+        """اهلا بك في قائمة اوامر سورس جمثون هذه بعض المعلومات عن جمثون:
+
+- سورس جمثون يمتلك اكثر من 100 أمر 
+- جمثون هو افضل سورس عربي يتميز بالحماية
+
+قناة الكلايش:  @JJOTT
+قناة الملاحظات: @RRRDF
+قناة السورس: @JMTHON
+قناة المساعدة: @JMTHON_HELP
+مجموعة المساعدة: @JMTHON_SUPPORT""",
+        buttons=[
+            [Button.inline("رجوع", data="namevar")],
+        ],
+    )
 
 @sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"biolokvar")))
 async def varssett(event):
