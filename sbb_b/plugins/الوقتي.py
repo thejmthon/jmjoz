@@ -15,7 +15,7 @@ from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from . import edit_delete, logging, sbb_b
 
-DEFAULTUSERBIO = gvarstatus("DEFAULT_BIO") or " ﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾  "
+DEFAULTUSERBIO = Config.DEFAULT_BIO or " ﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾  "
 DEFAULTUSER = gvarstatus("DEFAULT_NAME") or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
 CHANGE_TIME = int(gvarstatus("CHANGE_TIME")) if gvarstatus("CHANGE_TIME") else 60
@@ -32,7 +32,7 @@ digitalpfp = (
 RR7PP = Config.TIME_JM or ""
 
 normzltext = "0123456789"
-namerzfont = gvarstatus("TI_FN") or "0𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
+namerzfont = Config.TI_FN or "0𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫"
 
 COLLECTION_STRINGS = {
     "batmanpfp_strings": [
