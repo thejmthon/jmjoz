@@ -162,6 +162,7 @@ async def varssett(event):
         ],
     )
 
+
 @sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"AOMRDB")))
 async def varssett(event):
     await event.edit(
@@ -179,6 +180,7 @@ async def varssett(event):
             [Button.inline("رجوع", data="namevar")],
         ],
     )
+
 
 @sbb_b.tgbot.on(CallbackQuery(data=re.compile(rb"biolokvar")))
 async def varssett(event):
