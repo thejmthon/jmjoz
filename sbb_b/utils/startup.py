@@ -26,6 +26,9 @@ from ..sql_helper.globals import addgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
+USERID = sbb_b.uid if Config.OWNER_ID == 0 else Config.OWNER_ID
+ALIVE_NAME = Config.ALIVE_NAME
+mention = f"[{Config.ALIVE_NAME}](tg://user?id={USERID})"
 ENV = bool(os.environ.get("ENV", False))
 LOGS = logging.getLogger("اعداد جمثون")
 cmdhr = Config.COMMAND_HAND_LER
@@ -123,7 +126,7 @@ async def startupmessage():
             if BOTLOG:
                 await sbb_b.tgbot.send_message(
                     BOTLOG_CHATID,
-                    "**لقد تم بنجاح تنصيب سورس جمثون **\n➖➖➖➖➖➖➖➖➖➖\n**المستخدم**: {Config.ALIVE_NAME}\n**المطور**: @R0R77\n➖➖➖➖➖➖➖➖➖➖\n**مجموعة الدعم**: @jmthon_support\n➖➖➖➖➖➖➖➖➖➖",
+                    "**لقد تم بنجاح تنصيب سورس جمثون **\n➖➖➖➖➖➖➖➖➖➖\n**المستخدم**: {mention}\n**المطور**: @R0R77\n➖➖➖➖➖➖➖➖➖➖\n**مجموعة الدعم**: @jmthon_support\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
                     ],
