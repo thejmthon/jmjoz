@@ -25,7 +25,6 @@ from ..sql_helper.global_collection import (
 from ..sql_helper.globals import addgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
-from ..plugins import mention
 
 ENV = bool(os.environ.get("ENV", False))
 LOGS = logging.getLogger("اعداد جمثون")
