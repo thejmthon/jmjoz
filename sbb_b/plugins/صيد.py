@@ -150,10 +150,10 @@ async def _(event):
     for i in range(19000000):
         username = gen_user(choice)
         if username == "error":
-            await msg.edit("خطأ , هذا النوع غير متوفر .")
-            return
+            await event.edit("خطأ , هذا النوع غير متوفر .")
+            break
         isav = check_user(username)
-        if True in isav:
+        if isav == True:
             try:
                 await sbb_b(
                     functions.channels.UpdateUsernameRequest(
