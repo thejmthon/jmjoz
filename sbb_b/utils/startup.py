@@ -29,7 +29,6 @@ from .tools import create_supergroup
 ENV = bool(os.environ.get("ENV", False))
 LOGS = logging.getLogger("اعداد جمثون")
 cmdhr = Config.COMMAND_HAND_LER
-mention = Config.ALIVE_NAME
 
 if ENV:
     VPS_NOLOAD = ["سيرفر"]
@@ -124,7 +123,7 @@ async def startupmessage():
             if BOTLOG:
                 await sbb_b.tgbot.send_message(
                     BOTLOG_CHATID,
-                    "**لقد تم بنجاح تنصيب سورس جمثون **\n➖➖➖➖➖➖➖➖➖➖\n**المستخدم**: {mention}\n**المطور**: @R0R77\n➖➖➖➖➖➖➖➖➖➖\n**مجموعة الدعم**: @jmthon_support\n➖➖➖➖➖➖➖➖➖➖",
+                    "**لقد تم بنجاح تنصيب سورس جمثون **\n➖➖➖➖➖➖➖➖➖➖\n**السورس**: @jmthon\n**المطور**: @R0R77\n➖➖➖➖➖➖➖➖➖➖\n**مجموعة الدعم**: @jmthon_support\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
                     ],
