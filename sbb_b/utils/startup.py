@@ -26,12 +26,10 @@ from ..sql_helper.globals import addgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
-USERID = sbb_b.uid if Config.OWNER_ID == 0 else Config.OWNER_ID
-ALIVE_NAME = Config.ALIVE_NAME
-mention = f"[{Config.ALIVE_NAME}](tg://user?id={USERID})"
 ENV = bool(os.environ.get("ENV", False))
 LOGS = logging.getLogger("اعداد جمثون")
 cmdhr = Config.COMMAND_HAND_LER
+mention = Config.ALIVE_NAME
 
 if ENV:
     VPS_NOLOAD = ["سيرفر"]
