@@ -101,26 +101,36 @@ def gen_user(choice):
         return "error"
     return username
 
-
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.الصيد"))
+@sbb_b.ar_cmd(pattern="الصيد")
 async def _(event):
     await event.edit(
         """
-.صيد + النوع  + القناة يلي تريد تثبت عليها (اختياري)
-الانواع : ثلاثيات - بوتات - سباعيات - خماسي - سداسيات
-مثال : .صيد ثلاثيات @jmthon
+أوامر الصيد الخاصة بسورس جمثون : 
 
-.تثبيت + اليوزر الي تريد تثبت عليه + القناة يلي تريد تثبت عليها (اختياري)
-مثال : .تثبيت dar4k
+ٴ— — — — — — — — — —
 
-`.حالة الصيد` | لعرض حالة الصيد
-`.حالة التثبيت` | لعرض حالة التثبيت
+النوع :(  سداسي حرفين/ ثلاثيات/ سداسيات/ بوتات/ خماسي حرفين/خماسي /سباعيات )
+
+الامر:  `.صيد` + النوع
+- يقوم بصيد معرفات عشوائية حسب النوع
+
+الامر:  `تثبيت` + معرف
+* وظيفة الامر : يقوم بالتثبيت على المعرف عندما يصبح متاح يأخذه
+
+ٴ— — — — — — — — — —
+الامر:   `.حالة الصيد`
+• لمعرفة عدد المحاولات للصيد
+
+الامر:  `.حالة التثبيت`
+• لمعرفة عدد المحاولات للصيد
+
+@jmthon  - channle userbot 
+
 """
     )
 
-
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
-async def _(event):
+@sbb_b.ar_cmd(pattern="صيد (.*)")
+async def hunterusername(event):
     msg = event.text.split()
     choice = str(msg[1])
     try:
@@ -132,22 +142,22 @@ async def _(event):
         try:
             ch = await sbb_b(
                 functions.channels.CreateChannelRequest(
-                    title="jmthon check",
-                    about="Best src in the whole world ! - @jmthon ",
+                    title="JMTHON HUNTER - صيد جمثون",
+                    about="This channel to hunt username by - @jmthon ",
                 )
             )
             ch = ch.updates[1].channel_id
-            await event.edit(f"حسناً سيتم بدء الصيد !")
+            await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
         except Exception as e:
             await sbb_b.send_message(
-                event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
+                event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
             )
     isclaim.clear()
     isclaim.append("on")
     for i in range(19000000):
         username = gen_user(choice)
         if username == "error":
-            await event.edit("خطأ , هذا النوع غير متوفر .")
+            await event.edit("**- يرجى وضع النوع بشكل صحيح**.")
             break
         isav = check_user(username)
         if isav == True:
@@ -160,9 +170,9 @@ async def _(event):
                 await event.client.send_message(
                     event.chat_id,
                     f"""
-    تم صيد (@{username}) !
-    جمثون : @jmthon
-    محمد : @R0R77
+    - Done : @{username} !
+    - By : @R0R77 - @JMTHON !
+    - Hunting Log {trys2[0]}
     """,
                 )
                 break
@@ -173,40 +183,41 @@ async def _(event):
                     pass
             except telethon.errors.FloodError as e:
                 await sbb_b.send_message(
-                    event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
+                    event.chat_id, f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**"
                 )
                 break
             except Exception as eee:
-                await sbb_b.send_message(
-                    event.chat_id,
-                    f"""خطأ مع @{username} , الخطأ :
-{str(eee)}""",
-                )
-                break
+                if "the username is already" in str(eee):
+                    pass
+                else:
+                    await sbb_b.send_message(
+                        event.chat_id,
+                        f"""- خطأ مع @{username} , الخطأ :{str(eee)}""",
+                    )
+                    break
         else:
             pass
         trys[0] += 1
     isclaim.clear()
     isclaim.append("off")
-    await event.client.send_message(event.chat_id, "تم الانتهاء من الصيد")
+    await event.client.send_message(event.chat_id, "**- تم بنجاح الانتهاء من الصيد**")
 
-
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.تثبيت (.*)"))
+@sbb_b.ar_cmd(pattern="تثبيت (.*)")
 async def _(event):
     msg = event.text.split()
     try:
         ch = str(msg[2])
-        await event.edit(f"حسناً سيتم بدء التثبيت في @{ch} .")
+        await event.edit(f"حسناً سيتم بدء التثبيت في**-  @{ch} .**")
     except:
         try:
             ch = await sbb_b(
                 functions.channels.CreateChannelRequest(
-                    title="jmthon Check",
-                    about="Best src in the whole world ! - @jmthon ",
+                    title="JMTHON HUNTER - صيد جمثون",
+                    about="This channel to hunt username by - @jmthon ",
                 )
             )
             ch = ch.updates[1].channel_id
-            await event.edit(f"حسناً سيتم بدء التثبيت !")
+            await event.edit(f"**- تم بنجاح بدأ التثبيت**")
         except Exception as e:
             await sbb_b.send_message(
                 event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
@@ -227,15 +238,15 @@ async def _(event):
                 await event.client.send_message(
                     event.chat_id,
                     f"""
-    تم صيد (@{username}) !
-    جمثون : @jmthon
-    محمد : @R0R77
+    - Done : @{username} !
+    - By : @R0R77 - @JMTHON !
+    - Hunting Log {trys2[0]}
     """,
                 )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
                 await event.client.send_message(
-                    event.chat_id, f"اليوزر @{username} غير صالح . "
+                    event.chat_id, f"المعرف **-  @{username} غير صالح . **"
                 )
                 break
             except telethon.errors.FloodError as e:
@@ -246,8 +257,7 @@ async def _(event):
             except Exception as eee:
                 await sbb_b.send_message(
                     event.chat_id,
-                    f"""خطأ مع {username} , الخطأ :
-{str(eee)}""",
+                    f"""خطأ مع {username} , الخطأ :{str(eee)}""",
                 )
                 break
         else:
@@ -257,24 +267,23 @@ async def _(event):
         await asyncio.sleep(1.3)
     isclaim.clear()
     isclaim.append("off")
-    await sbb_b.send_message(event.chat_id, "تم الانتهاء من التثبيت ")
+    await sbb_b.send_message(event.chat_id, "**- تم الانتهاء من التثبيت بنجاح")
 
-
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.حالة الصيد"))
+@sbb_b.ar_cmd(pattern="حالة الصيد")
 async def _(event):
     if "on" in isclaim:
-        await event.edit(f"الصيد وصل لـ({trys[0]}) من المحاولات")
+        await event.edit(f"**- الصيد وصل لـ({trys[0]}) **من المحاولات")
     elif "off" in isclaim:
-        await event.edit("الصيد لايعمل .")
+        await event.edit("**- الصيد بالاصل لا يعمل .**")
     else:
-        await event.edit("خطأ")
+        await event.edit("- لقد حدث خطأ ما وتوقف الامر لديك")
 
 
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.حالة التثبيت"))
+@sbb_b.ar_cmd(pattern="حالة التثبيت")
 async def _(event):
     if "on" in isauto:
-        await event.edit(f"التثبيت وصل لـ({trys2[0]}) من المحاولات")
+        await event.edit(f"**- التثبيت وصل لـ({trys2[0]}) من المحاولات**")
     elif "off" in isauto:
-        await event.edit("التثبيت لايعمل .")
+        await event.edit("**- التثبيت بالاصل لا يعمل .**")
     else:
-        await event.edit("خطأ")
+        await event.edit("-لقد حدث خطأ ما وتوقف الامر لديك")
