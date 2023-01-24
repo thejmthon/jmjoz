@@ -168,6 +168,9 @@ async def _(event):
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
                 pass
+            except Exception as baned:
+                if "(caused by UpdateUsernameRequest)" in str(baned):
+                    pass
             except telethon.errors.FloodError as e:
                 await sbb_b.send_message(
                     event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
@@ -235,9 +238,6 @@ async def _(event):
                     event.chat_id, f"اليوزر @{username} غير صالح . "
                 )
                 break
-            except Exception as baned:
-                if "(caused by UpdateUsernameRequest)" in str(baned):
-                    pass
             except telethon.errors.FloodError as e:
                 await sbb_b.send_message(
                     event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
