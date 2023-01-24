@@ -100,6 +100,7 @@ def gen_user(choice):
         return "error"
     return username
 
+
 @sbb_b.ar_cmd(pattern="الصيد")
 async def _(event):
     await event.edit(
@@ -127,6 +128,7 @@ async def _(event):
 
 """
     )
+
 
 @sbb_b.ar_cmd(pattern="صيد (.*)")
 async def hunterusername(event):
@@ -184,7 +186,8 @@ async def hunterusername(event):
                 await sbb_b.send_message(
                     event.chat_id,
                     f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**",
-                    event.chat_id, f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**"
+                    event.chat_id,
+                    f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**",
                 )
                 break
             except Exception as eee:
@@ -202,6 +205,7 @@ async def hunterusername(event):
     isclaim.clear()
     isclaim.append("off")
     await event.client.send_message(event.chat_id, "**- تم بنجاح الانتهاء من الصيد**")
+
 
 @sbb_b.ar_cmd(pattern="تثبيت (.*)")
 async def _(event):
