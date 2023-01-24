@@ -119,9 +119,6 @@ async def _(event):
     )
 
 
-# كلايم عدد نوع قناة
-
-
 @sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
 async def _(event):
     msg = event.text.split()
@@ -238,6 +235,9 @@ async def _(event):
                     event.chat_id, f"اليوزر @{username} غير صالح . "
                 )
                 break
+            except Exception as baned:
+                if "(caused by UpdateUsernameRequest)" in str(baned):
+                    pass
             except telethon.errors.FloodError as e:
                 await sbb_b.send_message(
                     event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
