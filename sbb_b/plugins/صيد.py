@@ -233,7 +233,7 @@ async def _(event):
 
     for i in range(1000000000000):
         isav = check_user(username)
-        if "Available" in isav:
+        if isav == True:
             try:
                 await sbb_b(
                     functions.channels.UpdateUsernameRequest(
