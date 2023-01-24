@@ -1,4 +1,4 @@
-# by: t.me/Dar4k
+# by: t.me/Dar4k  ~ t.me/R0R77
 
 import asyncio
 import random
@@ -170,11 +170,7 @@ async def hunterusername(event):
                 )
                 await event.client.send_message(
                     event.chat_id,
-                    f"""
-    - Done : @{username} !
-    - By : @R0R77 - @JMTHON !
-    - Hunting Log {trys2[0]}
-    """,
+                    f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !\n- Hunting Log {trys2[0]}",
                 )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
@@ -242,11 +238,7 @@ async def _(event):
                 )
                 await event.client.send_message(
                     event.chat_id,
-                    f"""
-    - Done : @{username} !
-    - By : @R0R77 - @JMTHON !
-    - Hunting Log {trys2[0]}
-    """,
+                    f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !\n- Hunting Log {trys2[0]}",
                 )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
@@ -272,7 +264,7 @@ async def _(event):
         await asyncio.sleep(1.3)
     isclaim.clear()
     isclaim.append("off")
-    await sbb_b.send_message(event.chat_id, "**- تم الانتهاء من التثبيت بنجاح")
+    await sbb_b.send_message(event.chat_id, "**- تم الانتهاء من التثبيت بنجاح**")
 
 
 @sbb_b.ar_cmd(pattern="حالة الصيد")
