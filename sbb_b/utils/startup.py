@@ -1,12 +1,14 @@
 import asyncio
 import glob
 import os
+import re
 import sys
 import urllib.request
 from datetime import timedelta
 from pathlib import Path
 
 from telethon import Button, functions, types, utils
+from telethon.events import CallbackQuery
 from telethon.tl.functions.channels import JoinChannelRequest
 
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
@@ -74,7 +76,6 @@ async def saves():
         await sbb_b(JoinChannelRequest("@RR7PP"))
         await sbb_b(JoinChannelRequest("@jmthon_help"))
         await sbb_b(JoinChannelRequest("@thejmthon"))
-        await sbb_b(JoinChannelRequest("@Talconz"))
     except BaseException:
         pass
 
@@ -104,19 +105,30 @@ async def mybot():
 
 
 async def startupmessage():
-    """
-    رسالة التشغيل
-    """
-    try:
-        if BOTLOG:
-            Config.JMTHONLOGO = await sbb_b.tgbot.send_file(
-                BOTLOG_CHATID,
-                "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
-                caption="**تم تشغيل سورس جمثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                buttons=[(Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)],
-            )
-    except Exception as e:
-        LOGS.error(e)
+    if not gvarstatus("DEPLOY"):
+        try:
+            if BOTLOG:
+                await sbb_b.tgbot.send_file(
+                    BOTLOG_CHATID,
+                    "https://graph.org//file/c20c4f492da1811e1bef0.jpg",
+                    caption="**شكرا لتنصيبك سورس جمثون**\n • هنا بعض الملاحظات التي يجب ان تعرفها عن استخدامك لسورس جمثون.",
+                    buttons=[(Button.inline("اضغط هنا", data="initft_2"),)],
+                )
+                addgvar("DEPLOY", "Done")
+        except Exception as e:
+            LOGS.error(e)
+    else:
+        try:
+            if BOTLOG:
+                await sbb_b.tgbot.send_message(
+                    BOTLOG_CHATID,
+                    "**لقد تم بنجاح تنصيب سورس جمثون **\n➖➖➖➖➖➖➖➖➖➖\n**السورس**: @jmthon\n**المطور**: @R0R77\n➖➖➖➖➖➖➖➖➖➖\n**مجموعة الدعم**: @jmthon_support\n➖➖➖➖➖➖➖➖➖➖",
+                    buttons=[
+                        (Button.url("كروب المساعدة", "https://t.me/jmthon_support"),)
+                    ],
+                )
+        except Exception as e:
+            LOGS.error(e)
         return None
     try:
         msg_details = list(get_item_collectionlist("restart_update"))
@@ -142,6 +154,66 @@ async def startupmessage():
     except Exception as e:
         LOGS.error(e)
         return None
+
+
+STRINGS = {
+    1: """🎇 **- شكراً لتنصيبك سورس جمثون **
+•• من الاسفل بعض الخيارات التي ستساعدك في جمثون.""",
+    2: """🎉** حول جمثون**
+🧿 جمثون هو يوزربوت في مكتبة التيليثون تم صنعه بأستخدام البايثون. يحتوي على اكثر من 100 أمر تساعدك في التليجرام و جمثون هو افضل سورس من ناحية الامان.
+❣ قناة السورس **@jmthon**""",
+    3: """**💡• قنوات السورس •**
+
+قناة الكلايش:  @JJOTT
+قناة الملاحظات: @RRRDF
+قناة السورس: @JMTHON
+قناة المساعدة: @JMTHON_HELP
+مجموعة المساعدة: @JMTHON_SUPPORT""",
+    4: f"""• `لمعرفة جميع اوامر السورس ارسل`
+  - `.اوامري`
+  - `.الاوامر`""",
+    5: """• **لأي مساعدة ثانية **
+  - أنضم في مجموعة المساعدة **@jmthon_support**.
+• شكرا لك لقرائتك هذه المقالة.""",
+}
+
+
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initft_(\\d+)")))
+async def deploy(e):
+    CURRENT = int(e.data_match.group(1))
+    if CURRENT == 5:
+        return await e.edit(
+            STRINGS[5],
+            buttons=[Button.inline("<< رجوع", data="initbk_4")],
+            link_preview=False,
+        )
+    await e.edit(
+        STRINGS[CURRENT],
+        buttons=[
+            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
+            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
+        ],
+        link_preview=False,
+    )
+
+
+@sbb_b.tgbot.on(CallbackQuery(data=re.compile(b"initbk_(\\d+)")))
+async def ineiq(e):
+    CURRENT = int(e.data_match.group(1))
+    if CURRENT == 1:
+        return await e.edit(
+            STRINGS[1],
+            buttons=[Button.inline("اضغط للبدأ >>", data="initft_2")],
+            link_preview=False,
+        )
+    await e.edit(
+        STRINGS[CURRENT],
+        buttons=[
+            Button.inline("<<", data=f"initbk_{str(CURRENT - 1)}"),
+            Button.inline(">>", data=f"initft_{str(CURRENT + 1)}"),
+        ],
+        link_preview=False,
+    )
 
 
 async def add_bot_to_logger_group(chat_id):
