@@ -8,7 +8,7 @@ from pytz import timezone as tz
 
 from ..Config import Config
 from ..sql_helper.globals import gvarstatus
-from . import edit_or_reply, logging, jmub
+from . import edit_or_reply, jmub, logging
 
 LOGS = logging.getLogger(__name__)
 

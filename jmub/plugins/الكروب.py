@@ -175,9 +175,7 @@ async def get_chatinfo(event, jmubevent):
             await jmubevent.edit("**⌔∮ لم يتمّ العثور على القناة/المجموعة ✕**")
             return None
         except ChannelPrivateError:
-            await jmubevent.edit(
-                "**⌔∮ هذه مجموعة أو قناة خاصة أو لقد تمّ حظري منه ⛞**"
-            )
+            await jmubevent.edit("**⌔∮ هذه مجموعة أو قناة خاصة أو لقد تمّ حظري منه ⛞**")
             return None
         except ChannelPublicGroupNaError:
             await jmubevent.edit("**⌔∮ القناة أو المجموعة الخارقة غير موجودة ✕**")

@@ -1,7 +1,7 @@
 import re
 
-from razan.strings import get_download_url
 from jmub import jmub
+from razan.strings import get_download_url
 
 
 @jmub.ar_cmd(pattern="بينترست?(.*)")
