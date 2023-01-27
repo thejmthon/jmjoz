@@ -21,7 +21,7 @@
 اسهل طريقة للتنصيب عبر الضغط على الزر في الاسفل
 
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/thejmthon/sbb_b0&branch=koyeb&name=jmthon-userbot&run_command=python3%20-m%20sbb_b&env%5BTG_BOT_TOKEN%5D=&env%5BAPP_ID%5D=&env%5BAPI_HASH%5D=&env%5BSTRING_SESSION%5D=&env%5BDATABASE_URL%5D=&env%5BENV%5D=ANYTHING&env%5BPM_LOGGER_GROUP_ID%5D=)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/thejmthon/jmub0&branch=koyeb&name=jmthon-userbot&run_command=python3%20-m%20jmub&env%5BTG_BOT_TOKEN%5D=&env%5BAPP_ID%5D=&env%5BAPI_HASH%5D=&env%5BSTRING_SESSION%5D=&env%5BDATABASE_URL%5D=&env%5BENV%5D=ANYTHING&env%5BPM_LOGGER_GROUP_ID%5D=)
 
 ------
 
@@ -62,9 +62,9 @@
 * سيكون شكل قاعده البيانات كـالتالي و تبدل كلمة pass مع الباسوورد الذي وضعته وكلمة jmthon مع اسم القاعدة التي وضعتها 
 - ` postgresql://postgres:pass@localhost:5432/jmthon`
 
-- `git clone https://github.com/thejmthon/sbb_b0` 
+- `git clone https://github.com/thejmthon/jmub0` 
 
-- `cd sbb_b0`
+- `cd jmub0`
 
 - `sudo apt install virtualenv`
 
@@ -84,7 +84,7 @@
 
 - `pip3 install -r requirements.txt`
 
-- `python3 -m sbb_b`
+- `python3 -m jmub`
 * نقوم بالضغط على CTRL+A بعدها نضغط على CTRL+D
  
 ------
@@ -129,7 +129,7 @@
     Copyright (C) 2022 <a href="https://github.com/thejmthon">JMTHON</a>
 </h4>
 
-Project [JMTHON](https://github.com/thejmthon/sbb_b0) is free software: you can redistribute it and/or modify
+Project [JMTHON](https://github.com/thejmthon/jmub0) is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
