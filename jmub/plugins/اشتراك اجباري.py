@@ -1,18 +1,21 @@
-from jmub import jmub
 import re
-from ..Config import Config
-from . import edit_or_reply, edit_delete
+
 from telethon import Button, events
-from telethon.events import CallbackQuery, InlineQuery
 from telethon.errors.rpcerrorlist import UserNotParticipantError
+from telethon.events import CallbackQuery, InlineQuery
 from telethon.tl.functions.channels import GetParticipantRequest
-from ..sql_helper.fsub_sql import add_fsub, rm_fsub, all_fsub, is_fsub
+
+from jmub import jmub
+
+from ..Config import Config
+from ..sql_helper.fsub_sql import add_fsub, all_fsub, is_fsub, rm_fsub
+from . import edit_delete, edit_or_reply
 
 
 @jmub.ar_cmd(pattern="اجباري ?(.*)")
 async def subscribe(event):
     if not event.is_group:
-        await edit_or_reply,(event, "**- يستخدم هذا الامر فقط في المجموعات**")
+        await edit_or_reply, (event, "**- يستخدم هذا الامر فقط في المجموعات**")
         return
     jmthon = event.pattern_match.group(1)
     if not jmthon:
@@ -33,16 +36,20 @@ async def subscribe(event):
             event, "⚠️ **خطأ !** \n\nيجب عليك وضع معرف القناة مع @ او فقط الايدي"
         )
     if not str(jmthon).startswith("-100"):
-        hunter = int("-100" + str(jmthon))
+        int("-100" + str(jmthon))
     add_fsub(event.chat_id, jmthon)
     await edit_or_reply(event, "**- تم بنجاح تفعيل الاشتراك الاجباري لهذه القناة**")
-    
+
+
 @jmub.ar_cmd(pattern="حذف الاشتراك")
 async def removefsub(event):
     ashtrakmh = rm_fsub(event.chat_id)
     if not ashtrakmh:
-        return await edit_delete(event, "**- الاشتراك الاجباري غير مفعل في هذه المجموعة**")
+        return await edit_delete(
+            event, "**- الاشتراك الاجباري غير مفعل في هذه المجموعة**"
+        )
     await edit_or_reply(e, "**- تم بنجاح تعطيل الاشتراك الاجباري في هذه المجموعة**")
+
 
 @jmub.ar_cmd(pattern="قنوات الاشتراك")
 async def list(event):
@@ -54,33 +61,34 @@ async def list(event):
     else:
         ch_listrz = "**- لم يتم تفعيل الاشتراك مع اي مجموعة**"
     await edit_or_reply(event, ch_listrz)
-    
+
 
 @jmub.tgbot.on(InlineQuery)
 async def subsc(event):
-        builder = event.builder
-        query = event.text
-        if event.query.user_id == jmub.uid and query == "اجباري":
-            jmthon = event.pattern_match.group(1)
-            muhmd = jmthon.split("+")
-            user = await jmub.get_entity(int(muhmd[0]))
-            channel = await jmub.get_entity(int(muhmd[1]))
-            msg = f"**👋 أهلا** [{user.first_name}](tg://user?id={user.id}), \n\n**عليك الاشتراك في ** {channel.title} **للتحدث في هذه المجموعة.**"
-            if not channel.username:
-                link = (await jmub(ExportChatInviteRequest(channel))).link
-            else:
-                link = "https://t.me/" + channel.username
-            subsc = [
-                await builder.article(
-                    title="force_sub",
-                    text = msg,
-                    buttons=[
-                        [Button.url(text="اشترك الان", url=link)],
-                        [Button.url(text="🔓 الغاء الكتم", data=unmute)],
-                    ],
-                )
-            ]
-            await event.answer(subsc)
+    builder = event.builder
+    query = event.text
+    if event.query.user_id == jmub.uid and query == "اجباري":
+        jmthon = event.pattern_match.group(1)
+        muhmd = jmthon.split("+")
+        user = await jmub.get_entity(int(muhmd[0]))
+        channel = await jmub.get_entity(int(muhmd[1]))
+        msg = f"**👋 أهلا** [{user.first_name}](tg://user?id={user.id}), \n\n**عليك الاشتراك في ** {channel.title} **للتحدث في هذه المجموعة.**"
+        if not channel.username:
+            link = (await jmub(ExportChatInviteRequest(channel))).link
+        else:
+            link = "https://t.me/" + channel.username
+        subsc = [
+            await builder.article(
+                title="force_sub",
+                text=msg,
+                buttons=[
+                    [Button.url(text="اشترك الان", url=link)],
+                    [Button.url(text="🔓 الغاء الكتم", data=unmute)],
+                ],
+            )
+        ]
+        await event.answer(subsc)
+
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(b"unmute")))
 async def on_pm_click(event):
@@ -91,9 +99,7 @@ async def on_pm_click(event):
     try:
         await jmub(GetParticipantRequest(int(muhmd[1]), int(muhmd[0])))
     except UserNotParticipantError:
-        return await event.answer(
-            "عليك الاشتراك اولا  :)", alert=True
-        )
+        return await event.answer("عليك الاشتراك اولا  :)", alert=True)
     await jmub.edit_permissions(
         event.chat_id, int(muhmd[0]), send_message=True, until_date=None
     )
@@ -119,4 +125,3 @@ async def forcesub(event):
         await jmub.edit_permissions(event.chat_id, user.id, send_messages=False)
         res = await jmub.inline_query(tgbotusername, f"اجباري {user.id}+{joinchat}")
         await res[0].click(event.chat_id, reply_to=event.action_message.id)
-  
