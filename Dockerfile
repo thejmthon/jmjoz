@@ -1,17 +1,11 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs18
+FROM thejmthon/jmub:slim-buster
 
-RUN apt-get update -y && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends ffmpeg \
-    && apt-get install python-wand \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-    
-COPY . /app/
+RUN git clone https://github.com/thejmthon/jmub.git /root/jmub
 
-WORKDIR /app/
+WORKDIR /root/jmub
 
-RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
+ENV PATH="/home/jmub/bin:$PATH"
 
-CMD ["bash", "start.sh"]
+CMD ["python3","-m","jmub"]
