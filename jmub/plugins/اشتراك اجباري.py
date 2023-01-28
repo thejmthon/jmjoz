@@ -36,7 +36,7 @@ async def subscribe(event):
             event, "⚠️ **خطأ !** \n\nيجب عليك وضع معرف القناة مع @ او فقط الايدي"
         )
     if not str(jmthon).startswith("-100"):
-        int("-100" + str(jmthon))
+        jmthon = int("-100" + str(jmthon))
     add_fsub(event.chat_id, jmthon)
     await edit_or_reply(event, "**- تم بنجاح تفعيل الاشتراك الاجباري لهذه القناة**")
 
