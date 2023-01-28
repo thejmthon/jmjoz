@@ -68,8 +68,8 @@ async def subsc(event):
     builder = event.builder
     query = event.text
     if event.query.user_id == jmub.uid and query == "اجباري":
-        jmthon = event.pattern_match.group(1)
-        muhmd = jmthon.split("+")
+        jmthon = event.pattern_match.group(1).strip()
+        muhmd = jmthon.split("_")
         user = await jmub.get_entity(int(muhmd[0]))
         channel = await jmub.get_entity(int(muhmd[1]))
         msg = f"**👋 أهلا** [{user.first_name}](tg://user?id={user.id}), \n\n**عليك الاشتراك في ** {channel.title} **للتحدث في هذه المجموعة.**"
