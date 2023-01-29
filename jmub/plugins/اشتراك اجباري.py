@@ -69,10 +69,10 @@ async def subsc(event):
     query = event.text
     if event.query.user_id == jmub.uid and query == "اجباري":
         jmthon = event.pattern_match.group(1).strip()
-        muhmd = jmthon.split("_")
+        muhmd = jmthon.split("+")
         user = await jmub.get_entity(int(muhmd[0]))
         channel = await jmub.get_entity(int(muhmd[1]))
-        msg = f"**👋 أهلا** [{user.first_name}](tg://user?id={user.id}), \n\n**عليك الاشتراك في ** {channel.title} **للتحدث في هذه المجموعة.**"
+        msg = f"**👋 أهلا** [{user.first_name}](tg://user?id={user.id}), \n\n**عليك الاشتراك في **للتحدث في هذه المجموعة.**"
         if not channel.username:
             link = (await jmub(ExportChatInviteRequest(channel))).link
         else:
