@@ -33,9 +33,7 @@ async def fsub(event):
     if not jmthon:
         return await edit_or_reply(event, "**- يجب عليك وضع معرف القناة اولا**")
     if jmthon.startswith("@"):
-        channel = jmthon.replace("@", "")
-    elif jmthon.startswith("https://t.me/"):
-        channel = jmthon.replace("https://t.me/", "")
+        channel = jmthon
     else:
         try:
             channel_entity = await event.client.get_entity(channel)
