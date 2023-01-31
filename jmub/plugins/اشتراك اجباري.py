@@ -68,7 +68,7 @@ async def removefsub(event):
     await edit_or_reply(event, "**- تم بنجاح تعطيل الاشتراك الاجباري في هذه المجموعة**")
 
 
-@jmub.on(events.NewMessage())
+@jmub.ar_cmd(events.NewMessage())
 async def fsub_n(e):
     if all_fsub() == None:
         return
