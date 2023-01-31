@@ -81,7 +81,7 @@ async def fsub_n(e):
             return
     if not is_fsub(e.chat_id):
         return
-    user = await event.get_user()
+    user = await e.get_user()
     if user.jmub:
         return
     if not e.from_id:
