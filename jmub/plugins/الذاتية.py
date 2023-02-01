@@ -1,6 +1,7 @@
 from os import remove
-from telethon import events 
-import asyncio
+
+from telethon import events
+
 from jmub import jmub
 
 jmthonself = False
@@ -21,13 +22,19 @@ async def start_downloader():
     jmthonself = True
     await event.edit("- تم بنجاح تفعيل حفظ الميديا الذاتية من الان")
 
+
 @jmub.ar_cmd(pattern="تعطيل الذاتية")
 async def stop_downloader():
     global jmthonself
     jmthonself = False
     await event.edit("- تم بنجاح تعطيل حفظ الميديا الذاتية من الان")
 
-@jmub.on(events.NewMessage(func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread))
+
+@jmub.on(
+    events.NewMessage(
+        func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread
+    )
+)
 async def downloader(event):
     global jmthonself
     if jmthonself:
