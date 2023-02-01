@@ -1,15 +1,16 @@
-from telethon import events
+import re
+from telethon import Button, events
 from telethon.errors import ChatAdminRequiredError
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
-
+from telethon.events import CallbackQuery, InlineQuery
 from jmub import jmub
-
-from ..sql_helper.fsub_sql import add_fsub, all_fsub, is_fsub, rm_fsub
 from . import edit_delete, edit_or_reply
+from ..utils import is_admin
+from ..sql_helper.fsub_sql import add_fsub, all_fsub, is_fsub, rm_fsub
 
 
-async def check_join(channel, user_id):
+async def participant_check(channel, user_id):
     try:
         await jmub(GetParticipantRequest(channel, int(user_id)))
         return True
@@ -18,30 +19,28 @@ async def check_join(channel, user_id):
     except:
         return False
 
-
 @jmub.ar_cmd(pattern="اجباري ?(.*)")
 async def fsub(event):
-    if not event.is_group:
-        return await edit_or_reply(event, "**يستخدم هذا الامر فقط في المجموعة**")
+    if event.is_private:
+        return
     if event.is_group:
         perm = await event.client.get_permissions(event.chat_id, event.sender_id)
         if not perm.is_admin:
-            return await edit_or_reply(
-                event, "أنت لست مشرف في هذه المجموعة يجب ان تكون مشرف اولا"
-            )
-    jmthon = event.text.split(None, 1)[1]
-    if not jmthon:
-        return await edit_or_reply(event, "**- يجب عليك وضع معرف القناة اولا**")
-    if jmthon.startswith("@"):
-        channel = jmthon.replace("@", "")
-    elif jmthon.startswith("https://t.me/"):
-        channel = jmthon.replace("https://t.me/", "")
+            return await event.reply("أنت لست مشرف في هذه المجموعة يجب ان تكون مشرف اولا")
+    try:
+        channel = event.text.split(None, 1)[1]
+    except IndexError:
+        channel = None
+    if not channel:
+        return await edit_delete(event, "**-يجب عليك وضع معرف القناة اولا**")
+    if not str(channel).startswith("@"):
+        channel = "@" + str(channel)
     else:
         try:
             channel_entity = await event.client.get_entity(channel)
         except:
-            return await edit_or_reply(
-                event, "⚠️ **خطأ !** \n\nيجب عليك وضع معرف القناة بشكل صحيح "
+            return await event.reply(
+                "<b> عليك وضع المعرف بشكل صحيح ❗</b>", parse_mode="html"
             )
         channel = channel_entity.username
         try:
@@ -49,50 +48,45 @@ async def fsub(event):
                 return await event.reply("هذه القناة غير صالحة .")
         except:
             return await event.reply("يجب وضع المعرف بشكل صحيح.")
-        if not await check_join(channel, jmub.uid):
+        if not await participant_check(channel, jmub.uid):
             return await event.reply(
                 f"❗**أنا لست ادمن في هذه القناة**\n [القناة](https://t.me/{channel}). يجب ان اكون مشرف في القناة اولا.",
                 link_preview=False,
             )
         add_fsub(event.chat_id, str(channel))
-        await edit_or_reply(
-            event, "**- تم بنجاح تفعيل الاشتراك الاجباري  ** للقناة @{channel}. ✅"
-        )
+        await event.reply(f"**- تم بنجاح تفعيل الاشتراك الاجباري  ** للقناة @{channel}. ✅")
 
 
-@jmub.ar_cmd(pattern="حذف الاجباري")
+
+@jmub.ar_cmd(pattern="تعطيل الاجباري")
 async def removefsub(event):
-    ashtrakmh = rm_fsub(event.chat_id)
-    if not ashtrakmh:
-        return await edit_delete(
-            event, "**- الاشتراك الاجباري غير مفعل في هذه المجموعة**"
-        )
+    rm_fsub(event.chat_id)
     await edit_or_reply(event, "**- تم بنجاح تعطيل الاشتراك الاجباري في هذه المجموعة**")
+
 
 
 @jmub.on(events.NewMessage())
 async def fsub_n(e):
     if all_fsub() == None:
         return
+    if not is_fsub(e.chat_id):
+        return
     if e.is_private:
         return
     if e.chat.admin_rights:
         if not e.chat.admin_rights.ban_users:
             return
-    if not is_fsub(e.chat_id):
-        return
-    user = await event.get_user()
-    if user.jmub:
+    else:
         return
     if not e.from_id:
         return
     chatdb = is_fsub(e.chat_id)
     channel = chatdb.channel
     try:
-        check = await check_join(channel, e.sender_id)
+        check = await participant_check(channel, e.sender_id)
     except ChatAdminRequiredError:
         return
     if not check:
-        txt = f'اهلا بك عزيزي المستخدم <a href="tg://user?id={e.sender_id}">{e.sender.first_name}</a>\n يجب عليك الاشتراك في قناة المجموعة اولا\nبعدها ستتمكن من التكلمة بحرية - <a href="t.me/{channel}">اضغط هنا</a>'
+        txt = f'اهلا بك عزيزي المستخدم <a href="tg://user?id={e.sender_id}">{e.sender.first_name}</a>\nيجب عليك الاشتراك في قناة المجموعة\nللتحدث بحرية ولأزالة الكتم - <a href="t.me/{channel}">اضغط هنا</a>'
         await e.reply(txt, parse_mode="html", link_preview=False)
         await e.delete()
