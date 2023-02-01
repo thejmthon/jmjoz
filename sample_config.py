@@ -3,14 +3,8 @@
 import os
 from typing import Set
 
-from dotenv import find_dotenv, load_dotenv
 from telethon.tl.types import ChatBannedRights
 from validators.url import url
-
-load_dotenv(find_dotenv())
-
-if os.path.exists("local.env"):
-    load_dotenv("local.env")
 
 
 class Config(object):
@@ -33,7 +27,7 @@ class Config(object):
     # المنطقه الزمنيه احصل عليها من هنا  http://www.timezoneconverter.com/cgi-bin/findzone.tzc
     TZ = os.environ.get("TZ", "Asia/Baghdad")
     # رابط الريبو
-    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/sbb-b/jmthon")
+    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/sbb-b/jmub")
     # ملفات خارجيه اضافيه
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if bool(EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "false")):
