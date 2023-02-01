@@ -36,6 +36,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 ],
                 [
                     Button.inline("التحميل", data="DOWMANLODE4"),
+                    Button.inline("الصيد/وعد", data="CEHKUSERNAME"),
                 ],
                 [
                     Button.inline("الاكسترا", data="EXTRACMD"),
@@ -76,6 +77,8 @@ async def _(event):
         ],
         [
             Button.inline("التحميل", data="DOWMANLODE4"),
+            Button.inline("الصيد/وعد", data="CEHKUSERNAME"),
+
         ],
         [
             Button.inline("الاكسترا", data="EXTRACMD"),
@@ -85,6 +88,33 @@ async def _(event):
     await event.edit(ROE, buttons=butze)
 
 
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"CEHKUSERNAME")))
+async def varssett(event):
+    await event.edit(
+        "من هنا يمكنك عرض شروحات اوامر الصيد وبوت وعد:",
+        buttons=[
+            [
+                Button.inline("اوامر الصيد", data="chekuserq"),
+                Button.inline("بوت وعد", data="waadcmdbot"),
+            ],
+            [Button.inline("القائمة الرئيسية", data="MAIN")],
+        ],
+    )
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"waadcmdbot")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="CEHKUSERNAME")]]
+    await event.edit(waadcmdbot, buttons=buttons, link_preview=False)
+
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"chekuserq")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="CEHKUSERNAME")]]
+    await event.edit(chekusername, buttons=buttons, link_preview=False)
+
+    
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"VARJMTHON")))
 async def varssett(event):
     await event.edit(
@@ -793,7 +823,7 @@ async def _(event):
         ],
         [
             Button.inline("التالي", data="TOOLCMD2"),
-            Button.inline("رجوع", data="TOOLCMD2"),
+            Button.inline("رجوع", data="TOOLCM3"),
         ],
         [Button.inline("القائمة الرئيسية", data="MAIN")],
     ]
@@ -834,15 +864,74 @@ async def _(event):
         [
             Button.inline("ايقاف التكرار", data="STOPTKRARE"),
             Button.inline("وسبام", data="FGKHEF8"),
+            Button.inline("حذف دردشة", data="Deltejm"),
         ],
         [
-            Button.inline("التالي", data="toolsed1"),
+            Button.inline("التالي", data="TOOLCM3"),
             Button.inline("رجوع", data="toolsed1"),
         ],
         [Button.inline("القائمة الرئيسية", data="MAIN")],
     ]
     await event.edit(ROE, buttons=buttons, link_preview=False)
+ 
 
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"TOOLCM3")))
+@check_owner
+async def _(event):
+    buttons = [
+        [
+            Button.inline("نوع المعرف", data="typeusername"),
+            Button.inline("كروباتي", data="mygroups"),
+            Button.inline("الحاظرهم", data="whoibanhim"),
+        ],
+        [
+            Button.inline("تجميع", data="mlirabotcmd"),
+            Button.inline("تقييد المحتوى", data="resscmdeq"),
+        ],
+        [
+            Button.inline("التالي", data="toolsed1"),
+            Button.inline("رجوع", data="TOOLCMD2"),
+        ],
+        [Button.inline("القائمة الرئيسية", data="MAIN")],
+    ]
+    await event.edit(ROE, buttons=buttons, link_preview=False)
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"whoibanhim")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(whoibanhim, buttons=buttons, link_preview=False)
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"resscmdeq")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(resscmdeq, buttons=buttons, link_preview=False)
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"mlirabotcmd")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(mlirabotcmd, buttons=buttons, link_preview=False)
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"mygroups")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(mygroups, buttons=buttons, link_preview=False)
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"typeusername")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(typeusername, buttons=buttons, link_preview=False)
+
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"Deltejm")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCMD2")]]
+    await event.edit(Deltejm, buttons=buttons, link_preview=False)
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"ALIVEDIII")))
 @check_owner
@@ -1112,6 +1201,7 @@ async def _(event):
         [
             Button.inline("المحذوفين", data="ACCD5SS"),
             Button.inline("ضع التكرار", data="ALTKRARCMD"),
+            Button.inline("اشتراك اجباري", data="forcesub"),
         ],
         [
             Button.inline("التالي", data="admincmd_s"),
@@ -1121,7 +1211,12 @@ async def _(event):
     ]
     await event.edit(ROE, buttons=buttons, link_preview=False)
 
-
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"forcesub")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="ADMSS4")]]
+    await event.edit(forcesub, buttons=buttons, link_preview=False)
+    
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"ALTKRARCMD")))
 @check_owner
 async def _(event):
