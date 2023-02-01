@@ -45,7 +45,7 @@ Deltejm = """
 t.me/jmthon_support"""
 
 
-mlirabotcmd = """ 
+forcesub = """ 
 
 اهلا بك عزيزي المستخدم في قائمة الاوامر
 
