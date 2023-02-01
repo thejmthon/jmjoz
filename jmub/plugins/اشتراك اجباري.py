@@ -1,13 +1,12 @@
-import re
-from telethon import Button, events
+from telethon import events
 from telethon.errors import ChatAdminRequiredError
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.events import CallbackQuery, InlineQuery
+
 from jmub import jmub
-from . import edit_delete, edit_or_reply
-from ..utils import is_admin
+
 from ..sql_helper.fsub_sql import add_fsub, all_fsub, is_fsub, rm_fsub
+from . import edit_delete, edit_or_reply
 
 
 async def participant_check(channel, user_id):
@@ -19,6 +18,7 @@ async def participant_check(channel, user_id):
     except:
         return False
 
+
 @jmub.ar_cmd(pattern="اجباري ?(.*)")
 async def fsub(event):
     if event.is_private:
@@ -26,7 +26,9 @@ async def fsub(event):
     if event.is_group:
         perm = await event.client.get_permissions(event.chat_id, event.sender_id)
         if not perm.is_admin:
-            return await event.reply("أنت لست مشرف في هذه المجموعة يجب ان تكون مشرف اولا")
+            return await event.reply(
+                "أنت لست مشرف في هذه المجموعة يجب ان تكون مشرف اولا"
+            )
     try:
         channel = event.text.split(None, 1)[1]
     except IndexError:
@@ -54,15 +56,15 @@ async def fsub(event):
                 link_preview=False,
             )
         add_fsub(event.chat_id, str(channel))
-        await event.reply(f"**- تم بنجاح تفعيل الاشتراك الاجباري  ** للقناة @{channel}. ✅")
-
+        await event.reply(
+            f"**- تم بنجاح تفعيل الاشتراك الاجباري  ** للقناة @{channel}. ✅"
+        )
 
 
 @jmub.ar_cmd(pattern="تعطيل الاجباري")
 async def removefsub(event):
     rm_fsub(event.chat_id)
     await edit_or_reply(event, "**- تم بنجاح تعطيل الاشتراك الاجباري في هذه المجموعة**")
-
 
 
 @jmub.on(events.NewMessage())
