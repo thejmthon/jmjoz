@@ -1,7 +1,0 @@
-#!/bin/bash
-
-_start_all () {
-    python3 -m jmthon
-}
-
-_start_all
