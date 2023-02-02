@@ -1,1 +1,1 @@
-python3 -m jmub
+worker: python3 -m jmub
