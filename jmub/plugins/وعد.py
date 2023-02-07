@@ -2,6 +2,7 @@
 # this file for https://github.com/thejmthon/jmub0
 import asyncio
 
+from telethon.errors import FloodWaitError
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.messages import GetHistoryRequest, ImportChatInviteRequest
 
@@ -13,16 +14,16 @@ async def _(event):
     await event.edit("حسنا, تأكد من انك مشترك ب قنوات الاشتراك الاجباري لتجنب الأخطأء")
     channel_entity = await jmub.get_entity("@t06bot")
     await jmub.send_message("@t06bot", "/start")
-    await asyncio.sleep(10)
+    await asyncio.sleep(5)
     msg0 = await jmub.get_messages("@t06bot", limit=1)
     await msg0[0].click(2)
-    await asyncio.sleep(10)
+    await asyncio.sleep(5)
     msg1 = await jmub.get_messages("@t06bot", limit=1)
     await msg1[0].click(0)
 
     chs = 1
     for i in range(100):
-        await asyncio.sleep(10)
+        await asyncio.sleep(5)
         list = await jmub(
             GetHistoryRequest(
                 peer=channel_entity,
@@ -57,12 +58,12 @@ async def _(event):
             await msg2[0].click(text="تحقق")
             chs += 1
             await event.edit("- تم بنجاح الاشتراك في {chs} قناة")
-        except:
+        except FloodWaitError as e:
             await event.edit(
-                "**- من الممكن تعرضت للحظر من الانضمام في لقنوات حاول لاحقا**"
+                f"خطأ لقد تحصلت على فلود ويت بمقدار: {e}. ثواني سيكمل التجميع بعد انتهاء الوقت."
             )
-            break
-    await event.edit("**- تم الانتهاء من التجميع استخدم حاول مرة ثانية في وقت اخر**")
+            sleep_time = int(str(e).split("in ")[1].split(" seconds")[0])
+            await asyncio.sleep(sleep_time)
 
 
 # t.me/r0r77
