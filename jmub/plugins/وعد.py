@@ -2,9 +2,9 @@
 # this file for https://github.com/thejmthon/jmub0
 import asyncio
 
+from telethon.errors import FloodWaitError
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.messages import GetHistoryRequest, ImportChatInviteRequest
-from telethon.errors import FloodWaitError
 
 from jmub import jmub
 
@@ -59,7 +59,9 @@ async def _(event):
             chs += 1
             await event.edit("- تم بنجاح الاشتراك في {chs} قناة")
         except FloodWaitError as e:
-            await event.edit(f"خطأ لقد تحصلت على فلود ويت بمقدار: {e}. ثواني سيكمل التجميع بعد انتهاء الوقت.")
+            await event.edit(
+                f"خطأ لقد تحصلت على فلود ويت بمقدار: {e}. ثواني سيكمل التجميع بعد انتهاء الوقت."
+            )
             sleep_time = int(str(e).split("in ")[1].split(" seconds")[0])
             await asyncio.sleep(sleep_time)
 
