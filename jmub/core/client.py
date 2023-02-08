@@ -118,7 +118,6 @@ class JmthonClient(TelegramClient):
                         or "انحراف"
                         or "نيج"
                         or "سوالب" in chat.title.lower()
-                        and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
                     ):  # هذا الكود يوصلي اشعار اذا المستخدم يستخدم السورس بمجمواعت ما تناسب جمثون ولا الدين
                         return await check.client.send_message(
