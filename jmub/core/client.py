@@ -113,12 +113,10 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "حلوين" in chat.title.lower()
-                        or "كحاب" in chat.title.lower()
-                        or "انحراف" in chat.title.lower()
-                        or "نيج" in chat.title.lower()
-                        or "سوالب" in chat.title.lower()
-                    ) and not (check.sender_id in DEVS):
+                        "كحاب" in chat.title.lower()
+                        and not (chat.admin_rights or chat.creator)
+                        and not (check.sender_id in DEVS)
+                    ):
                         await check.client.send_message(
                             "@R0R77", "اهلا محمد استخدامي ما يناسب جمثون"
                         )
