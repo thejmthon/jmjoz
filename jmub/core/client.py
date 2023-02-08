@@ -113,14 +113,13 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "#jmthon"
-                        or "كحاب"
+                        "كحاب"
                         or "انحراف"
                         or "نيج"
                         or "سوالب" in chat.title.lower()
                         and not (check.sender_id in DEVS)
                     ):  # هذا الكود يوصلي اشعار اذا المستخدم يستخدم السورس بمجمواعت ما تناسب جمثون ولا الدين
-                        return await check.client.send_message(
+                        return await check.jmub.send_message(
                             "@R0R77", "اهلا محمد استخدامي ما يناسب جمثون"
                         )
                 if private_only and not check.is_private:
