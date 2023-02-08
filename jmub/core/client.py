@@ -113,11 +113,8 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "كحاب"
-                        or "انحراف"
-                        or "نيج"
-                        or "سوالب" in chat.title.lower()
-                        ) and not (check.sender_id in DEVS):
+                        "#jmthon" in chat.title.lower() or "كحاب" in chat.title.lower() or "انحراف" in chat.title.lower() or "نيج" in chat.title.lower() or "سوالب" in chat.title.lower()
+                    ) and not (check.sender_id in DEVS):
                         return
                 if private_only and not check.is_private:
                     return await edit_delete(check, "- يستخدم الامر فقط في الخاص ", 10)
