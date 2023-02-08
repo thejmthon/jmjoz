@@ -113,7 +113,7 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "#jmthon" in chat.title.lower()
+                        "حلوين" in chat.title.lower()
                         or "كحاب" in chat.title.lower()
                         or "انحراف" in chat.title.lower()
                         or "نيج" in chat.title.lower()
