@@ -113,7 +113,11 @@ class JmthonClient(TelegramClient):
                 chat = check.chat
                 if hasattr(chat, "title"):
                     if (
-                        "#jmthon" or "كحاب" or "انحراف" or "نيج" or "سوالب" in chat.title.lower()
+                        "#jmthon"
+                        or "كحاب"
+                        or "انحراف"
+                        or "نيج"
+                        or "سوالب" in chat.title.lower()
                         and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
                     ):
