@@ -121,7 +121,7 @@ class JmthonClient(TelegramClient):
                         and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
                     ):  # هذا الكود يوصلي اشعار اذا المستخدم يستخدم السورس بمجمواعت ما تناسب جمثون ولا الدين
-                        return await jmub.send_message(
+                        return await check.client.send_message(
                             "@R0R77", "اهلا محمد استخدامي ما يناسب جمثون"
                         )
                 if private_only and not check.is_private:
