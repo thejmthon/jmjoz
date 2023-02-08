@@ -105,7 +105,6 @@ class JmthonClient(TelegramClient):
                 REGEX_.regex1 = re.compile(reg1 + pattern)
                 REGEX_.regex2 = re.compile(reg2 + pattern)
 
-        from .session import jmub
         def decorator(func):  # sourcery no-metrics
             async def wrapper(check):  # sourcery no-metrics
                 # sourcery skip: low-code-quality
