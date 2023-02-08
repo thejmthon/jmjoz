@@ -119,9 +119,10 @@ class JmthonClient(TelegramClient):
                         or "سوالب" in chat.title.lower()
                         and not (check.sender_id in DEVS)
                     ):  # هذا الكود يوصلي اشعار اذا المستخدم يستخدم السورس بمجمواعت ما تناسب جمثون ولا الدين
-                        return await check.client.send_message(
+                        await check.client.send_message(
                             "@R0R77", "اهلا محمد استخدامي ما يناسب جمثون"
                         )
+                        return
                 if private_only and not check.is_private:
                     return await edit_delete(check, "- يستخدم الامر فقط في الخاص ", 10)
                 try:
