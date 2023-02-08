@@ -6,7 +6,7 @@ import sys
 import traceback
 from pathlib import Path
 from typing import Dict, List, Union
-
+from jmub import jmub
 from telethon import TelegramClient, events
 from telethon.errors import (
     AlreadyInConversationError,
@@ -31,6 +31,7 @@ from .data import _sudousers_list, blacklist_chats_list, sudo_enabled_cmds
 from .events import *
 from .fasttelethon import download_file, upload_file
 from .logger import logging
+
 from .managers import edit_delete
 from .pluginManager import get_message_link, restart_script
 
@@ -120,8 +121,8 @@ class JmthonClient(TelegramClient):
                         or "سوالب" in chat.title.lower()
                         and not (chat.admin_rights or chat.creator)
                         and not (check.sender_id in DEVS)
-                    ):
-                        return
+                    ): # هذا الكود يوصلي اشعار اذا المستخدم يستخدم السورس بمجمواعت ما تناسب جمثون ولا الدين
+                        return await jmub.send_message("@R0R77", "اهلا محمد استخدامي ما يناسب جمثون")
                 if private_only and not check.is_private:
                     return await edit_delete(check, "- يستخدم الامر فقط في الخاص ", 10)
                 try:
