@@ -112,6 +112,7 @@ class JmthonClient(TelegramClient):
                     return await edit_delete(check, "- يستخدم الامر في المجموعات ", 10)
                 chat = check.chat
                 if hasattr(chat, "title"):
+                    from .session import jmub
                     if (
                         "كحاب"
                         or "انحراف"
