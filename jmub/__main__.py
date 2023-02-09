@@ -4,7 +4,7 @@ import sys
 import jmub
 from jmub import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
-from ..sql_helper.globals import gvarstatus
+from .sql_helper.globals import gvarstatus
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmub
