@@ -3,7 +3,7 @@ import sys
 
 import jmub
 from jmub import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-
+from ..sql_helper.globals import gvarstatus
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmub
@@ -48,22 +48,30 @@ except Exception as meo:
 
 
 async def startup_process():
-    await verifyLoggerGroup()
-    await load_plugins("plugins")
-    await load_plugins("assistant")
-    LOGS.info("============================================================")
-    LOGS.info("تم انتهاء عملية التنصيب بنجاح")
-    LOGS.info(
-        f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
-        \nمجموعة قناة السورس  https://t.me/jmthon_support"
-    )
-    LOGS.info("============================================================")
-    await verifyLoggerGroup()
-    await add_bot_to_logger_group(BOTLOG_CHATID)
-    if PM_LOGGER_GROUP_ID != -100:
-        await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
-    await startupmessage()
-    return
+    if not gvarstatus("TNSEEB"):
+        try:
+            await verifyLoggerGroup()
+            await load_plugins("plugins")
+            await load_plugins("assistant")
+            LOGS.info("============================================================")
+            LOGS.info("تم انتهاء عملية التنصيب بنجاح")
+            LOGS.info(
+                f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
+                \nمجموعة قناة السورس  https://t.me/jmthon_support"
+            )
+            LOGS.info("============================================================")
+            await verifyLoggerGroup()
+            await add_bot_to_logger_group(BOTLOG_CHATID)
+            if PM_LOGGER_GROUP_ID != -100:
+                await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
+            await startupmessage()
+            return
+        except Exception as e:
+            LOGS.info(str(e))
+            return
+    else:
+        LOGS.info("انت لا يمكنك تنصيب سورس جمثون عزيزي دي")
+
 
 
 jmub.loop.run_until_complete(startup_process())
