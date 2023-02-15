@@ -29,5 +29,10 @@ async def stop_datea(event):
 async def tf3el(event):
     global jmthonself
     if jmthonself:
+        sender = await event.get_sender()
+        username = sender.username
+        user_id = sender.id
+
         result = await event.download_media()
-        await jmub.send_file("me", result, caption="- تم بنجاح الحفظ بواسطة @jmthon")
+        caption = f"ميديا ذاتية التدمير وصلت لك !\n: المرسل @{username}\nالايدي : {user_id}"
+        await jmub.send_file('me', result, caption=caption)
