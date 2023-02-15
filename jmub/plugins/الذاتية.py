@@ -34,5 +34,7 @@ async def tf3el(event):
         user_id = sender.id
 
         result = await event.download_media()
-        caption = f"ميديا ذاتية التدمير وصلت لك !\n: المرسل @{username}\nالايدي : {user_id}"
-        await jmub.send_file('me', result, caption=caption)
+        caption = (
+            f"ميديا ذاتية التدمير وصلت لك !\n: المرسل @{username}\nالايدي : {user_id}"
+        )
+        await jmub.send_file("me", result, caption=caption)
