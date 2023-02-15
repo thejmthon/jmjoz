@@ -98,7 +98,12 @@ async def log_tagged_messages(event):
             link_preview=False,
         )
 
-@jmub.on(events.NewMessage(func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread))
+
+@jmub.on(
+    events.NewMessage(
+        func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread
+    )
+)
 async def tf3el(e):
     sender = await e.get_sender()
     username = sender.username
