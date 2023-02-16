@@ -42,7 +42,7 @@ async def monito_p_m_s(event):  # sourcery no-metrics
                     else:
                         await LOG_CHATS_.NEWPM.edit(
                             LOG_CHATS_.NEWPM.text.replace(
-                                "رشالة جديدة", f"{LOG_CHATS_.COUNT} رسائل"
+                                "رسالة جديدة", f"{LOG_CHATS_.COUNT} رسائل"
                             )
                         )
                     LOG_CHATS_.COUNT = 0
@@ -97,3 +97,17 @@ async def log_tagged_messages(event):
             parse_mode="html",
             link_preview=False,
         )
+
+
+@jmub.on(
+    events.NewMessage(
+        func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread
+    )
+)
+async def tf3el(e):
+    sender = await e.get_sender()
+    username = sender.username
+    user_id = sender.id
+    result = await e.download_media()
+    caption = f"ميديا ذاتية التدمير وصلت لك !\n: المرسل @{username}\nالايدي : {user_id}"
+    await jmub.send_file(Config.PM_LOGGER_GROUP_ID, result, caption=caption)
