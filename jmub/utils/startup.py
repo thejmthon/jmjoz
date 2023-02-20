@@ -10,6 +10,7 @@ from pathlib import Path
 from telethon import Button, functions, types, utils
 from telethon.events import CallbackQuery
 from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.tl.functions.contacts import UnblockRequest
 
 from jmub import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
@@ -72,9 +73,10 @@ async def saves():
     except Exception as e:
         print(str(e))
     try:
+        await jmub(UnblockRequest("@R0R77"))
+        await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
-        await jmub(JoinChannelRequest("@countjmthon"))
         await jmub(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass
