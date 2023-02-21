@@ -7,14 +7,14 @@ from jmub import jmub
 jmthonself = False
 
 
-@jmub.ar_cmd(pattern="تفعيل الذاتية")
+@jmub.ar_cmd(pattern="تفعيل الحفظ")
 async def start_datea(event):
     global jmthonself
     jmthonself = True
     await edit_or_reply(event, "- تم بنجاح تفعيل حفظ الميديا الذاتية من الان")
 
 
-@jmub.ar_cmd(pattern="تعطيل الذاتية")
+@jmub.ar_cmd(pattern="تعطيل الحفظ")
 async def stop_datea(event):
     global jmthonself
     jmthonself = False
