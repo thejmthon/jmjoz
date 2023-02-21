@@ -1,4 +1,10 @@
-import marshal
+import os
+
+try:
+    import marshal
+except ModuleNotFoundError:
+    os.system("pip3 install marshal")
+    import marshal
 
 #  هههههههههههههههههههههه ها هلو
 
