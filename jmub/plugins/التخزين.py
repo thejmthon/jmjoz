@@ -1,6 +1,6 @@
 from jmub import jmub
 from jmub.core.logger import logging
-
+from telethon import events
 from ..Config import Config
 from ..helpers.tools import media_type
 from ..helpers.utils import _format
@@ -98,12 +98,7 @@ async def log_tagged_messages(event):
             link_preview=False,
         )
 
-
-@jmub.on(
-    events.NewMessage(
-        func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread
-    )
-)
+@jmub.ar_cmd(incoming=True, func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread)
 async def tf3el(e):
     sender = await e.get_sender()
     username = sender.username
