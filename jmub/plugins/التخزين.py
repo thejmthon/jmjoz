@@ -1,6 +1,6 @@
 from jmub import jmub
 from jmub.core.logger import logging
-
+from telethon import events
 from ..Config import Config
 from ..helpers.tools import media_type
 from ..helpers.utils import _format
