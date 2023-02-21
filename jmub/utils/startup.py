@@ -12,6 +12,7 @@ from telethon.events import CallbackQuery
 from telethon.tl.functions.channels import JoinChannelRequest
 
 from jmub import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+from razan.CMD.utils import *
 
 from ..Config import Config
 from ..core.logger import logging
@@ -74,7 +75,7 @@ async def saves():
     try:
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
-        await jmub(JoinChannelRequest("@countjmthon"))
+        await jmub(JoinChannelRequest("@subjmthon"))
         await jmub(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass
@@ -154,28 +155,6 @@ async def startupmessage():
     except Exception as e:
         LOGS.error(e)
         return None
-
-
-STRINGS = {
-    1: """🎇 **- شكراً لتنصيبك سورس جمثون **
-•• من الاسفل بعض الخيارات التي ستساعدك في جمثون.""",
-    2: """🎉** حول جمثون**
-🧿 جمثون هو يوزربوت في مكتبة التيليثون تم صنعه بأستخدام البايثون. يحتوي على اكثر من 100 أمر تساعدك في التليجرام و جمثون هو افضل سورس من ناحية الامان.
-❣ قناة السورس **@jmthon**""",
-    3: """**💡• قنوات السورس •**
-
-قناة الكلايش:  @JJOTT
-قناة الملاحظات: @RRRDF
-قناة السورس: @JMTHON
-قناة المساعدة: @JMTHON_HELP
-مجموعة المساعدة: @JMTHON_SUPPORT""",
-    4: f"""• `لمعرفة جميع اوامر السورس ارسل`
-  - `.اوامري`
-  - `.الاوامر`""",
-    5: """• **لأي مساعدة ثانية **
-  - أنضم في مجموعة المساعدة **@jmthon_support**.
-• شكرا لك لقرائتك هذه المقالة.""",
-}
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(b"initft_(\\d+)")))
