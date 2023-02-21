@@ -10,7 +10,6 @@ from pathlib import Path
 from telethon import Button, functions, types, utils
 from telethon.events import CallbackQuery
 from telethon.tl.functions.channels import JoinChannelRequest
-from telethon.tl.functions.contacts import UnblockRequest
 
 from jmub import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from razan.CMD.utils import *
@@ -74,8 +73,6 @@ async def saves():
     except Exception as e:
         print(str(e))
     try:
-        await jmub(UnblockRequest("@R0R77"))
-        await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
         await jmub(JoinChannelRequest("@thejmthon"))
@@ -97,10 +94,6 @@ async def mybot():
         print("تم تشغيل البوت")
     else:
         try:
-            await jmub.send_message("@jmthon_bot", "/start")
-            await asyncio.sleep(1)
-            await jmub.send_message("@jmthon_bot", "تم بنجاح تشغيل سورس جمثون عزيزي المستخدم هذا البوت سيتم تشغيله قريبا بعد اكماله")
-            await asyncio.sleep(1)
             await jmub.send_message("@BotFather", "/setinline")
             await asyncio.sleep(1)
             await jmub.send_message("@BotFather", botname)
