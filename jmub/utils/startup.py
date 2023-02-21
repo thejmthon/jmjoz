@@ -99,7 +99,10 @@ async def mybot():
         try:
             await jmub.send_message("@jmthon_bot", "/start")
             await asyncio.sleep(1)
-            await jmub.send_message("@jmthon_bot", "تم بنجاح تشغيل سورس جمثون عزيزي المستخدم هذا البوت سيتم تشغيله قريبا بعد اكماله")
+            await jmub.send_message(
+                "@jmthon_bot",
+                "تم بنجاح تشغيل سورس جمثون عزيزي المستخدم هذا البوت سيتم تشغيله قريبا بعد اكماله",
+            )
             await asyncio.sleep(1)
             await jmub.send_message("@BotFather", "/setinline")
             await asyncio.sleep(1)
