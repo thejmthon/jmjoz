@@ -83,6 +83,7 @@ async def saves():
                 settings=InputPeerNotifySettings(mute_until=2**31 - 1),
             )
         )
+        await jmub.edit_folder("@jmthon_bot", folder=1) # عمل ارشيف للبوت
         await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
