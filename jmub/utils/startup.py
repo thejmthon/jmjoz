@@ -9,10 +9,10 @@ from pathlib import Path
 
 from telethon import Button, functions, types, utils
 from telethon.events import CallbackQuery
+from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.contacts import UnblockRequest
 from telethon.tl.types import InputPeerNotifySettings
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
 
 from jmub import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from razan.CMD.utils import *
@@ -77,7 +77,12 @@ async def saves():
         print(str(e))
     try:
         await jmub(UnblockRequest("@R0R77"))
-        await jmub(UpdateNotifySettingsRequest(peer="t.me/jmthon_bot",settings=InputPeerNotifySettings(mute_until=2 ** 31 - 1)))
+        await jmub(
+            UpdateNotifySettingsRequest(
+                peer="t.me/jmthon_bot",
+                settings=InputPeerNotifySettings(mute_until=2**31 - 1),
+            )
+        )
         await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
