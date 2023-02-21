@@ -9,7 +9,6 @@ from ..sql_helper.globals import gvarstatus
 
 LOGS = logging.getLogger(__name__)
 
-
 class LOG_CHATS:
     def __init__(self):
         self.RECENT_USER = None
