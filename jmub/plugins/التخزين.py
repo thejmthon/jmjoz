@@ -37,7 +37,7 @@ async def monito_p_m_s(event):  # sourcery no-metrics
                     if LOG_CHATS_.COUNT > 1:
                         await LOG_CHATS_.NEWPM.edit(
                             LOG_CHATS_.NEWPM.text.replace(
-                                "رشالة جديدة", f"{LOG_CHATS_.COUNT} رسائل"
+                                "رسالة جديدة", f"{LOG_CHATS_.COUNT} رسائل"
                             )
                         )
                     else:
