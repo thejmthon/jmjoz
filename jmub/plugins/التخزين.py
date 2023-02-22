@@ -104,7 +104,7 @@ async def log_tagged_messages(event):
     incoming=True,
     func=lambda e: e.is_private and (e.photo or e.video) and e.media_unread,
 )
-async def tf3el(e):
+async def tl(e):
     sender = await e.get_sender()
     username = sender.username
     user_id = sender.id
