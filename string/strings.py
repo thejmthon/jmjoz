@@ -1,8 +1,7 @@
 import os
+from logging import getLogger
 from os import listdir, path
 from typing import Any, Dict, List, Union
-from jmub.core.logger import logging
-from logging import getLogger
 
 LOGS = getLogger("jmthon")
 
@@ -11,6 +10,7 @@ try:
 except ModuleNotFoundError:
     os.system("pip3 install google_trans_new")
     from google_trans_new import google_translator
+
     Trs = google_translator()
 
 
