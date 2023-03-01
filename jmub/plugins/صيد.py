@@ -8,14 +8,16 @@ import telethon
 from telethon.sync import functions
 from user_agent import generate_user_agent
 
-from ..sql_helper.globals import addgvar, gvarstatus, delgvar
 from jmub import jmub
+
+from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 
 a = "qwertyuiopassdfghjklzxcvbnm"
 b = "1234567890"
 e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
 trys, trys2 = [0], [0]
+
 
 def check_user(username):
     url = "https://t.me/" + str(username)
