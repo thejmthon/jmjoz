@@ -10,13 +10,13 @@ from user_agent import generate_user_agent
 
 from jmub import jmub
 
+from ..sql_helper.globals import addgvar, delgvar, gvarstatus
+
 a = "qwertyuiopassdfghjklzxcvbnm"
 b = "1234567890"
 e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
 trys, trys2 = [0], [0]
-isclaim = ["off"]
-isauto = ["off"]
 
 
 def check_user(username):
@@ -153,8 +153,8 @@ async def hunterusername(event):
             await jmub.send_message(
                 event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
             )
-    isclaim.clear()
-    isclaim.append("on")
+    delgvar("isclaim")
+    addgvar("isclaim", "True")
     for i in range(19000000):
         username = gen_user(choice)
         if username == "error":
@@ -198,8 +198,7 @@ async def hunterusername(event):
         else:
             pass
         trys[0] += 1
-    isclaim.clear()
-    isclaim.append("off")
+    delgvar("isclaim")
     await event.client.send_message(event.chat_id, "**- تم بنجاح الانتهاء من الصيد**")
 
 
@@ -223,8 +222,8 @@ async def _(event):
             await jmub.send_message(
                 event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
             )
-    isauto.clear()
-    isauto.append("on")
+    delgvar("isauto")
+    addgvar("isauto", "True")
     username = str(msg[1])
 
     for i in range(1000000000000):
@@ -262,16 +261,15 @@ async def _(event):
         trys2[0] += 1
 
         await asyncio.sleep(1.3)
-    isclaim.clear()
-    isclaim.append("off")
+    delgvar("isauto")
     await jmub.send_message(event.chat_id, "**- تم الانتهاء من التثبيت بنجاح**")
 
 
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
-    if "on" in isclaim:
+    if gvarstatus("isclaim"):
         await event.edit(f"**- الصيد وصل لـ({trys[0]}) **من المحاولات")
-    elif "off" in isclaim:
+    elif gvarstatus("isclaim") is None:
         await event.edit("**- الصيد بالاصل لا يعمل .**")
     else:
         await event.edit("- لقد حدث خطأ ما وتوقف الامر لديك")
@@ -279,9 +277,9 @@ async def _(event):
 
 @jmub.ar_cmd(pattern="حالة التثبيت")
 async def _(event):
-    if "on" in isauto:
+    if gvarstatus("isauto"):
         await event.edit(f"**- التثبيت وصل لـ({trys2[0]}) من المحاولات**")
-    elif "off" in isauto:
+    elif gvarstatus("isauto") is None:
         await event.edit("**- التثبيت بالاصل لا يعمل .**")
     else:
         await event.edit("-لقد حدث خطأ ما وتوقف الامر لديك")
