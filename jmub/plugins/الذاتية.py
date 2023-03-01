@@ -1,6 +1,8 @@
 from telethon import events
-from ..sql_helper.globals import addgvar, gvarstatus, delgvar
+
 from jmub import jmub
+
+from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 
 # ها ولك جاي تخمط خرب عقلك اي والله 😂🏃
 
@@ -8,10 +10,13 @@ from jmub import jmub
 @jmub.ar_cmd(pattern="تفعيل الذاتية")
 async def start_datea(event):
     if gvarstatus("DATEA") is None:
-        return await edit_or_reply(event, "- تم بنجاح تفعيل حفظ الميديا الذاتية من الان")
+        return await edit_or_reply(
+            event, "- تم بنجاح تفعيل حفظ الميديا الذاتية من الان"
+        )
         addgvar("DATEA", "True")
     else:
         await edit_or_reply(event, "حفظ الذاتية مفعل بالأًصل")
+
 
 @jmub.ar_cmd(pattern="تعطيل الذاتية")
 async def stop_datea(event):
