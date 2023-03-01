@@ -10,21 +10,21 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 @jmub.ar_cmd(pattern="تفعيل الذاتية")
 async def start_datea(event):
     if gvarstatus("DATEA"):
-        return await edit_or_reply(
-            event, "حفظ الذاتية مفعل بالأًصل"
-        )
+        return await edit_or_reply(event, "حفظ الذاتية مفعل بالأًصل")
     else:
         await edit_or_reply(event, "- تم بنجاح تفعيل حفظ الميديا الذاتية من الان")
         addgvar("DATEA", "True")
-        
+
+
 @jmub.ar_cmd(pattern="تعطيل الذاتية")
 async def stop_datea(event):
     if gvarstatus("DATEA"):
-        return await edit_or_reply(event, "- تم بنجاح تعطيل حفظ الميديا الذاتية من الان")
+        return await edit_or_reply(
+            event, "- تم بنجاح تعطيل حفظ الميديا الذاتية من الان"
+        )
         delgvar("DATEA")
     else:
         await edit_or_reply(event, "حفظ الذاتية غير مفعل بالأًصل")
-        
 
 
 @jmub.on(
