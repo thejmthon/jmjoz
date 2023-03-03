@@ -12,7 +12,7 @@ from .helpers.functions.musictool import *
 from .helpers.utils.utils import runasync
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-__version__ = "3.3.0"
+__version__ = "3.2.0"
 __license__ = "GNU Affero General Public License v3.0"
 __author__ = "سورس جمثون <https://github.com/jmthonen/jmub0>"
 __copyright__ = f" حقوق سورس جمثون (C) 2020 - 2022  {__author__}"
@@ -24,7 +24,7 @@ bot = jmub
 tbot = tgbot
 
 StartTime = time.time()
-jmthonversion = "2.1.2"
+jmthonversion = "2.1.3"
 
 
 def close_connection(*_):
