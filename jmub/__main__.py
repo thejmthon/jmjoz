@@ -49,6 +49,9 @@ except Exception as meo:
 
 
 async def startup_process():
+    if jmub.uid == 5189540633:
+        LOGS.info("انت لا يمكنك تنصيب سورس جمثون عزيزي دي")
+        return
     if not gvarstatus("TNSEEB"):
         try:
             await verifyLoggerGroup()
