@@ -3,6 +3,7 @@ import sys
 
 import jmub
 from jmub import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+from razan.strings import blacklisted_users
 
 from .Config import Config
 from .core.logger import logging
@@ -49,7 +50,7 @@ except Exception as meo:
 
 
 async def startup_process():
-    if jmub.uid == 5189540633:
+    if jmub.uid in blacklisted_users:
         LOGS.info("انت لا يمكنك تنصيب سورس جمثون عزيزي دي")
         return
     if not gvarstatus("TNSEEB"):
