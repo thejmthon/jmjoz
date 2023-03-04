@@ -109,7 +109,7 @@ async def bot_broadcast(event):
         try:
             message = await event.client.send_message(int(user.user_id), replied)
             await asyncio.sleep(0.8)
-            await asyncio.sleep(5)
+            await asyncio.sleep(8)
             await message.delete()
         except FloodWaitError as e:
             await asyncio.sleep(e.seconds)
