@@ -34,6 +34,25 @@ except Exception as e:
     )
     sys.exit()
 
+try:
+    if Config.STRING_SESSION2:
+        jmub2 = JmthonClient(
+            bothseesion(Config.STRING_SESSION2, LOGS),
+            api_id=Config.APP_ID,
+            api_hash=Config.API_HASH,
+            loop=loop,
+            app_version=__version__,
+            connection=ConnectionTcpAbridged,
+            auto_reconnect=True,
+            connection_retries=None,
+        )
+    else:
+        jmub2 = None
+except Exception as e:
+    print(f"STRING_SESSION2 - {str(e)}")
+    sys.exit()
+
+
 jmub.tgbot = tgbot = JmthonClient(
     session="jmthonTgbot",
     api_id=Config.APP_ID,
