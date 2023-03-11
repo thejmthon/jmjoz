@@ -1,3 +1,5 @@
+import asyncio
+
 from telethon import functions
 from telethon.tl import functions
 from telethon.tl.functions.channels import InviteToChannelRequest
@@ -9,8 +11,7 @@ from ..core.managers import edit_delete, edit_or_reply
 
 @jmub.ar_cmd(pattern="انضمام ([\s\S]*)")
 async def lol(event):
-    a = event.text
-    bol = a[5:]
+    bol = event.pattern_match.group(1)
     sweetie = "- جاري الانضمام الى المجموعة انتظر قليلا  ."
     await event.reply(sweetie, parse_mode=None, link_preview=None)
     try:
@@ -82,6 +83,7 @@ async def get_users(event):
             await jmub.edit(
                 f"**▾∮تتم الأضافة **\n\n• اضيف `{s}` \n•  خطأ بأضافة `{f}` \n\n**× اخر خطأ:** `{error}`"
             )
+            await asyncio.sleep(60)
         except Exception as e:
             error = str(e)
             f = f + 1

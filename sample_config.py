@@ -19,6 +19,7 @@ class Config(object):
     DB_URI = os.environ.get("DATABASE_URL", None)
     # كود تيرمكس باستخدام امر python3 stringsetup.py او من موقع https://replit.com/@JMTHONAR/stringsession
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
+    STRING_SESSION2 = os.environ.get("STRING_SESSION2", None)
     # معرف و توكن بوتك
     TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN") or os.environ.get(
         "TG_BOT_TOKEN_BF_HER", None
