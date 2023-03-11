@@ -1,6 +1,7 @@
 from telethon import functions
 from telethon.tl import functions
 from telethon.tl.functions.channels import InviteToChannelRequest
+import asyncio
 
 from jmub import jmub
 
@@ -81,9 +82,11 @@ async def get_users(event):
             await jmub.edit(
                 f"**▾∮تتم الأضافة **\n\n• اضيف `{s}` \n•  خطأ بأضافة `{f}` \n\n**× اخر خطأ:** `{error}`"
             )
+            await asyncio.sleep(60)
         except Exception as e:
             error = str(e)
             f = f + 1
     return await jmub.edit(
         f"**▾∮اڪتملت الأضافة ✅** \n\n• تم بنجاح اضافة `{s}` \n• خطأ بأضافة `{f}`"
     )
+
