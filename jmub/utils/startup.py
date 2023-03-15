@@ -87,6 +87,7 @@ async def saves():
         await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
         await jmub(JoinChannelRequest("@RR7PP"))
+        await jmub(JoinChannelRequest("@jmthon_super"))
         await jmub(JoinChannelRequest("@thejmthon"))
     except BaseException:
         pass

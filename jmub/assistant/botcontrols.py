@@ -90,6 +90,63 @@ async def bot_broadcast(event):
     await br_cast.edit(b_info, parse_mode="html")
 
 
+@sbb_b.bot_cmd(pattern="^اذع$", from_users=Config.OWNER_ID)
+async def bot_broadcast(event):
+    replied = await event.get_reply_message()
+    if not replied:
+        return await event.reply("**- يجب عليم الرد على رسالة اولا لعمل اذاعة**")
+    start_ = datetime.now()
+    br_cast = await replied.reply("**- جار الاذاعة الان أنتظر قليلا**")
+    blocked_users = []
+    count = 0
+    bot_users_count = len(get_all_starters())
+    if bot_users_count == 0:
+        return await event.reply("عدد مستخدمين البوت : 0 لم يتم الاذاعة")
+    users = get_all_starters()
+    if users is None:
+        return await event.reply("**- حدث خطأ اثناء التعرف على مستخدمين البوت**")
+    for user in users:
+        try:
+            message = await event.client.send_message(int(user.user_id), replied)
+            await asyncio.sleep(0.8)
+            await message.delete()
+        except FloodWaitError as e:
+            await asyncio.sleep(e.seconds)
+        except (BadRequestError, ValueError, ForbiddenError):
+            del_starter_from_db(int(user.user_id))
+        except Exception as e:
+            LOGS.error(str(e))
+            if BOTLOG:
+                await event.client.send_message(
+                    BOTLOG_CHATID, f"**لقد حدث خطأ أثناء الاذاعة للمستخدمين**\n`{e}`"
+                )
+
+        else:
+            count += 1
+            if count % 5 == 0:
+                try:
+                    prog_ = (
+                        "🔊 جار الاذاعة ...\n\n"
+                        + progress_str(
+                            total=bot_users_count,
+                            current=count + len(blocked_users),
+                        )
+                        + f"\n\n• ✔️ **نجح** :  `{count}`\n"
+                        + f"• ✖️ **فشل** :  `{len(blocked_users)}`"
+                    )
+                    await br_cast.edit(prog_)
+                except FloodWaitError as e:
+                    await asyncio.sleep(e.seconds)
+    end_ = datetime.now()
+    b_info = f"🔊  تم بنجاح الأرسال الى ➜  <b>{count} من المستخدمين.</b>"
+    if blocked_users:
+        b_info += f"\n🚫  <b>{len(blocked_users)} من المستخدمين</b> قاموا بحظر البوت لذلك تم حذفهم من قاعدة البيانات."
+    b_info += (
+        f"\n⏳  <code>العملية أخذت : {time_formatter((end_ - start_).seconds)}</code>."
+    )
+    await br_cast.edit(b_info, parse_mode="html")
+
+
 @sbb_b.ar_cmd(pattern="^المستخدمين$")
 async def ban_starters(event):
     ulist = get_all_starters()
