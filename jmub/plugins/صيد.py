@@ -10,13 +10,13 @@ from user_agent import generate_user_agent
 
 from jmub import jmub
 
-from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-
 a = "qwertyuiopassdfghjklzxcvbnm"
 b = "1234567890"
 e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
 trys, trys2 = [0], [0]
+isclaim = ["off"]
+isauto = ["off"]
 
 
 def check_user(username):
@@ -132,29 +132,22 @@ async def _(event):
 
 @jmub.ar_cmd(pattern="صيد (.*)")
 async def hunterusername(event):
-    msg = event.text.split()
-    choice = str(msg[1])
+    choice = str(event.pattern_match.group(1))
     try:
-        ch = str(msg[2])
-        if "@" in ch:
-            ch = ch.replace("@", "")
-        await event.edit(f"حسناً سيتم بدء الصيد في @{ch} .")
-    except:
-        try:
-            ch = await jmub(
-                functions.channels.CreateChannelRequest(
-                    title="JMTHON HUNTER - صيد جمثون",
-                    about="This channel to hunt username by - @jmthon ",
-                )
+        ch = await jmub(
+            functions.channels.CreateChannelRequest(
+                title="JMTHON HUNTER - صيد جمثون",
+                 about="This channel to hunt username by - @jmthon ",
             )
-            ch = ch.updates[1].channel_id
-            await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
-        except Exception as e:
-            await jmub.send_message(
-                event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
-            )
-    delgvar("isclaim")
-    addgvar("isclaim", "True")
+        )
+        ch = ch.updates[1].channel_id
+        await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+    except Exception as e:
+        await jmub.send_message(
+            event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
+        )
+    isclaim.clear()
+    isclaim.append("on")
     for i in range(19000000):
         username = gen_user(choice)
         if username == "error":
@@ -169,8 +162,8 @@ async def hunterusername(event):
                     )
                 )
                 await event.client.send_message(
-                    event.chat_id,
-                    f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !\n- Hunting Log {trys2[0]}",
+                    ch,
+                    f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !",
                 )
                 break
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
@@ -198,8 +191,9 @@ async def hunterusername(event):
         else:
             pass
         trys[0] += 1
-    delgvar("isclaim")
-    await event.client.send_message(event.chat_id, "**- تم بنجاح الانتهاء من الصيد**")
+    isclaim.clear()
+    isclaim.append("off")
+    await event.client.send_message(ch,"**- تم بنجاح الانتهاء من الصيد**")
 
 
 @jmub.ar_cmd(pattern="تثبيت (.*)")
@@ -222,8 +216,8 @@ async def _(event):
             await jmub.send_message(
                 event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
             )
-    delgvar("isauto")
-    addgvar("isauto", "True")
+    isauto.clear()
+    isauto.append("on")
     username = str(msg[1])
 
     for i in range(1000000000000):
@@ -261,15 +255,16 @@ async def _(event):
         trys2[0] += 1
 
         await asyncio.sleep(1.3)
-    delgvar("isauto")
+    isclaim.clear()
+    isclaim.append("off")
     await jmub.send_message(event.chat_id, "**- تم الانتهاء من التثبيت بنجاح**")
 
 
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
-    if gvarstatus("isclaim"):
+    if "on" in isclaim:
         await event.edit(f"**- الصيد وصل لـ({trys[0]}) **من المحاولات")
-    elif gvarstatus("isclaim") is None:
+    elif "off" in isclaim:
         await event.edit("**- الصيد بالاصل لا يعمل .**")
     else:
         await event.edit("- لقد حدث خطأ ما وتوقف الامر لديك")
@@ -277,9 +272,9 @@ async def _(event):
 
 @jmub.ar_cmd(pattern="حالة التثبيت")
 async def _(event):
-    if gvarstatus("isauto"):
+    if "on" in isauto:
         await event.edit(f"**- التثبيت وصل لـ({trys2[0]}) من المحاولات**")
-    elif gvarstatus("isauto") is None:
+    elif "off" in isauto:
         await event.edit("**- التثبيت بالاصل لا يعمل .**")
     else:
         await event.edit("-لقد حدث خطأ ما وتوقف الامر لديك")
