@@ -137,7 +137,7 @@ async def hunterusername(event):
         ch = await jmub(
             functions.channels.CreateChannelRequest(
                 title="JMTHON HUNTER - صيد جمثون",
-                 about="This channel to hunt username by - @jmthon ",
+                about="This channel to hunt username by - @jmthon ",
             )
         )
         ch = ch.updates[1].channel_id
@@ -193,7 +193,7 @@ async def hunterusername(event):
         trys[0] += 1
     isclaim.clear()
     isclaim.append("off")
-    await event.client.send_message(ch,"**- تم بنجاح الانتهاء من الصيد**")
+    await event.client.send_message(ch, "**- تم بنجاح الانتهاء من الصيد**")
 
 
 @jmub.ar_cmd(pattern="تثبيت (.*)")
