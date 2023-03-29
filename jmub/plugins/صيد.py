@@ -41,7 +41,6 @@ def check_user(username):
 
 
 def gen_user(choice):
-
     if choice == "سداسي حرفين":
         c = d = random.choices(a)
         d = random.choices(b)
@@ -55,14 +54,14 @@ def gen_user(choice):
         s = random.choices(e)
         f = [c[0], "_", d[0], "_", s[0]]
         username = "".join(f)
-        
+
     elif choice == "سداسيات":
         c = d = random.choices(a)
         d = random.choices(e)
         f = [c[0], c[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
         username = "".join(f)
-        
+
     elif choice == "بوتات":
         c = random.choices(a)
         d = random.choices(e)
