@@ -97,7 +97,7 @@ def gen_user(choice):
         random.shuffle(f)
         username = "".join(f)
     else:
-        return "error"
+        raise ValueError("Invalid choice for username generation.")
     return username
 
 
