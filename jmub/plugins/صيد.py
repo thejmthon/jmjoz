@@ -41,6 +41,7 @@ def check_user(username):
 
 
 def gen_user(choice):
+
     if choice == "سداسي حرفين":
         c = d = random.choices(a)
         d = random.choices(b)
@@ -54,25 +55,25 @@ def gen_user(choice):
         s = random.choices(e)
         f = [c[0], "_", d[0], "_", s[0]]
         username = "".join(f)
+        
     elif choice == "سداسيات":
         c = d = random.choices(a)
         d = random.choices(e)
         f = [c[0], c[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
         username = "".join(f)
+        
     elif choice == "بوتات":
         c = random.choices(a)
         d = random.choices(e)
         s = random.choices(e)
         f = [c[0], s[0], d[0]]
-        # random.shuffle(f)
         username = "".join(f)
         username = username + "bot"
 
     elif choice == "خماسي حرفين":
         c = random.choices(a)
         d = random.choices(e)
-
         f = [c[0], d[0], c[0], c[0], d[0]]
         random.shuffle(f)
         username = "".join(f)
@@ -90,12 +91,14 @@ def gen_user(choice):
         f = [c[0], c[0], c[0], c[0], d[0], c[0], c[0]]
         random.shuffle(f)
         username = "".join(f)
+
     elif choice == "تيست":
         c = d = random.choices(a)
         d = random.choices(b)
         f = [c[0], d[0], c[0], d[0], d[0], c[0], c[0], d[0], c[0], d[0]]
         random.shuffle(f)
         username = "".join(f)
+
     else:
         raise ValueError("Invalid choice for username generation.")
     return username
