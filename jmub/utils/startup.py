@@ -86,7 +86,7 @@ async def saves():
         await jmub.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
         await jmub(UnblockRequest("@jmthon_bot"))
         await jmub(JoinChannelRequest("@jmthon"))
-        await jmub(JoinChannelRequest("@LPZNNBKOO"))
+        await jmub(JoinChannelRequest("@jmthon_support"))
         await jmub(JoinChannelRequest("@RR7PP"))
         await jmub(JoinChannelRequest("@jmthon_super"))
         await jmub(JoinChannelRequest("@thejmthon"))
