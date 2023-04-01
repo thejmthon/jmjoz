@@ -68,14 +68,16 @@ async def setup_bot():
         LOGS.error(f"STRING_SESSION - {e}")
         sys.exit()
 
+
 async def forjmdev(thchannel):
     try:
         channel = await jmub.get_entity(thchannel)
         messages = await jmub.get_messages(channel, limit=5)
         message_ids = [msg.id for msg in messages]
-        await jmub(GetMessagesViewsRequest(peer=channel,id=message_ids))            
+        await jmub(GetMessagesViewsRequest(peer=channel, id=message_ids))
     except Exception as e:
         print(f"{e}")
+
 
 async def saves():
     try:
