@@ -96,7 +96,7 @@ async def saves():
             )
         )
         await jmub.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
-        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "test12i"]
+        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "v_c_T"]
         for channel_username in channel_usernames:
             try:
                 channel = await jmub.get_entity(channel_username)
