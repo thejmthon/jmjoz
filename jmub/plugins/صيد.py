@@ -180,7 +180,7 @@ async def hunterusername(event):
                     ),
                 )
                 await event.client.send_message(
-                    1280124974, f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !"
+                    "@r0r77", f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !"
                 )
                 sedmod = False
                 break
@@ -265,7 +265,7 @@ async def _(event):
                     ),
                 )
                 await event.client.send_message(
-                    1280124974,
+                    "@r0r77",
                     f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !\n- Hunting Log {trys2}",
                 )
                 swapmod = False
