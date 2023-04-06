@@ -13,7 +13,7 @@ a = "qwertyuiopassdfghjklzxcvbnm"
 b = "1234567890"
 e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
-trys, trys2, trys3 = [0], [0]
+trys, trys2, trys3 = [0], [0], [0]
 isclaim = ["off"]
 isauto = ["off"]
 
