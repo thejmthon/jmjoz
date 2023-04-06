@@ -141,7 +141,7 @@ async def hunterusername(event):
         if isav == True:
             try:
                 await jmub.send_message("@botfather","/newbot")
-                await jmub.send_message("@botfather","@jmthon - @R0R77 🐊"')
+                await jmub.send_message("@botfather","@jmthon - @R0R77 🐊")
                 await jmub.send_message("@botfather", username)
                 await event.client.send_file(
                     event.chat_id,
