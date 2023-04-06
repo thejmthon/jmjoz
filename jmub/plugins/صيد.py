@@ -151,12 +151,6 @@ async def huntbot(event):
                         username, trys3
                     ),
                 )
-                await event.client.send_file(
-                    ch,
-                    "https://t.me/jmthongif/2",
-                    caption="🐊 jmthon the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ bot ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE KiNgS ❲ @jmthon - @R0R77 ❳ ".format(
-                        username, trys3
-                    ),
                 )
                 await event.client.send_message(
                     "@r0r77", f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !"
