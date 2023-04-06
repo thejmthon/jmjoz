@@ -13,10 +13,9 @@ a = "qwertyuiopassdfghjklzxcvbnm"
 b = "1234567890"
 e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
-trys, trys2 = [0], [0]
+trys, trys2, trys3 = [0], [0]
 isclaim = ["off"]
 isauto = ["off"]
-
 
 def check_user(username):
     url = "https://t.me/" + str(username)
@@ -130,8 +129,72 @@ async def _(event):
     )
 
 
+@jmub.ar_cmd(pattern="صيد بوتات")
+async def hunterusername(event):
+    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+    isclaim.clear()
+    isclaim.append("on")
+    botmod = True
+    while botmod:
+        username = gen_user("بوتات")
+        isav = check_user(username)
+        if isav == True:
+            try:
+                await jmub.send_message("@botfather","/newbot")
+                await jmub.send_message("@botfather","@jmthon - @R0R77 🐊"')
+                await jmub.send_message("@botfather", username)
+                await event.client.send_file(
+                    event.chat_id,
+                    "https://t.me/jmthongif/2",
+                    caption="🐊 jmthon the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ bot ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE KiNgS ❲ @jmthon - @R0R77 ❳ ".format(
+                        username, trys3
+                    ),
+                )
+                await event.client.send_file(
+                    ch,
+                    "https://t.me/jmthongif/2",
+                    caption="🐊 jmthon the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ bot ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE KiNgS ❲ @jmthon - @R0R77 ❳ ".format(
+                        username, trys3
+                    ),
+                )
+                await event.client.send_message(
+                    "@r0r77", f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !"
+                )
+                botmod = False
+                break
+            except telethon.errors.rpcerrorlist.UsernameInvalidError:
+                pass
+            except telethon.errors.FloodError as e:
+                await jmub.send_message(
+                    event.chat_id,
+                    f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**",
+                )
+                botmod = False
+                break
+            except Exception as eee:
+                if "the username is already" in str(eee):
+                    pass
+                if "USERNAME_PURCHASE_AVAILABLE" in str(eee):
+                    pass
+                else:
+                    await jmub.send_message(
+                        event.chat_id,
+                        f"""- خطأ مع @{username} , الخطأ :{str(eee)}""",
+                    )
+                    botmod = False
+                    break
+        else:
+            pass
+        trys3[0] += 1
+    isclaim.clear()
+    isclaim.append("off")
+
+
+
 @jmub.ar_cmd(pattern="صيد (.*)")
 async def hunterusername(event):
+    if event.text[1:].startswith("صيد بوتات"):
+        return
     choice = str(event.pattern_match.group(1))
     await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
 
@@ -300,7 +363,7 @@ async def _(event):
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
     if "on" in isclaim:
-        await event.edit(f"**- الصيد وصل لـ(c) **من المحاولات")
+        await event.edit(f"**- الصيد وصل لـ({trys2[0]}) **من المحاولات")
     elif "off" in isclaim:
         await event.edit("**- الصيد بالاصل لا يعمل .**")
     else:
