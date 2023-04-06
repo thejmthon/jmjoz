@@ -17,6 +17,7 @@ trys, trys2, trys3 = [0], [0]
 isclaim = ["off"]
 isauto = ["off"]
 
+
 def check_user(username):
     url = "https://t.me/" + str(username)
     headers = {
@@ -140,8 +141,8 @@ async def hunterusername(event):
         isav = check_user(username)
         if isav == True:
             try:
-                await jmub.send_message("@botfather","/newbot")
-                await jmub.send_message("@botfather","@jmthon - @R0R77 🐊"')
+                await jmub.send_message("@botfather", "/newbot")
+                await jmub.send_message("@botfather", "@jmthon - @R0R77 🐊")
                 await jmub.send_message("@botfather", username)
                 await event.client.send_file(
                     event.chat_id,
@@ -188,7 +189,6 @@ async def hunterusername(event):
         trys3[0] += 1
     isclaim.clear()
     isclaim.append("off")
-
 
 
 @jmub.ar_cmd(pattern="صيد (.*)")
