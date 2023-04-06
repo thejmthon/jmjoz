@@ -19,10 +19,10 @@ async def start_datea(event):
 @jmub.ar_cmd(pattern="تعطيل الذاتية")
 async def stop_datea(event):
     if gvarstatus("DATEA"):
+        delgvar("DATEA")
         return await edit_or_reply(
             event, "- تم بنجاح تعطيل حفظ الميديا الذاتية من الان"
         )
-        delgvar("DATEA")
     else:
         await edit_or_reply(event, "حفظ الذاتية غير مفعل بالأًصل")
 

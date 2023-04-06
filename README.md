@@ -62,7 +62,7 @@
 * سيكون شكل قاعده البيانات كـالتالي و تبدل كلمة pass مع الباسوورد الذي وضعته وكلمة jmthon مع اسم القاعدة التي وضعتها 
 - ` postgresql://postgres:pass@localhost:5432/jmthon`
 
-- `git clone https://github.com/thejmthon/jmub0` 
+- `git clone https://github.com/thejmthon/jmub` 
 
 - `cd jmub0`
 
