@@ -131,7 +131,7 @@ async def _(event):
 
 
 @jmub.ar_cmd(pattern="صيد بوتات")
-async def hunterusername(event):
+async def huntbot(event):
     await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
     isclaim.clear()
     isclaim.append("on")
