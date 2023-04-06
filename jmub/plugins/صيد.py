@@ -151,7 +151,6 @@ async def huntbot(event):
                         username, trys3
                     ),
                 )
-                )
                 await event.client.send_message(
                     "@r0r77", f"- Done : @{username} !\n- By : @R0R77 - @JMTHON !"
                 )
