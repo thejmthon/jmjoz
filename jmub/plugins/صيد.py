@@ -134,7 +134,6 @@ async def _(event):
 async def hunterusername(event):
     choice = str(event.pattern_match.group(1))
     await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
-
     try:
         ch = await jmub(
             functions.channels.CreateChannelRequest(
@@ -300,7 +299,7 @@ async def _(event):
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
     if "on" in isclaim:
-        await event.edit(f"**- الصيد وصل لـ({trys2[0]}) **من المحاولات")
+        await event.edit(f"**- الصيد وصل لـ({trys[0]}) **من المحاولات")
     elif "off" in isclaim:
         await event.edit("**- الصيد بالاصل لا يعمل .**")
     else:
