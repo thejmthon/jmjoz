@@ -88,6 +88,7 @@ async def _(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"CEHKUSERNAME")))
+@check_owner
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات اوامر الصيد وبوت وعد:",
@@ -116,6 +117,7 @@ async def _(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"VARJMTHON")))
+@check_owner
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات الفارات:",
@@ -131,6 +133,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"namevar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الاسم والبايو والخ:",
@@ -153,6 +156,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"symnamvar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -172,6 +176,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"phovarlok")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -194,6 +199,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"AOMRDB")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """اهلا بك في قائمة اوامر سورس جمثون هذه بعض المعلومات عن جمثون:
@@ -213,6 +219,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"biolokvar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -233,6 +240,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"numlokvar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -257,6 +265,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"nameprvr")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات البروفايل
@@ -277,6 +286,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"pmvars")))
+@check_owner
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الحماية:",
@@ -296,6 +306,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"banklish")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -316,6 +327,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"warnvars")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -335,6 +347,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"pmvarkish")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -355,6 +368,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"picpmvar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الحماية
@@ -376,6 +390,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"alivevar")))
+@check_owner
 async def varssett(event):
     await event.edit(
         "من هنا يمكنك عرض شروحات فارات الفحص:",
@@ -392,6 +407,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"picvars")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الفحص
@@ -412,6 +428,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"kleshalive")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """ نوع الفار: فارات الفحص
@@ -431,6 +448,7 @@ async def varssett(event):
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"rmzalive")))
+@check_owner
 async def varssett(event):
     await event.edit(
         """نوع الفار: فارات الفحص
