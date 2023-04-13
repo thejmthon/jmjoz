@@ -1,6 +1,5 @@
-from telethon import events
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
 from jmub import jmub
+
 from ..Config import Config
 
 
@@ -12,7 +11,9 @@ async def forward_to_saved_messages(event):
         return
     if event.is_group:
         if is_morakb(event.sender_id) and not event.forward:
-            await event.client.forward_messages(Config.PM_LOGGER_GROUP_ID, event.message)
+            await event.client.forward_messages(
+                Config.PM_LOGGER_GROUP_ID, event.message
+            )
 
 
 @jmub.ar_cmd(pattern=r"متابعة")
@@ -22,10 +23,10 @@ async def add_morakb_handler(event):
     user = await jmub.get_entity(username)
     replied_user = user.id
     if is_morakb(replied_user):
-        await event.reply('هذا المستخدم في قائمة المتابعة في الاصل.')
+        await event.reply("هذا المستخدم في قائمة المتابعة في الاصل.")
     else:
         addmorakb(replied_user)
-        await event.reply('تم بنجاح اضافة المستخدمالى قائمة المتابعة بنجاح.')
+        await event.reply("تم بنجاح اضافة المستخدمالى قائمة المتابعة بنجاح.")
 
 
 @jmub.ar_cmd(pattern=r"الغاء متابعة")
@@ -35,9 +36,7 @@ async def remove_morakb_handler(event):
     user = await jmub.get_entity(username)
     replied_user = user.id
     if not is_morakb(replied_user):
-        await event.reply('هذا المستخدم ليس في قائمة المتابعة في الاصل.')
+        await event.reply("هذا المستخدم ليس في قائمة المتابعة في الاصل.")
     else:
         unmorakb(replied_user)
-        await event.reply('تم بنجاح الغاء متابعة المستخدم.')
-
-
+        await event.reply("تم بنجاح الغاء متابعة المستخدم.")
