@@ -24,7 +24,7 @@ bot = jmub
 tbot = tgbot
 
 StartTime = time.time()
-jmthonversion = "2.1.3"
+jmthonversion = "2.1.1"
 
 
 def close_connection(*_):
