@@ -9,7 +9,7 @@ async def handle_creation_command(event):
     msg = event.text.split()
     msg[1]
     chat = "@creationdatebot"
-    response = await jmub.send_message('creationdatebot', f'/id {username}')
+    response = await jmub.send_message("creationdatebot", f"/id {username}")
     async with event.client.conversation(chat) as conv:
         try:
             await event.client.send_message(chat, "/id {username}")
