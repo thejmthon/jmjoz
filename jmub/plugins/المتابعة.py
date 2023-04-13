@@ -1,5 +1,6 @@
 from jmub import jmub
-
+from telethon import events
+from jmub.sql_helper.MOrakb import *
 from ..Config import Config
 
 
