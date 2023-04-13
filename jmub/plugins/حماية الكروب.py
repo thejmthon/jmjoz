@@ -121,6 +121,8 @@ async def _(event):
 
 @jmub.ar_cmd(pattern="فتح ?(.*)", groups_only=True, require_admin=True)
 async def _(event):
+    if event.text[1:].startswith("فتح تعديل الميديا"):
+        return
     input_str = event.pattern_match.group(1)
     chat_id = event.chat_id
     if not event.is_group:
