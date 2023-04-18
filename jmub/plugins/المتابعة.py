@@ -1,8 +1,9 @@
 from jmub import jmub
 from jmub.sql_helper.MOrakb import *
-#from jmub.sql_helper.mo5zn import *
 
 from ..Config import Config
+
+# from jmub.sql_helper.mo5zn import *
 
 
 @jmub.ar_cmd(incoming=True, func=lambda e: e.is_group, edited=False, forword=None)
@@ -16,6 +17,8 @@ async def forward_to_saved_messages(event):
             await event.client.forward_messages(
                 Config.PM_LOGGER_GROUP_ID, event.message
             )
+
+
 """
 @jmub.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=False, forword=None)
 async def forward_to_saved_messages(event):
@@ -52,6 +55,7 @@ async def remove_morakb_handler(event):
 
 
 """
+
 
 @jmub.ar_cmd(pattern=r"متابعة")
 async def add_morakb_handler(event):
