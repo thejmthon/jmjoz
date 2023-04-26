@@ -1,23 +1,17 @@
+import asyncio
 import os
+import re
 import zipfile
 from random import choice
 from textwrap import wrap
 from uuid import uuid4
 
 import requests
-from PIL import Image, ImageOps
-from telethon import functions, types
-
-from ..utils.extdl import install_pip
-
-try:
-    from imdb import IMDb
-except ModuleNotFoundError:
-    install_pip("IMDbPY")
-    from imdb import IMDb
-
+from googletrans import Translator
 from html_telegraph_poster import TelegraphPoster
-from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
+from imdb import Cinemagoer
+from PIL import Image, ImageColor, ImageDraw, ImageFilter, ImageFont, ImageOps
+from telethon import functions, types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.contacts import UnblockRequest as unblock
 
@@ -27,7 +21,7 @@ from ...sql_helper.globals import gvarstatus
 from ..resources.states import states
 
 LOGS = logging.getLogger(__name__)
-imdb = IMDb()
+imdb = Cinemagoer()
 
 mov_titles = [
     "long imdb title",
@@ -72,18 +66,14 @@ def rand_key():
     return str(uuid4())[:8]
 
 
-async def sanga_seperator(sanga_list):
-    for i in sanga_list:
-        if i.startswith("🔗"):
-            sanga_list.remove(i)
-    s = 0
-    for i in sanga_list:
-        if i.startswith("Username History"):
-            break
-        s += 1
-    usernames = sanga_list[s:]
-    names = sanga_list[:s]
-    return names, usernames
+def sanga_seperator(sanga_list):
+    string = ""
+    for info in sanga_list:
+        string += info[info.find("\n") + 1 :]
+    string = re.sub(r"^$\n", "", string, flags=re.MULTILINE)
+    name, username = string.split("Usernames**")
+    name = name.split("Names")[1]
+    return name, username
 
 
 # covid india data
@@ -108,6 +98,17 @@ async def post_to_telegraph(
         text=html_format_content,
     )
     return f"https://graph.org/{post_page['path']}"
+
+
+async def GetStylesGraph():
+    html = "".join(
+        [
+            f'<h2>{i["name"]}:</h2> <pre>{i["id"]}</pre><br/><img src="{i["photo_url"]}">⁪⁬⁮⁮⁮⁮'
+            for i in requests.get("https://paint.api.wombo.ai/api/styles").json()
+            if i["is_premium"] == False
+        ]
+    )
+    return await post_to_telegraph("List Of ArtStyles", html)
 
 
 # --------------------------------------------------------------------------------------------------------------------#
@@ -168,15 +169,15 @@ async def clippy(borg, msg, chat_id, reply_to_id):
 
 async def hide_inlinebot(borg, bot_name, text, chat_id, reply_to_id, c_lick=0):
     sticcers = await borg.inline_query(bot_name, f"{text}.")
-    Jmthon = await sticcers[c_lick].click("me", hide_via=True)
-    if Jmthon:
-        await borg.send_file(int(chat_id), Jmthon, reply_to=reply_to_id)
-        await Jmthon.delete()
+    jmthon = await sticcers[c_lick].click("me", hide_via=True)
+    if jmthon:
+        await borg.send_file(int(chat_id), jmthon, reply_to=reply_to_id)
+        await jmthon.delete()
 
 
 async def make_inline(text, borg, chat_id, reply_to_id):
-    Jmthoninput = f"Inline buttons {text}"
-    results = await borg.inline_query(Config.TG_BOT_USERNAME, Jmthoninput)
+    jmthoninput = f"Inline buttons {text}"
+    results = await borg.inline_query(Config.TG_BOT_USERNAME, jmthoninput)
     await results[0].click(chat_id, reply_to=reply_to_id)
 
 
@@ -213,6 +214,19 @@ async def unzip(downloaded_file_name):
     return f"{downloaded_file_name}.gif"
 
 
+# https://github.com/ssut/py-googletrans/issues/234#issuecomment-722379788
+async def getTranslate(text, **kwargs):
+    translator = Translator()
+    result = None
+    for _ in range(10):
+        try:
+            result = translator.translate(text, **kwargs)
+        except Exception:
+            translator = Translator()
+            await asyncio.sleep(0.1)
+    return result
+
+
 def reddit_thumb_link(preview, thumb=None):
     for i in preview:
         if "width=216" in i:
@@ -227,6 +241,43 @@ def reddit_thumb_link(preview, thumb=None):
 
 
 # ----------------------------------------------## Image ##------------------------------------------------------------#
+
+
+def format_image(filename):
+    img = Image.open(filename).convert("RGBA")
+    w, h = img.size
+    if w != h:
+        _min, _max = min(w, h), max(w, h)
+        bg = img.crop(
+            ((w - _min) // 2, (h - _min) // 2, (w + _min) // 2, (h + _min) // 2)
+        )
+        bg = bg.filter(ImageFilter.GaussianBlur(5))
+        bg = bg.resize((_max, _max))
+        img_new = Image.new("RGBA", (_max, _max), (255, 255, 255, 0))
+        img_new.paste(
+            bg, ((img_new.width - bg.width) // 2, (img_new.height - bg.height) // 2)
+        )
+        img_new.paste(img, ((img_new.width - w) // 2, (img_new.height - h) // 2))
+        img = img_new
+    img.save(filename)
+
+
+async def wall_download(piclink, query, ext=".jpg"):
+    try:
+        if not os.path.isdir("./temp"):
+            os.mkdir("./temp")
+        picpath = f"./temp/{query.title().replace(' ', '')}{ext}"
+        if os.path.exists(picpath):
+            i = 1
+            while os.path.exists(picpath) and i < 11:
+                picpath = f"./temp/{query.title().replace(' ', '')}-{i}{ext}"
+                i += 1
+        with open(picpath, "wb") as f:
+            f.write(requests.get(piclink).content)
+        return picpath
+    except Exception as e:
+        LOGS.info(str(e))
+        return None
 
 
 def ellipse_create(filename, size, border):
@@ -386,7 +437,7 @@ def higlighted_text(
             )
             source_img = Image.alpha_composite(source_img, trans)
             output_text.append(list_text[i])
-        output_img = f"./temp/Jmthon{pic_no}.jpg"
+        output_img = f"./temp/jmthon{pic_no}.jpg"
         output.append(output_img)
         source_img.save(output_img, "png")
         if album_limit and (album_limit - 1) == pic_no:
@@ -437,7 +488,7 @@ async def waifutxt(text, chat_id, reply_to_id, bot):
         63,
     ]
     sticcers = await bot.inline_query("stickerizerbot", f"#{choice(animus)}{text}")
-    Jmthon = await sticcers[0].click("me", hide_via=True)
-    if Jmthon:
-        await bot.send_file(int(chat_id), Jmthon, reply_to=reply_to_id)
-        await Jmthon.delete()
+    jmthon = await sticcers[0].click("me", hide_via=True)
+    if jmthon:
+        await bot.send_file(int(chat_id), jmthon, reply_to=reply_to_id)
+        await jmthon.delete()
