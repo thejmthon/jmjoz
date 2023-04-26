@@ -1,4 +1,6 @@
 Telethon==1.25.2
+apscheduler
+selenium
 telethon-session-sqlalchemy
 setuptools
 wheel
