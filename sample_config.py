@@ -50,6 +50,7 @@ class Config(object):
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
     # فار كروبك الخاص هنا تخلي ايدي الكروب عبر امر .الايدي
     PRIVATE_GROUP_ID = int(os.environ.get("PRIVATE_GROUP_ID") or 0)
+    CHROME_BIN = os.environ.get("CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
     FBAN_GROUP_ID = int(os.environ.get("FBAN_GROUP_ID") or 0)
     # فار كروبك الخاص هنا تخلي ايدي الكروب عبر امر .الايدي
     PRIVATE_CHANNEL_BOT_API_ID = int(os.environ.get("PRIVATE_CHANNEL_BOT_API_ID") or 0)
