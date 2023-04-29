@@ -53,7 +53,9 @@ def generate_edited_response(input_text, instructions):
         )
         edited_text = response.choices[0].text.strip()
     except Exception as e:
-        edited_text = f"خطا في الأستجابة للرسالة المعدلة من الذكاء الأسطناعي: `{str(e)}`"
+        edited_text = (
+            f"خطا في الأستجابة للرسالة المعدلة من الذكاء الأسطناعي: `{str(e)}`"
+        )
     return edited_text
 
 
