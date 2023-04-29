@@ -11,6 +11,7 @@ cfscrape
 cloudscraper
 cowpy
 colour
+fake_useragent
 cryptg
 csvfaker
 fontTools
