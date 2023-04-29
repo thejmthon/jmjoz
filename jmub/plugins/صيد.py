@@ -4,8 +4,8 @@ import random
 
 import requests
 import telethon
+from fake_useragent import UserAgent
 from telethon.sync import functions
-from user_agent import generate_user_agent
 
 from jmub import jmub
 
@@ -20,14 +20,17 @@ isauto = ["off"]
 
 def check_user(username):
     url = "https://t.me/" + str(username)
+    ua = UserAgent()
     headers = {
-        "User-Agent": generate_user_agent(),
+        "User-Agent": ua.random,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "Accept-Encoding": "gzip, deflate, br",
         "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
     }
 
-    response = requests.get(url, headers=headers)
+    session = requests.Session()
+    response = session.get(url, headers=headers)
+
     if (
         response.text.find(
             'If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"'

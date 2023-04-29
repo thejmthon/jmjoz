@@ -50,6 +50,7 @@ class Config(object):
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
     # فار كروبك الخاص هنا تخلي ايدي الكروب عبر امر .الايدي
     PRIVATE_GROUP_ID = int(os.environ.get("PRIVATE_GROUP_ID") or 0)
+    CHROME_BIN = os.environ.get("CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
     FBAN_GROUP_ID = int(os.environ.get("FBAN_GROUP_ID") or 0)
     # فار كروبك الخاص هنا تخلي ايدي الكروب عبر امر .الايدي
     PRIVATE_CHANNEL_BOT_API_ID = int(os.environ.get("PRIVATE_CHANNEL_BOT_API_ID") or 0)
@@ -65,7 +66,7 @@ class Config(object):
         or os.environ.get("PM_LOGGR_BOT_API_ID")
         or 0
     )
-    OPEN_AI = os.environ.get("OPEN_AI", None)
+    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
     TIME_JM = os.environ.get("TIME_JM", None)
     # Custom vars for userbot
     # هنا ايدي قناتك الي بيها ملفات اضافيه اذا تحب تضيف
