@@ -40,7 +40,7 @@ def generate_gpt_response(input_text, chat_id):
         messages.append({"role": "assistant", "content": generated_text})
         conversations[chat_id] = messages
     except Exception as e:
-        generated_text = f"`Error generating GPT response: {str(e)}`"
+        generated_text = f"خطأ في الأستجابة من الذكاء الأسطناعي: {str(e)}"
     return generated_text
 
 
@@ -53,17 +53,17 @@ def generate_edited_response(input_text, instructions):
         )
         edited_text = response.choices[0].text.strip()
     except Exception as e:
-        edited_text = f"__Error generating GPT edited response:__ `{str(e)}`"
+        edited_text = f"خطا في الأستجابة للرسالة المعدلة من الذكاء الأسطناعي: `{str(e)}`"
     return edited_text
 
 
 def del_convo(chat_id, checker=False):
     global conversations
-    out_text = "__There is no GPT context to delete for this chat.__"
+    out_text = "لا يوجد  محتوى من الذكاء الاسطناعي لحذفه"
     # Delete the the context of given chat
     if chat_id in conversations:
         del conversations[chat_id]
-        out_text = "__GPT context deleted for this chat.__"
+        out_text = "تم حذف محتوى الذكاء الاسطناعي لهذه الدردشة"
     if checker:
         return out_text
 
@@ -74,9 +74,9 @@ async def generate_dalle_image(text, reply, event, flag=None):
     if not text and reply:
         text = reply.text
     if not text:
-        return await edit_delete(event, "**ಠ∀ಠ Gimmi text**")
+        return await edit_delete(event, "**- يجب عليك وضع عنوان للصنع اولا**")
 
-    catevent = await edit_or_reply(event, "__Generating image...__")
+    catevent = await edit_or_reply(event, "**- جار صنع الصورة أنتظر قليلا**")
     try:
         if flag:
             filename = "dalle-in.png"
@@ -103,7 +103,7 @@ async def generate_dalle_image(text, reply, event, flag=None):
                 size=f"{size}x{size}",
             )
     except Exception as e:
-        await edit_delete(catevent, f"Error generating image: {str(e)}")
+        await edit_delete(catevent, f"خطأ في صنع الصورة: {str(e)}")
         return None, None
 
     photos = []
@@ -112,10 +112,10 @@ async def generate_dalle_image(text, reply, event, flag=None):
         photo = await wall_download(media["url"], "Dall-E")
         photos.append(photo)
         captions.append("")
-        await edit_or_reply(catevent, f"__📥 Downloaded : {i}/{limit}__")
+        await edit_or_reply(catevent, f"تم التحميل : {i}/{limit}__")
 
-    captions[-1] = f"**➥ Query :-** `{text.title()}`"
-    await edit_or_reply(catevent, "__Uploading...__")
+    captions[-1] = f"**➥ العنوان :-** `{text.title()}`"
+    await edit_or_reply(catevent, "جار الرفع الان انتظر قليلا  . . .")
     return photos, captions
 
 
