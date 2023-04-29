@@ -66,7 +66,7 @@ class Config(object):
         or os.environ.get("PM_LOGGR_BOT_API_ID")
         or 0
     )
-    OPEN_AI = os.environ.get("OPEN_AI", None)
+    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
     TIME_JM = os.environ.get("TIME_JM", None)
     # Custom vars for userbot
     # هنا ايدي قناتك الي بيها ملفات اضافيه اذا تحب تضيف
