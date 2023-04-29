@@ -4,9 +4,9 @@ import random
 
 import requests
 import telethon
-from telethon.sync import functions
-from user_agent import generate_user_agent
 from fake_useragent import UserAgent
+from telethon.sync import functions
+
 from jmub import jmub
 
 a = "qwertyuiopassdfghjklzxcvbnm"
