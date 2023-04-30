@@ -1,13 +1,14 @@
-import os
 from somnium import Somnium
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers import GetStylesGraph, ai_response, reply_id
+from ..helpers import GetStylesGraph, reply_id
 from ..sql_helper.globals import addgvar, gvarstatus
-from . import jmub, mention
+from . import jmub
 
 
-@jmub.ar_cmd(pattern="صورة(?:\s|$)([\s\S]*)",)
+@jmub.ar_cmd(
+    pattern="صورة(?:\s|$)([\s\S]*)",
+)
 async def ai_img(odi):
     reply_to_id = await reply_id(odi)
     query = odi.pattern_match.group(1)
