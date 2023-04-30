@@ -299,6 +299,29 @@ async def _(event):
     isclaim.append("off")
 
 
+@jmub.ar_cmd(pattern="ايقاف الصيد")
+async def _(event):
+    if "on" in isclaim:
+        isclaim.clear()
+        isclaim.append("off")
+        return await event.edit("**- تم بنجاح ايقاف عملية الصيد**")
+    elif "off" in isclaim:
+        return await event.edit("**- لم يتم تفعيل الصيد بالأصل لأيقافه**")
+    else:
+        return await event.edit("**- لقد حدث خطأ ما وتوقف الامر لديك**")
+
+
+@jmub.ar_cmd(pattern="ايقاف التثبيت")
+async def _(event):
+    if "on" in isauto:
+        isauto.clear()
+        isauto.append("off")
+        return await event.edit("**- تم بنجاح ايقاف عملية التثبيت**")
+    elif "off" in isauto:
+        return await event.edit("**- لم يتم تفعيل التثبيت بالأصل لأيقافه**")
+    else:
+        return await event.edit("**-لقد حدث خطأ ما وتوقف الامر لديك**")
+    
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
     if "on" in isclaim:
