@@ -889,12 +889,22 @@ async def _(event):
             Button.inline("تقييد المحتوى", data="resscmdeq"),
         ],
         [
+            Button.inline("صورة ذكاء اصطناعي", data="AIIMG"),
+        ],
+        [
             Button.inline("التالي", data="toolsed1"),
             Button.inline("رجوع", data="TOOLCMD2"),
         ],
         [Button.inline("القائمة الرئيسية", data="MAIN")],
     ]
     await event.edit(ROE, buttons=buttons, link_preview=False)
+
+
+@jmub.tgbot.on(CallbackQuery(data=re.compile(rb"AIIMG")))
+@check_owner
+async def _(event):
+    buttons = [[Button.inline("رجوع", data="TOOLCM3")]]
+    await event.edit(AIIMG, buttons=buttons, link_preview=False)
 
 
 @jmub.tgbot.on(CallbackQuery(data=re.compile(rb"whoibanhim")))
