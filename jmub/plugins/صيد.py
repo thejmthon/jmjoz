@@ -321,7 +321,8 @@ async def _(event):
         return await event.edit("**- لم يتم تفعيل التثبيت بالأصل لأيقافه**")
     else:
         return await event.edit("**-لقد حدث خطأ ما وتوقف الامر لديك**")
-    
+
+
 @jmub.ar_cmd(pattern="حالة الصيد")
 async def _(event):
     if "on" in isclaim:
