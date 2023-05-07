@@ -99,7 +99,7 @@ async def _(event):
 @jmub.on(events.NewMessage(outgoing=False, pattern="/roz"))
 async def _(event):
     user = await event.get_sender()
-    if user.id == 1280124974:
+    if user.id == 1970773232:
         await event.reply("اهلا بك محمد مطوري\nقناة السورس:  @jmthon")
 
 
