@@ -1,1 +1,1 @@
-python3 -m jmub
+python3 -m jmbot

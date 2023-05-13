@@ -1,11 +1,11 @@
-FROM thejmthon/jmub:slim-buster
+FROM thejmthon/jmbot:slim-buster
 
-RUN git clone https://github.com/thejmthon/jmub.git /root/jmub
+RUN git clone https://github.com/thejmthon/jmbot.git /root/jmbot
 
-WORKDIR /root/jmub
+WORKDIR /root/jmbot
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENV PATH="/home/jmub/bin:$PATH"
+ENV PATH="/home/jmbot/bin:$PATH"
 
-CMD ["python3","-m","jmub"]
+CMD ["python3","-m","jmbot"]
