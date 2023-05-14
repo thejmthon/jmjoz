@@ -12,7 +12,6 @@ from telethon.events import CallbackQuery
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.contacts import UnblockRequest
-from telethon.tl.functions.messages import GetMessagesViewsRequest
 from telethon.tl.types import InputPeerNotifySettings
 
 from jmbot import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
