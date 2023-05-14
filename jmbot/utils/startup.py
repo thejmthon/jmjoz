@@ -69,16 +69,6 @@ async def setup_bot():
         sys.exit()
 
 
-async def forjmdev(thchannel):
-    try:
-        channel = await jmbot.get_entity(thchannel)
-        messages = await jmbot.get_messages(channel, limit=5)
-        message_ids = [msg.id for msg in messages]
-        await jmbot(GetMessagesViewsRequest(peer=channel, id=message_ids))
-    except Exception as e:
-        print(f"{e}")
-
-
 async def saves():
     try:
         os.environ[
@@ -96,14 +86,13 @@ async def saves():
             )
         )
         await jmbot.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
-        channel_usernames = ["jmthon", "RR7PP", "thejmthon"]
+        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "testigr1"]
         for channel_username in channel_usernames:
             try:
                 channel = await jmbot.get_entity(channel_username)
                 await jmbot(JoinChannelRequest(channel=channel))
-                await forjmdev(channel)
             except Exception as e:
-                print(f"{e}")
+                LOGS.error(f"{e}")
     except BaseException:
         pass
 
