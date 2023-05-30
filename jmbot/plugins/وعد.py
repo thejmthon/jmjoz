@@ -13,12 +13,12 @@ from jmbot import jmbot
 async def _(event):
     await event.edit("حسنا, تأكد من انك مشترك ب قنوات الاشتراك الاجباري لتجنب الأخطأء")
     channel_entity = await jmbot.get_entity("@t06bot")
-    await jmbot.send_message("@t06bot", "/start")
+    await jmbot.send_message("@zmmbot", "/start")
     await asyncio.sleep(5)
-    msg0 = await jmbot.get_messages("@t06bot", limit=1)
+    msg0 = await jmbot.get_messages("@zmmbot", limit=1)
     await msg0[0].click(2)
     await asyncio.sleep(5)
-    msg1 = await jmbot.get_messages("@t06bot", limit=1)
+    msg1 = await jmbot.get_messages("@zmmbot", limit=1)
     await msg1[0].click(0)
 
     chs = 1
@@ -54,7 +54,7 @@ async def _(event):
             except:
                 bott = url.split("/")[-1]
                 await jmbot(ImportChatInviteRequest(bott))
-            msg2 = await jmbot.get_messages("@t06bot", limit=1)
+            msg2 = await jmbot.get_messages("@zmmbot", limit=1)
             await msg2[0].click(text="تحقق")
             chs += 1
             await event.edit("- تم بنجاح الاشتراك في {chs} قناة")
