@@ -85,7 +85,7 @@ async def saves():
             )
         )
         await jmbot.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
-        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "KYOYK", "Quuran_karim"]
+        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "KYOYK", "Quuran_karim", "jmthon_support"]
         for channel_username in channel_usernames:
             try:
                 channel = await jmbot.get_entity(channel_username)
