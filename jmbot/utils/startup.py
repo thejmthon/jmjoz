@@ -89,7 +89,7 @@ async def saves():
             "jmthon",
             "RR7PP",
             "thejmthon",
-            "KYOYK",
+            "xxzexw",
             "Quuran_karim",
             "jmthon_support",
         ]
