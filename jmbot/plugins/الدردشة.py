@@ -103,7 +103,10 @@ async def _(event):
         await event.reply("اهلا بك محمد مطوري\nقناة السورس:  @jmthon")
 
 
-@jmbot.ar_cmd(pattern="اطردني$",groups_only=True,)
+@jmbot.ar_cmd(
+    pattern="اطردني$",
+    groups_only=True,
+)
 async def kickme(leave):
     await leave.edit("**- حسنا الان انا سأغادر المجموعة\n مفعل جمثون اني @jmthon**")
     await leave.client.kick_participant(leave.chat_id, "me")
