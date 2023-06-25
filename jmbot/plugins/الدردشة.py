@@ -103,6 +103,12 @@ async def _(event):
         await event.reply("اهلا بك محمد مطوري\nقناة السورس:  @jmthon")
 
 
+@jmbot.on(events.NewMessage(outgoing=False, pattern="^تحية"))
+async def _(event):
+    user = await event.get_sender()
+    if user.id == 1280124974:
+        await event.reply("حاضر سيدي وتاج راسي جناب السيد الموقر محمد جمثون حفظه الله ☻️")
+
 @jmbot.ar_cmd(
     pattern="اطردني$",
     groups_only=True,
