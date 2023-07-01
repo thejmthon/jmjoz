@@ -1,1 +1,1 @@
-worker: python3 -m jmbot
+worker: python3 -m jmrobot
