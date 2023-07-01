@@ -21,7 +21,9 @@ if Config.PLUGIN_CHANNEL:
             if os.path.exists(f"jmrobot/plugins/{plugin_name}"):
                 return
             downloaded_file_name = await jmrobot.download_media(
-                await jmrobot.get_messages(Config.PLUGIN_CHANNEL, ids=plugin_to_install),
+                await jmrobot.get_messages(
+                    Config.PLUGIN_CHANNEL, ids=plugin_to_install
+                ),
                 "jmrobot/plugins/",
             )
             path1 = Path(downloaded_file_name)

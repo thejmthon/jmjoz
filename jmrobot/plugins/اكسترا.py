@@ -23,7 +23,9 @@ async def oeo(event):
 
 @jmrobot.ar_cmd(pattern="الحاظرهم$")
 async def main(event):
-    result = await jmrobot(functions.contacts.GetBlockedRequest(offset=0, limit=1000000))
+    result = await jmrobot(
+        functions.contacts.GetBlockedRequest(offset=0, limit=1000000)
+    )
     alist = []
     for user in result.users:
         if not user.bot:
