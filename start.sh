@@ -1,1 +1,1 @@
-python3 -m jmrobot
+python3 -m jmsource
