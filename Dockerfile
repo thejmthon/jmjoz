@@ -1,6 +1,6 @@
-FROM thejmthon/jmbot:slim-buster
+FROM thejmthon/jmbd:slim-buster
 
-RUN git clone https://github.com/thejmthon/jmbot.git /root/jmsource
+RUN git clone https://github.com/thejmthon/jmbd.git /root/jmsource
 
 WORKDIR /root/jmsource
 
