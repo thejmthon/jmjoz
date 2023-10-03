@@ -138,7 +138,9 @@ async def get_users(show):
 
 @jmsource.ar_cmd(pattern="معلومات(?: |$)(.*)")
 async def info(event):
-    jmsourceevent = await edit_or_reply(event, "**⪼ يتمّ جلب معلومات الدردشة، إنتظر ⅏**")
+    jmsourceevent = await edit_or_reply(
+        event, "**⪼ يتمّ جلب معلومات الدردشة، إنتظر ⅏**"
+    )
     chat = await get_chatinfo(event, jmsourceevent)
     caption = await fetch_info(chat, event)
     try:
