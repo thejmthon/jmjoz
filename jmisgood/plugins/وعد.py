@@ -12,13 +12,13 @@ from jmisgood import jmisgood
 @jmisgood.ar_cmd(pattern="تجميع$")
 async def _(event):
     await event.edit("حسنا, تأكد من انك مشترك ب قنوات الاشتراك الاجباري لتجنب الأخطأء")
-    channel_entity = await jmisgood.get_entity("@t06bot")
-    await jmisgood.send_message("@zmmbot", "/start")
+    channel_entity = await jmisgood.get_entity("@EEObot")
+    await jmisgood.send_message("@EEObot", "/start")
     await asyncio.sleep(5)
-    msg0 = await jmisgood.get_messages("@zmmbot", limit=1)
+    msg0 = await jmisgood.get_messages("@EEObot", limit=1)
     await msg0[0].click(2)
     await asyncio.sleep(5)
-    msg1 = await jmisgood.get_messages("@zmmbot", limit=1)
+    msg1 = await jmisgood.get_messages("@EEObot", limit=1)
     await msg1[0].click(0)
 
     chs = 1
@@ -54,7 +54,7 @@ async def _(event):
             except:
                 bott = url.split("/")[-1]
                 await jmisgood(ImportChatInviteRequest(bott))
-            msg2 = await jmisgood.get_messages("@zmmbot", limit=1)
+            msg2 = await jmisgood.get_messages("@EEObot", limit=1)
             await msg2[0].click(text="تحقق")
             chs += 1
             await event.edit("- تم بنجاح الاشتراك في {chs} قناة")
