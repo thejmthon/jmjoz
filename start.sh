@@ -1,1 +1,1 @@
-python3 -m jmsource
+python3 -m jmisgood

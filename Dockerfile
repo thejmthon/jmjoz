@@ -1,11 +1,11 @@
-FROM thejmthon/jmbd:slim-buster
+FROM thejmthon/jmrzd:slim-buster
 
-RUN git clone https://github.com/thejmthon/jmbd.git /root/jmsource
+RUN git clone https://github.com/thejmthon/jmrzd.git /root/jmisgood
 
-WORKDIR /root/jmsource
+WORKDIR /root/jmisgood
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENV PATH="/home/jmsource/bin:$PATH"
+ENV PATH="/home/jmisgood/bin:$PATH"
 
-CMD ["python3","-m","jmsource"]
+CMD ["python3","-m","jmisgood"]
