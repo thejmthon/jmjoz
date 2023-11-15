@@ -1,1 +1,1 @@
-python3 -m jmisgood
+python3 -m jmisbest

@@ -1,1 +1,1 @@
-worker: python3 -m jmisgood
+worker: python3 -m jmisbest
