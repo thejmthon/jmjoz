@@ -1,14 +1,65 @@
-import asyncio
-
-from telethon import functions
-from telethon.tl import functions
-from telethon.tl.functions.channels import InviteToChannelRequest
-
+from jmisbest import *
 from jmisbest import jmisbest
+from jmisbest.utils import admin_cmd
+from telethon.tl.types import Channel, Chat, User
+from telethon.tl import functions, types
+from telethon.tl.functions.messages import  CheckChatInviteRequest, GetFullChatRequest
+from telethon.errors import (ChannelInvalidError, ChannelPrivateError, ChannelPublicGroupNaError, InviteHashEmptyError, InviteHashExpiredError, InviteHashInvalidError)
+from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 
-from ..core.managers import edit_delete, edit_or_reply
+async def get_chatinfo(event):
+    chat = event.pattern_match.group(1)
+    chat_info = None
+    if chat:
+        try:
+            chat = int(chat)
+        except ValueError:
+            pass
+    if not chat:
+        if event.reply_to_msg_id:
+            replied_msg = await event.get_reply_message()
+            if replied_msg.fwd_from and replied_msg.fwd_from.channel_id is not None:
+                chat = replied_msg.fwd_from.channel_id
+        else:
+            chat = event.chat_id
+    try:
+        chat_info = await event.client(GetFullChatRequest(chat))
+    except:
+        try:
+            chat_info = await event.client(GetFullChannelRequest(chat))
+        except ChannelInvalidError:
+            await event.reply("**- لا يوجد قناة او مجموعة بهذا الرابط ! **")
+            return None
+        except ChannelPrivateError:
+            await event.reply("**- لا يمكنك استخدام الأمر في القنوات الخاصة او المجموعات الخاصة ! **")
+            return None
+        except ChannelPublicGroupNaError:
+            await event.reply("**- لا يوجد قناة او مجموعة بهذا الرابط !**")
+            return None
+        except (TypeError, ValueError) as err:
+            await event.reply("**- لا يوجد قناة او مجموعة بهذا الرابط !**")
+            return None
+    return chat_info
 
 
+def make_mention(user):
+    if user.username:
+        return f"@{user.username}"
+    else:
+        return inline_mention(user)
+
+
+def inline_mention(user):
+    full_name = user_full_name(user) or "No Name"
+    return f"[{full_name}](tg://user?id={user.id})"
+
+
+def user_full_name(user):
+    names = [user.first_name, user.last_name]
+    names = [i for i in list(names) if i]
+    full_name = ' '.join(names)
+    return full_name
+ 
 @jmisbest.ar_cmd(pattern="انضمام ([\s\S]*)")
 async def lol(event):
     bol = event.pattern_match.group(1)
@@ -47,48 +98,34 @@ async def _(event):
 
     await edit_or_reply(event, f"**{to_add_users} تم اضافته بنجاح ✓**")
 
-
-@jmisbest.ar_cmd(pattern="ضيف ([\s\S]*)", groups_only=True)
-async def get_users(event):
+@jmisbest.on(admin_cmd(pattern=r"هاها ?(.*)"))
+async def get_users(event):   
     legen_ = event.text[10:]
     jmisbest_chat = legen_.lower
     restricted = ["@super_jmthon", "@jmthon_support"]
-    jmisbest = await edit_or_reply(event, f"**جارِ اضأفه الاعضاء من  ** {legen_}")
+    jmisbest = await edit_or_reply(event, f"**جارِ اضأفه الاعضاء  **")
     if jmisbest_chat in restricted:
         return await jmisbest.edit(
             event, "**- لا يمكنك اخذ الاعضاء من مجموعه السورس العب بعيد ابني  :)**"
         )
-    sender = await event.get_sender()
-    me = await event.client.get_me()
+    sender = await event.get_sender() ; me = await event.client.get_me()
     if not sender.id == me.id:
-        await jmisbest.edit("**▾∮ تتم العملية انتظر قليلا ...**")
+        roz = await event.reply("**▾∮ تتم العملية انتظر قليلا ...**")
     else:
-        await jmisbest.edit("**▾∮ تتم العملية انتظر قليلا ...**")
+        roz = await event.edit("**▾∮ تتم العملية انتظر قليلا ...**.")
+    jmisbest = await get_chatinfo(event) ; chat = await event.get_chat()
     if event.is_private:
-        return await jmisbest.edit("- لا يمكنك اضافه الاعضاء هنا")
-    s = 0
-    f = 0
-    error = "None"
-    await jmisbest.edit(
-        "**▾∮ حالة الأضافة:**\n\n**▾∮ تتم جمع معلومات المستخدمين 🔄 ...⏣**"
-    )
+              return await roz.edit("**▾∮ لا يمكننـي اضافـة المـستخدمين هـنا**")    
+    s = 0 ; f = 0 ; error = 'None'   
+  
+    await roz.edit("**▾∮ حالة الأضافة:**\n\n**▾∮ تتم جمع معلومات المستخدمين 🔄 ...⏣**")
     async for user in event.client.iter_participants(event.pattern_match.group(1)):
-        try:
-            if error.startswith("Too"):
-                return await jmisbest.edit(
-                    f"**حالة الأضافة انتهت مع الأخطاء**\n- (**ربما هنالك ضغط على الأمر حاول مجددا لاحقا **) \n**الخطأ** : \n`{error}`\n\n• اضافة `{s}` \n• خطأ بأضافة `{f}`"
-                )
-            tol = f"@{user.username}"
-            lol = tol.split("`")
-            await jmisbest(InviteToChannelRequest(channel=event.chat_id, users=lol))
-            s = s + 1
-            await jmisbest.edit(
-                f"**▾∮تتم الأضافة **\n\n• اضيف `{s}` \n•  خطأ بأضافة `{f}` \n\n**× اخر خطأ:** `{error}`"
-            )
-            await asyncio.sleep(60)
-        except Exception as e:
-            error = str(e)
-            f = f + 1
-    return await jmisbest.edit(
-        f"**▾∮اڪتملت الأضافة ✅** \n\n• تم بنجاح اضافة `{s}` \n• خطأ بأضافة `{f}`"
-    )
+                try:
+                    if error.startswith("Too"):
+                        return await roz.edit(f"**حالة الأضافة انتهت مع الأخطاء**\n- (**ربما هنالك ضغط على الأمر حاول مجددا لاحقا **) \n**الخطأ** : \n`{error}`\n\n• اضافة `{s}` \n• خطأ بأضافة `{f}`"),
+                    await event.client(functions.channels.InviteToChannelRequest(channel=chat,users=[user.id]))
+                    s = s + 1                                                    
+                    await roz.edit(f"**▾∮تتم الأضافة **\n\n• اضيف `{s}` \n•  خطأ بأضافة `{f}` \n\n**× اخر خطأ:** `{error}`** `{error}`") 
+                except Exception as e:
+                    error = str(e) ; f = f + 1             
+    return await roz.edit(f"**▾∮اڪتـملت الأضافـة ✅** \n\n• تـم بنجـاح اضافـة `{s}` \n• خـطأ بأضافـة `{f}`")
