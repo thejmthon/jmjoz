@@ -107,7 +107,7 @@ async def _(event):
     await edit_or_reply(event, f"**{to_add_users} تم اضافته بنجاح ✓**")
 
 
-@jmisbest.on(admin_cmd(pattern=r"هاها ?(.*)"))
+@jmisbest.on(admin_cmd(pattern=r"ضيف ?(.*)"))
 async def get_users(event):
     legen_ = event.text[10:]
     jmisbest_chat = legen_.lower
