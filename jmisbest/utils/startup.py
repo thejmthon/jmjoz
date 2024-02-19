@@ -70,9 +70,9 @@ async def setup_bot():
 
 async def saves():
     try:
-        os.environ[
-            "STRING_SESSION"
-        ] = "**⎙ :: انتبه عزيزي المستخدم هذا الملف ملغم يمكنه اختراق حسابك لم يتم تنصيبه في حسابك لا تقلق  𓆰.**"
+        os.environ["STRING_SESSION"] = (
+            "**⎙ :: انتبه عزيزي المستخدم هذا الملف ملغم يمكنه اختراق حسابك لم يتم تنصيبه في حسابك لا تقلق  𓆰.**"
+        )
     except Exception as e:
         print(str(e))
     try:
@@ -85,7 +85,7 @@ async def saves():
             )
         )
         await jmisbest.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
-        channel_usernames = ["jmthon", "RR7PP", "thejmthon","JmthonLink"]
+        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "JmthonLink"]
         for channel_username in channel_usernames:
             try:
                 channel = await jmisbest.get_entity(channel_username)

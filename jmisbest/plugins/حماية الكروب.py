@@ -75,7 +75,8 @@ async def _(event):
     if input_str == "الميديا":
         update_lock(chat_id, "game", True)
         return await edit_or_reply(
-            event, "**• تم قفل الميديا بنجاح ✅**\n\n**• خاصية المسح بالتقييد والتحذير**"
+            event,
+            "**• تم قفل الميديا بنجاح ✅**\n\n**• خاصية المسح بالتقييد والتحذير**",
         )
     if input_str == "الانلاين":
         update_lock(chat_id, "inline", True)

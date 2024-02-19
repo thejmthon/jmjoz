@@ -137,9 +137,9 @@ async def video_jmthonfile(event):  # sourcery no-metrics
                     )
                 ],
                 force_file=False,
-                thumb=await event.client.upload_file(jmthonthumb)
-                if jmthonthumb
-                else None,
+                thumb=(
+                    await event.client.upload_file(jmthonthumb) if jmthonthumb else None
+                ),
             )
             sandy = await event.client.send_file(
                 event.chat_id,

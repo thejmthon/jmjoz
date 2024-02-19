@@ -22,9 +22,7 @@ JM_TXT = os.environ.get("PING_TEXT") or "مـن لا يتعلم من الماض�
 async def _(event):
     reply_to_id = await reply_id(event)
     start = datetime.now()
-    roz = await edit_or_reply(
-        event, "<b><i>  ❤️⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃟✨ البــــنك... 🍀⃝⃝⃟🍂 </b></i>", "html"
-    )
+    roz = await edit_or_reply(event, "<b><i>  ❤️⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃟✨ البــــنك... 🍀⃝⃝⃟🍂 </b></i>", "html")
     end = datetime.now()
     await roz.delete()
     ms = (end - start).microseconds / 1000

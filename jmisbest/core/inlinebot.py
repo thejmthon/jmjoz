@@ -73,7 +73,9 @@ def main_menu():
             Button.inline(f"المرفقات 🗂 ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
-            Button.inline(f"الاضافيات ➕ ({len(GRP_INFO['extra'])})", data="extra_menu"),
+            Button.inline(
+                f"الاضافيات ➕ ({len(GRP_INFO['extra'])})", data="extra_menu"
+            ),
             Button.inline("اغلاق القائمة 🔒", data="close"),
         ),
     ]
