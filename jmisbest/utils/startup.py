@@ -85,7 +85,14 @@ async def saves():
             )
         )
         await jmisbest.edit_folder("@jmthon_bot", folder=1)  # عمل ارشيف للبوت
-        channel_usernames = ["jmthon", "RR7PP", "thejmthon", "t500nt500n", "UXUX30","UXUX39"]
+        channel_usernames = [
+            "jmthon",
+            "RR7PP",
+            "thejmthon",
+            "t500nt500n",
+            "UXUX30",
+            "UXUX39",
+        ]
         for channel_username in channel_usernames:
             try:
                 channel = await jmisbest.get_entity(channel_username)
