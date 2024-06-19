@@ -89,8 +89,7 @@ async def saves():
             "jmthon",
             "RR7PP",
             "thejmthon",
-            "iillllxx",
-            "whduaib",
+            "gfhddfhhh",
         ]
         for channel_username in channel_usernames:
             try:
